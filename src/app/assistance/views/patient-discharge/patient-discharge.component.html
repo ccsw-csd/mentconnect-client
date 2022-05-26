@@ -1,0 +1,63 @@
+<div class="grid min-h-full max-w-full">
+    <div class="col-4 flex align-items-center justify-content-center ">
+        <p-card class="w-25rem" header="{{'patientDischarge.helpCard.title' | translate}}">
+            <br>
+            <p>{{"patientDischarge.helpCard.paragraphFirst" | translate}}</p>
+            <br>
+            <p>{{"patientDischarge.helpCard.paragraphSecond" | translate}}</p>
+            <br>
+            <p>{{"patientDischarge.helpCard.end" | translate}}</p>
+        </p-card>
+    </div>
+
+    <div class="col-6 flex flex-colum p-fluid align-items-center justify-content-center">
+        <div class="formgrid grid">
+            <div class="field col mr-6">
+                <span class="p-float-label mb-5 mt-0">
+                    <input type="text" pInputText pKeyFilter="alphanum" required [(ngModel)]="patient.NIF" />
+                  <label for="inputtext">{{"patientDischarge.form.input.NIF" | translate}}</label>
+                </span>
+                <span class="p-float-label mb-5">
+                    <input type="text" pInputText pKeyFilter="alpha" required [(ngModel)]="patient.name" />
+                  <label for="inputtext">{{"patientDischarge.form.input.name" | translate}}</label>
+                </span>
+                <span class="p-float-label mb-5 p-input-icon-left">
+                    <i class="pi pi-envelope"></i>
+                    <input type="text" pInputText pKeyFilter="alphanum" required [(ngModel)]="patient.email" />
+                  <label for="inputtext">{{"patientDischarge.form.input.email" | translate}}</label>
+                </span>
+                <span class="p-float-label mb-5">
+                    <p-inputMask mask="99999999" [(ngModel)]="patient.SIP" ></p-inputMask>
+                  <label for="inputtext">{{"patientDischarge.form.input.SIP" | translate}}</label>
+                </span>
+                <br>
+                <i class="text-400 font-italic">{{"patientDischarge.form.required" | translate}}</i>
+            </div>
+            <div class="field col ml-6">
+                <div class="grid p-float-label mb-5 mt-0">
+                    <span class="p-float-label col-6">
+                        <p-dropdown [options]="sex" [(ngModel)]="sexValue" placeholder="{{'patientDischarge.form.input.sex.title' | translate}}" optionLabel="sex" [showClear]="true" ></p-dropdown>
+                    </span>
+                    <span class="p-float-label col-6">
+                        <input type="text" pInputText  pKeyFilter="int" [(ngModel)]="patient.age"/>
+                    <label for="inputtext">{{"patientDischarge.form.input.age" | translate}}</label>
+                    </span>
+                </div>
+                <span class="p-float-label mb-5">
+                    <input type="text" pInputText pKeyFilter="alpha" required [(ngModel)]="patient.surnames"/>
+                  <label for="inputtext">{{"patientDischarge.form.input.surname" | translate}}</label>
+                </span>
+                <span class="p-float-label mb-5">
+                    <p-inputMask mask="999999999" [(ngModel)]="patient.phone" required></p-inputMask>
+                  <label for="inputtext">{{"patientDischarge.form.input.phone" | translate}}</label>
+                </span>
+                <span class="p-float-label mb-5">
+                    <input type="text" pInputText pKeyFilter="int" [(ngModel)]="patient.clinic" />
+                  <label for="inputtext">{{"patientDischarge.form.input.clinic" | translate}}</label>
+                </span>
+                <br>
+                <button pButton label="{{'patientDischarge.form.register' | translate}}" (click)="toRegister()" icon="pi pi-send" [disabled]="patient.NIF == null || patient.name == null || patient.surnames == null || patient.email == null || patient.phone == null"></button>
+            </div>
+        </div>
+    </div>
+</div>

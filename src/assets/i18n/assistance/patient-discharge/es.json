@@ -1,0 +1,29 @@
+{
+    "patientDischarge": {
+        "helpCard": {
+            "title" : "Vinculación del Paciente",
+            "paragraphFirst" : "En esta sección se realiza el alta del paciente, esa acción registra al nuevo usuario en el sistema y envía un correo electrónico a la dirección proporcionada con las instrucciones necesarias para acceder a la aplicación móvil.",
+            "paragraphSecond" : "Una vez finalizado el registro, diríjase a la sección de 'Pacientes' para asignar el cuestionario más adecuado al paciente y realizar el seguimiento del mismo.",
+            "end" : "¡Mantente Conectado!"
+        },
+        "form": {
+            "input": {
+                "NIF" : "NIF *",
+                "sex": {
+                    "title" : "Sexo",
+                    "male" : "Hombre",
+                    "female" : "Mujer"
+                },
+                "age" : "Edad",
+                "name" : "Nombre *",
+                "surname" : "Apellidos *",
+                "email" : "Correo electrónico *",
+                "phone" : "Teléfono *",
+                "SIP" : "SIP",
+                "clinic" : "H.Clínica"
+            },
+            "required" : "* Campos obligatorios",
+            "register" : "Registrar"
+        }
+    }
+}

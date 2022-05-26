@@ -1,0 +1,29 @@
+{
+    "patientDischarge": {
+        "helpCard": {
+            "title" : "Patient Bonding",
+            "paragraphFirst" : "In this section, the patient is discharged, this action registers the new user in the system and sends an email to the address provided with the necessary instructions to access the mobile application.",
+            "paragraphSecond" : "Once registration is complete, go to the 'Patients' section to assign the most appropriate questionnaire to the patient and monitor them.",
+            "end" : "¡Stay Connect!"
+        },
+        "form": {
+            "input": {
+                "NIF" : "NIF *",
+                "sex": {
+                    "title" : "Sex",
+                    "male" : "Male",
+                    "female" : "Female"
+                },
+                "age" : "Age",
+                "name" : "Name *",
+                "surname" : "Surname *",
+                "email" : "Email *",
+                "phone" : "Phone *",
+                "SIP" : "SIP",
+                "clinic" : "H.Clinic"
+            },
+            "required" : "* Required fields",
+            "register" : "Register"
+        }
+    }
+}
