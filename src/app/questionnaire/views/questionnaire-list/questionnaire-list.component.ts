@@ -75,18 +75,19 @@ export class QuestionnaireListComponent implements OnInit {
           pageable.sort = [{property: event.sortField, direction: event.sortOrder == 1? "asc": "desc"}];
     }
 
-    this.questionnaireService.getQuestionnaires(pageable, this.description, this.questionsNumber, this.patientsNumber, this.user).subscribe(data =>{
+
+    let userFilt = event.filters?.user?.value != null ? event.filters?.user?.value[0] : null;
+
+    this.questionnaireService.getQuestionnaires(pageable, event.filters?.description?.value, event.filters?.questionsNumber?.value, event.filters?.patientsNumber?.value, userFilt).subscribe(data =>{
         this.questionnaires = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
         this.totalRecords = data.totalElements;
         this.loading = false;       
     });
-
-
   }
 
-  onSearchFilter(): void{
+  onSearchFilter(): void {
     this.description = this.filterDescription;
     this.questionsNumber = this.filterQuestionsNumber;
     this.patientsNumber = this.filterPatientsNumber;
@@ -95,7 +96,7 @@ export class QuestionnaireListComponent implements OnInit {
     this.loadPage();
   }
 
-  onCleanFilter(): void{
+  onCleanFilter(): void {
     this.filterDescription = null;
     this.filterQuestionsNumber = null;
     this.filterPatientsNumber = null;
@@ -103,6 +104,5 @@ export class QuestionnaireListComponent implements OnInit {
 
     this.onSearchFilter();
   }
-
 
 }

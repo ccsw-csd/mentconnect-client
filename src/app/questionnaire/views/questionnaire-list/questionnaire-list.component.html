@@ -4,12 +4,11 @@
         <h4>Cuestionarios</h4>
     </div>
 
-    <p-table [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" responsiveLayout="scroll" dataKey="id"
-    [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading" 
-    [globalFilterFields]="['description','questionsNumber', 'patientsNumber', 'user.name', 'createDate', 'lastEditDate']">
+    <p-table #table [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" [scrollable]="true" responsiveLayout="scroll"
+    [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading" scrollHeight="calc(100vh - 250px)" [paginator]="true" [rows]="25" [showCurrentPageReport]="true" 
+    currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
         <tr>
-            <th style="width: 3rem"></th>
             <th pSortableColumn="description">Descripción<p-sortIcon field="description"></p-sortIcon></th>
             <th pSortableColumn="questionsNumber">Nº preguntas<p-sortIcon field="questionsNumber"></p-sortIcon></th>
             <th pSortableColumn="patientsNumber">Nº pacientes<p-sortIcon field="patientsNumber"></p-sortIcon></th>
@@ -19,24 +18,22 @@
             <th>Acciones</th>
         </tr>
         <tr>
-            <th style="width: 3rem">              
+            <th>
+                <p-columnFilter type="text" field="description" matchMode="equals" [showMenu]="false"></p-columnFilter>
             </th>
             <th>
-                <p-columnFilter type="text" field="description"></p-columnFilter>
+                <p-columnFilter type="numeric" field="questionsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
             </th>
             <th>
-                <p-columnFilter type="text" field="questionsNumber"></p-columnFilter>
+                <p-columnFilter type="numeric" field="patientsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
             </th>
             <th>
-                <p-columnFilter type="text" field="patientsNumber"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter field="user" matchMode="in" [showMenu]="false">
+                <p-columnFilter field="user" matchMode="equals" [showMenu]="false">
                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                         <p-multiSelect [ngModel]="value" appendTo="body" [options]="users" placeholder="Usuario" (onChange)="filter($event.value)" optionLabel="name">
                             <ng-template let-user pTemplate="item">
                                 <div class="p-multiselect-representative-option">                                  
-                                    <span class="ml-1">{{user.name}}</span>
+                                    <span class="ml-1">{{user.name}} {{user.surnames}}</span>
                                 </div>
                             </ng-template>
                         </p-multiSelect>
@@ -47,11 +44,10 @@
     </ng-template>
     <ng-template pTemplate="body" let-questionnaire>
         <tr>
-            <td style="width: 3rem"></td>
             <td>{{questionnaire.description}}</td>
             <td>{{questionnaire.questionsNumber}}</td>
             <td>{{questionnaire.patientsNumber}}</td>
-            <td>{{questionnaire.user.name}}</td>
+            <td>{{questionnaire.user.name}} {{questionnaire.user.surnames}}</td>
             <td>{{questionnaire.createDate | date:'dd/MM/yyy'}}</td>
             <td>{{questionnaire.lastEditDate | date:'dd/MM/yyy'}}</td>
             <td>
