@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
+import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate
         useFactory : HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    QuestionnaireModule
   ],
   providers: [
     {
