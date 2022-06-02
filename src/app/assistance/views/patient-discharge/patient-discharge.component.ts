@@ -36,8 +36,6 @@ export class PatientDischargeComponent implements OnInit {
   toRegister(){
     if(this.sexValue != null) this.patient.sex = this.sexValue.code;
 
-    this.patientService.registerPatient(this.patient).subscribe( (res) => {
-
-    });
+    this.patientService.registerPatient(this.patient).subscribe();
   }
 }

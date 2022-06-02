@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SecurityModule } from './security/security.module';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
@@ -23,6 +23,7 @@ import { AssistanceModule } from './assistance/assistance.module';
     BrowserAnimationsModule,
     CoreModule,
     SecurityModule,
+    HttpClientModule,
     MessagesModule,
     MessageModule,
     AssistanceModule,
@@ -35,6 +36,7 @@ import { AssistanceModule } from './assistance/assistance.module';
     })
   ],
   providers: [
+    HttpClientModule,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,

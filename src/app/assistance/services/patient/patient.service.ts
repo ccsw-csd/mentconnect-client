@@ -13,7 +13,7 @@ export class PatientService {
     private http: HttpClient,
   ) { }
 
-  registerPatient(patient: Patient) : Observable<any>{
-    return this.http.put(environment.server+ '/patientDischarge/register', patient);
+  registerPatient(patient: Patient) : Observable<Patient>{
+    return this.http.put<Patient>(environment.server+ '/patientDischarge/register', patient);
   }
 }
