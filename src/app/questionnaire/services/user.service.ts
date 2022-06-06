@@ -13,8 +13,8 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(environment.server+'/user/findAll');
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(environment.server + '/user/findAll');
   }
 
 }

@@ -1,0 +1,12 @@
+{
+    "questionnaire":{
+        "title":"Qüestionaris",
+        "description":"Descripció",
+        "questionsNumber":"Nombre de preguntes",
+        "patientsNumber":"Nombre de pacients",
+        "user":"Usuari",
+        "createDate":"Data de Creació",
+        "lastEditDate":"Última edició",
+        "actions":"Accions"
+    }
+}

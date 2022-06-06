@@ -1,62 +1,71 @@
 <div class="container">
 
-    <div id="title">
-        <h4>Cuestionarios</h4>
-    </div>
-
-    <p-table #table [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" [scrollable]="true" responsiveLayout="scroll"
-    [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading" scrollHeight="calc(100vh - 250px)" [paginator]="true" [rows]="25" [showCurrentPageReport]="true" 
+  <div id="title">
+    <h4>{{"questionnaire.title" | translate}}</h4>
+  </div>
+ 
+  <p-table #table [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" [scrollable]="false"
+    responsiveLayout="scroll" [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading"
+    scrollHeight="calc(100vh - 250px)" [paginator]="true" [rows]="25" [showCurrentPageReport]="true"
     currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
-        <tr>
-            <th pSortableColumn="description">Descripción<p-sortIcon field="description"></p-sortIcon></th>
-            <th pSortableColumn="questionsNumber">Nº preguntas<p-sortIcon field="questionsNumber"></p-sortIcon></th>
-            <th pSortableColumn="patientsNumber">Nº pacientes<p-sortIcon field="patientsNumber"></p-sortIcon></th>
-            <th pSortableColumn="user.name">Usuario<p-sortIcon field="user.name"></p-sortIcon></th>
-            <th pSortableColumn="createDate">F.creación<p-sortIcon field="createDate"></p-sortIcon></th>
-            <th pSortableColumn="lastEditDate">U.edición<p-sortIcon field="lastEditDate"></p-sortIcon></th>
-            <th>Acciones</th>
-        </tr>
-        <tr>
-            <th>
-                <p-columnFilter type="text" field="description" matchMode="equals" [showMenu]="false"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter type="numeric" field="questionsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter type="numeric" field="patientsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter field="user" matchMode="equals" [showMenu]="false">
-                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                        <p-multiSelect [ngModel]="value" appendTo="body" [options]="users" placeholder="Usuario" (onChange)="filter($event.value)" optionLabel="name">
-                            <ng-template let-user pTemplate="item">
-                                <div class="p-multiselect-representative-option">                                  
-                                    <span class="ml-1">{{user.name}} {{user.surnames}}</span>
-                                </div>
-                            </ng-template>
-                        </p-multiSelect>
-                    </ng-template>
-                </p-columnFilter>
-            </th>
-        </tr>
+      <tr>
+        <th pSortableColumn="description">{{"questionnaire.description" | translate}}<p-sortIcon field="description"></p-sortIcon>
+        </th>
+        <th pSortableColumn="questionsNumber">{{"questionnaire.questionsNumber" | translate}}<p-sortIcon field="questionsNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patientsNumber">{{"questionnaire.patientsNumber" | translate}}<p-sortIcon field="patientsNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="user.name">{{"questionnaire.user" | translate}}<p-sortIcon field="user.name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="createDate">{{"questionnaire.createDate" | translate}}<p-sortIcon field="createDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lastEditDate">{{"questionnaire.lastEditDate" | translate}}<p-sortIcon field="lastEditDate"></p-sortIcon>
+        </th>
+        <th>{{"questionnaire.actions" | translate}}</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="description" matchMode="equals" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="numeric" field="questionsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="numeric" field="patientsNumber" matchMode="like" [showMenu]="false"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter field="user" matchMode="equals" [showMenu]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown [ngModel]="value" appendTo="body" [options]="users" placeholder="Usuario"
+                (onChange)="filter($event.value)" optionLabel="name">
+                <ng-template let-user pTemplate="item">
+                  <div class="p-dropdown-representative-option">
+                    <span class="ml-1">{{user.name}} {{user.surnames}}</span>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-questionnaire>
-        <tr>
-            <td>{{questionnaire.description}}</td>
-            <td>{{questionnaire.questionsNumber}}</td>
-            <td>{{questionnaire.patientsNumber}}</td>
-            <td>{{questionnaire.user.name}} {{questionnaire.user.surnames}}</td>
-            <td>{{questionnaire.createDate | date:'dd/MM/yyy'}}</td>
-            <td>{{questionnaire.lastEditDate | date:'dd/MM/yyy'}}</td>
-            <td>
-                <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon"></button>
-                <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon"></button>
-            </td>
-        </tr>
+      <tr>
+        <td>{{questionnaire.description}}</td>
+        <td>{{questionnaire.questionsNumber}}</td>
+        <td>{{questionnaire.patientsNumber}}</td>
+        <td>{{questionnaire.user.name}} {{questionnaire.user.surnames}}</td>
+        <td>{{questionnaire.createDate | date:'dd/MM/yyy'}}</td>
+        <td>{{questionnaire.lastEditDate | date:'dd/MM/yyy'}}</td>
+        <td>
+          <button pButton pRipple type="button" icon="pi pi-pencil"
+            class="p-button-rounded p-button-text p-button-plain icon"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash"
+            class="p-button-rounded p-button-text p-button-plain icon"></button>
+        </td>
+      </tr>
     </ng-template>
-</p-table>
-
+  </p-table>
 
 </div>

@@ -11,14 +11,14 @@ import { QuestionnairePage } from '../model/QuestionnairePage';
 })
 export class QuestionnaireService {
 
-  url: string = environment.server+'/questionnaire/findPage'
+  url: string = environment.server + '/questionnaire/findPage'
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getQuestionnaires(pageable: Pageable, description?:string, questionsNumber?:number, patientsNumber?:number, user?:User): Observable<QuestionnairePage>{
-    return this.http.post<QuestionnairePage>(this.url, {description:description, questionsNumber:questionsNumber, patientsNumber:patientsNumber, user:user, pageable:pageable});
+  getQuestionnaires(pageable: Pageable, description?: string, questionsNumber?: number, patientsNumber?: number, user?: User): Observable<QuestionnairePage> {
+    return this.http.post<QuestionnairePage>(this.url, { description: description, questionsNumber: questionsNumber, patientsNumber: patientsNumber, user: user, pageable: pageable });
   }
 
 }

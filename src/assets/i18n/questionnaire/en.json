@@ -1,0 +1,12 @@
+{
+    "questionnaire":{
+        "title":"Questionnaires",
+        "description":"Description",
+        "questionsNumber":"Number of questions",
+        "patientsNumber":"Number of patients",
+        "user":"User",
+        "createDate":"Creation date",
+        "lastEditDate":"Last edition",
+        "actions":"Actions"
+    }
+}

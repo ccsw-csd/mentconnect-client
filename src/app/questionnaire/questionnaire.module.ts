@@ -6,6 +6,7 @@ import {PaginatorModule} from 'primeng/paginator';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -19,7 +20,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     PaginatorModule,
     InputTextModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    TranslateModule
   ]
 })
 export class QuestionnaireModule { }

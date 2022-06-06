@@ -1,8 +1,8 @@
 import { User } from "src/app/core/models/User";
 
-export class Questionnaire{
-    id : number;
-    description : string;
+export class Questionnaire {
+    id: number;
+    description: string;
     questionsNumber: number;
     patientsNumber: number;
     user: User;
