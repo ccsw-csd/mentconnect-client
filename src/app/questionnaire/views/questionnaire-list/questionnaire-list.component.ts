@@ -20,16 +20,10 @@ export class QuestionnaireListComponent implements OnInit {
   direction: string = 'ASC';
 
   questionnaires: Questionnaire[];
-  loading: boolean;
-
   users: User[];
-
+  
+  loading: boolean;
   totalRecords: number;
-  selectedUser: User;
-
-  description: string;
-  questionsNumber: number;
-  patientsNumber: number;
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -68,7 +62,7 @@ export class QuestionnaireListComponent implements OnInit {
         pageable.sort = [{ property: event.sortField, direction: event.sortOrder == 1 ? "asc" : "desc" }];
     }
 
-    let userFilt = event.filters?.user?.value != null ? event.filters?.user?.value[0] : null;
+    let userFilt = event.filters?.user?.value != null ? event.filters?.user?.value : null;
 
     this.questionnaireService.getQuestionnaires(pageable, event.filters?.description?.value, event.filters?.questionsNumber?.value, event.filters?.patientsNumber?.value, userFilt).subscribe(data => {
       this.questionnaires = data.content;
