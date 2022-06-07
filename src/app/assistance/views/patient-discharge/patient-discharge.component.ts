@@ -6,7 +6,7 @@ import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient/patient.service';
 import { FormGroup } from '@angular/forms';
 
-interface Sex {
+interface Gender {
   value: string,
   code: string
 }
@@ -17,18 +17,15 @@ interface Sex {
   styleUrls: ['./patient-discharge.component.scss']
 })
 export class PatientDischargeComponent implements OnInit {
-  sex: Sex[];
-  sexValue : Sex;
-  roles : Role[];
 
-  patient = {} as Patient;
-  user = {} as UserFull;
+  genders: Gender[];
+  roles : Role[];
 
   constructor(
     private patientService: PatientService,
     private translate: TranslateService
   ) {
-    this.sex = [
+    this.genders = [
       {value: this.translate.instant('patientDischarge.form.input.sex.male'), code: 'H'},
       {value: this.translate.instant('patientDischarge.form.input.sex.female'), code: 'M'},
       {value: this.translate.instant('patientDischarge.form.input.sex.other'), code: '0'},
@@ -39,13 +36,12 @@ export class PatientDischargeComponent implements OnInit {
     this.roles = JSON.parse(sessionStorage.getItem("roles"));
   }
 
-  toRegister(){
-    this.user.roles = [this.roles[2], this.roles[3]];
-    this.patient.user = this.user;
-    if(this.sexValue != null) this.patient.sex = this.sexValue.code;
-    
-    console.log(this.patient);
+  toRegister(patient:any){
+    console.log(patient);
+    //En patint tienes todos los campos del from y tienes que contruir el objeto Patient
 
-    //this.patientService.registerPatient(this.patient).subscribe();
+    //patientRoles = [this.roles[2], this.roles[3]]; //No hacerlo por id si no por code
+
+    //this.patientService.registerPatient(objetoPatient).subscribe();
   }
 }

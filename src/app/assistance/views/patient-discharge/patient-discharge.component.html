@@ -11,56 +11,56 @@
     </div>
 
     <div class="col-8 flex flex-colum p-fluid align-items-center justify-content-center">
-      <form class="formgrid grid" (ngSubmit)="toRegister()" #patient="ngForm">
+      <form class="formgrid grid" #patient="ngForm" (ngSubmit)="toRegister(patient)">
           <div class="field col mr-6">
               <span class="p-float-label mb-5 mt-0">
-                <input class="form-control" type="text" pInputText pKeyFilter="alphanum" required [(ngModel)]="patient.username" name="nif"/>
+                <input class="form-control" [(ngModel)]="patient.nif" type="text" pInputText pKeyFilter="alphanum" required name="patient.nif"/>
                 <label for="inputtext">{{"patientDischarge.form.input.nif" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                <input class="form-control" type="text" pInputText pKeyFilter="alphanum" required [(ngModel)]="user.username" name="username"/>
+                <input class="form-control" [(ngModel)]="patient.username" type="text" pInputText pKeyFilter="alphanum" required name="patient.user.username"/>
               <label for="inputtext">{{"patientDischarge.form.input.username" | translate}}</label>
             </span>
               <span class="p-float-label mb-5">
-                  <input class="form-control" type="text" pInputText pKeyFilter="alpha" required [(ngModel)]="user.name" name="name"/>
+                  <input class="form-control" [(ngModel)]="patient.name" type="text" pInputText pKeyFilter="alpha" required name="patient.user.name"/>
                 <label for="inputtext">{{"patientDischarge.form.input.name" | translate}}</label>
               </span>
               <span class="p-float-label mb-5 p-input-icon-left">
                   <i class="pi pi-envelope"></i>
-                  <input class="form-control" type="email" pInputText required [(ngModel)]="user.email" name="email" [email]="true"/>
+                  <input class="form-control" [(ngModel)]="patient.email" type="email" pInputText required name="patient.user.email"/>
                 <label for="inputtext">{{"patientDischarge.form.input.email" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                  <p-inputMask class="form-control" mask="99999999" [(ngModel)]="patient.sip" name="sip"></p-inputMask>
+                  <p-inputMask class="form-control" [(ngModel)]="patient.sip" mask="99999999" name="patient.sip"></p-inputMask>
                 <label for="inputtext">{{"patientDischarge.form.input.sip" | translate}}</label>
               </span>
-              <br>
-              <i class="text-400 font-italic">{{"patientDischarge.form.required" | translate}}</i>
+              <br>              
           </div>
           <div class="field col mr-6">
               <span class="p-float-label mb-5 mt-0">
-                  <p-dropdown class="form-control" [options]="sex" [(ngModel)]="sexValue" optionLabel="value" name="sex"></p-dropdown>
+                  <p-dropdown class="form-control" [(ngModel)]="patient.gender" [options]="genders" optionValue="code" optionLabel="value" name="patient.gender"></p-dropdown>
                 <label for="inputtext">{{"patientDischarge.form.input.sex.title" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                  <p-calendar class="form-control" [(ngModel)]="patient.age" dateFormat="yy-mm-dd" name="age"></p-calendar>
+                  <p-calendar class="form-control" [(ngModel)]="patient.dateBirth" dateFormat="yy-mm-dd" optionValue="code" name="patient.dateBirth"></p-calendar>
                 <label for="inputtext">{{"patientDischarge.form.input.age" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                  <input class="form-control" type="text" pInputText pKeyFilter="alpha" required [(ngModel)]="user.surnames" name="surnames"/>
+                  <input class="form-control" [(ngModel)]="patient.surnames" type="text" pInputText pKeyFilter="alpha" required name="patient.user.surnames"/>
                 <label for="inputtext">{{"patientDischarge.form.input.surname" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                  <p-inputMask class="form-control" mask="999999999" [(ngModel)]="patient.phone" required name="phone"></p-inputMask>
+                  <p-inputMask class="form-control" [(ngModel)]="patient.phone" mask="999999999" required name="patient.phone"></p-inputMask>
                 <label for="inputtext">{{"patientDischarge.form.input.phone" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                  <input class="form-control" type="text" pInputText pKeyFilter="int" [(ngModel)]="patient.clinic" name="clinic"/>
+                  <input class="form-control" [(ngModel)]="patient.medicalHistory" type="text" pInputText pKeyFilter="int" name="patient.medicalHistory"/>
                 <label for="inputtext">{{"patientDischarge.form.input.clinic" | translate}}</label>
               </span>
               <br>
               <button pButton type="submit" label="{{'patientDischarge.form.register' | translate}}" icon="pi pi-send" [disabled]="!patient.form.valid" ></button>
           </div>
+          <i class="text-400 font-italic">{{"patientDischarge.form.required" | translate}}</i>
       </form>
     </div>
 </div>
