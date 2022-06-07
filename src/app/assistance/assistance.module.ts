@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PatientDischargeComponent } from './views/patient-discharge/patient-discharge.component';
 import { CardModule, } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {KeyFilterModule} from 'primeng/keyfilter';
-import {InputMaskModule} from 'primeng/inputmask';
-import {DropdownModule} from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule} from 'primeng/dropdown';
 import { TranslateModule } from '@ngx-translate/core';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TranslateModule } from '@ngx-translate/core';
     KeyFilterModule,
     InputMaskModule,
     DropdownModule,
-    TranslateModule
+    TranslateModule,
+    CalendarModule
   ]
 })
 export class AssistanceModule { }

@@ -14,6 +14,6 @@ export class PatientService {
   ) { }
 
   registerPatient(patient: Patient) : Observable<Patient>{
-    return this.http.put<Patient>(environment.server+ '/patientDischarge/register', patient);
+    return this.http.post<Patient>(environment.server+ '/patient', patient);
   }
 }

@@ -8,18 +8,20 @@
         },
         "form": {
             "input": {
-                "NIF" : "NIF *",
+                "nif" : "NIF *",
+                "username" : "Usuari *",
                 "sex": {
                     "title" : "Sexe",
                     "male" : "Home",
-                    "female" : "Dona"
+                    "female" : "Dona",
+                    "other" : "Altre"
                 },
                 "age" : "Edat",
                 "name" : "Nom *",
                 "surname" : "Cognoms *",
                 "email" : "Correu electrònic *",
                 "phone" : "Telèfon *",
-                "SIP" : "SIP",
+                "sip" : "SIP",
                 "clinic" : "H.Clínica"
             },
             "required" : "* Camps obligatoris",

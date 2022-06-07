@@ -8,18 +8,20 @@
         },
         "form": {
             "input": {
-                "NIF" : "NIF *",
+                "nif" : "NIF *",
+                "username" : "Username *",
                 "sex": {
                     "title" : "Sex",
                     "male" : "Male",
-                    "female" : "Female"
+                    "female" : "Female",
+                    "other" : "Other"
                 },
                 "age" : "Age",
                 "name" : "Name *",
                 "surname" : "Surname *",
                 "email" : "Email *",
                 "phone" : "Phone *",
-                "SIP" : "SIP",
+                "sip" : "SIP",
                 "clinic" : "H.Clinic"
             },
             "required" : "* Required fields",

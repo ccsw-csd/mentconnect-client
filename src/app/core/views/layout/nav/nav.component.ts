@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
     this.items = [
       {label: this.translate.instant('menu.assistance.title'), icon: PrimeIcons.USERS, visible: this.auth.hasRole([Role.Staff]),
         items:[
-          {label: this.translate.instant('menu.assistance.discharge'), icon: PrimeIcons.USER_PLUS, routerLink: '/patientDischarge', visible: this.auth.hasRole([Role.Staff])},
+          {label: this.translate.instant('menu.assistance.discharge'), icon: PrimeIcons.USER_PLUS, routerLink: '/patient-discharge', visible: this.auth.hasRole([Role.Staff])},
           {label: this.translate.instant('menu.assistance.patients'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])}
         ]
       },

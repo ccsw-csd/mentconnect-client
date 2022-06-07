@@ -1,12 +1,12 @@
+import { UserFull } from "./UserFull"; 
+
 export class Patient {
+    user: UserFull;
     id!: number;
-    NIF: string;
+    nif: string;
     sex!: string;
-    age!: number;
-    name: string;
-    surnames: string;
-    email: string;
+    age!: Date;
     phone: string;
-    SIP!: number;
+    sip!: number;
     clinic!: number;
 }

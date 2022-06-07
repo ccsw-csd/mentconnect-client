@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
-      { path: 'patientDischarge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
+      { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ]
   },  

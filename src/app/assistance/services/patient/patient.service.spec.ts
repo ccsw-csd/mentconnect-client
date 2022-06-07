@@ -43,10 +43,9 @@ describe('PatientService', () => {
     service.registerPatient(PATIENT).subscribe((patientReturn) => {
       expect(patientReturn).toBe(PATIENT);
     });
-    const req = httpMock.expectOne(environment.server+'/patientDischarge/register');
+    const req = httpMock.expectOne(environment.server+'/patient');
     expect(req.cancelled).toBeFalsy();
     expect(req.request.responseType).toEqual('json');
     req.flush(PATIENT);
-    httpMock.verify();
   });
 });
