@@ -1,12 +1,7 @@
 <div class="grid min-h-full max-w-full">
     <div class="col-4 flex align-items-center justify-content-center ">
         <p-card class="w-25rem  ml-6 mr-3" header="{{'patientDischarge.helpCard.title' | translate}}">
-            <br>
-            <p>{{"patientDischarge.helpCard.paragraphFirst" | translate}}</p>
-            <br>
-            <p>{{"patientDischarge.helpCard.paragraphSecond" | translate}}</p>
-            <br>
-            <p>{{"patientDischarge.helpCard.end" | translate}}</p>
+          <div [innerHTML]="'patientDischarge.helpCard.paragraph' | translate"></div>
         </p-card>
     </div>
 
@@ -34,7 +29,8 @@
                   <p-inputMask class="form-control" [(ngModel)]="patient.sip" mask="99999999" name="patient.sip"></p-inputMask>
                 <label for="inputtext">{{"patientDischarge.form.input.sip" | translate}}</label>
               </span>
-              <br>              
+              <br>        
+              <i class="text-400 font-italic">{{"patientDischarge.form.required" | translate}}</i>      
           </div>
           <div class="field col mr-6">
               <span class="p-float-label mb-5 mt-0">
@@ -60,7 +56,6 @@
               <br>
               <button pButton type="submit" label="{{'patientDischarge.form.register' | translate}}" icon="pi pi-send" [disabled]="!patient.form.valid" ></button>
           </div>
-          <i class="text-400 font-italic">{{"patientDischarge.form.required" | translate}}</i>
       </form>
     </div>
 </div>

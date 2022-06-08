@@ -7,5 +7,13 @@ export class UserFull {
     surnames: string; 
     email: string;
     roles: Role[];
+
+    constructor(username, name, surnames, email, roles){
+        this.username = username;
+        this.name = name;
+        this.surnames = surnames;
+        this.email = email;
+        this.roles = roles;
+    }
 }
   

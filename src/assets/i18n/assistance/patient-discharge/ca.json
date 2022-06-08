@@ -2,9 +2,7 @@
     "patientDischarge": {
         "helpCard": {
             "title" : "Vinculació del Pacient",
-            "paragraphFirst" : "En aquesta secció es realitza l'alta del pacient, aqueixa acció registra al nou usuari en el sistema i envia un correu electrònic a l'adreça proporcionada amb les instruccions necessàries per a accedir a l'aplicació mòbil.",
-            "paragraphSecond" : "Una vegada finalitzat el registre, dirigisca's a la secció de 'Pacients' per a assignar el qüestionari més adequat al pacient i realitzar el seguiment d'aquest.",
-            "end" : "¡Mantente connectat!"
+            "paragraph" : "En aquesta secció es realitza l'alta del pacient, aqueixa acció registra al nou usuari en el sistema i envia un correu electrònic a l'adreça proporcionada amb les instruccions necessàries per a accedir a l'aplicació mòbil. <br><br>Una vegada finalitzat el registre, dirigisca's a la secció de 'Pacients' per a assignar el qüestionari més adequat al pacient i realitzar el seguiment d'aquest. <br><br>¡Mantente connectat!"
         },
         "form": {
             "input": {
