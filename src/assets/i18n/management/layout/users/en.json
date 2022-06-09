@@ -1,0 +1,8 @@
+{
+    "users": {
+        "username": "Username",
+        "name": "Name",
+        "surnames": "Surnames",
+        "email": "Email"
+    }
+}

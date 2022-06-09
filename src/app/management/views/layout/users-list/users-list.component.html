@@ -1,0 +1,44 @@
+
+
+<div  class="flex justify-content-center flex-wrap card-container">
+
+<p-table  [value]="users" (onLazyLoad)="loadPage($event)" [scrollable]="false"
+responsiveLayout="scroll" [paginator]="true" [rows]="5"
+[paginator]="true" [rows]="10" [paginator]="true" [rows]="15"
+[lazy]="true" [totalRecords]="totalRecords" [loading]="loading"
+[showCurrentPageReport]="true" 
+currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptions]="[5,15,20]">
+   
+    <ng-template  pTemplate="header" >
+        <tr >
+            <th  pSortableColumn="username">{{"users.username" | translate}}<p-sortIcon field="username"></p-sortIcon></th>
+            <th pSortableColumn="name">{{"users.name" | translate}}<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="surnames">{{"users.surnames" | translate}}<p-sortIcon field="surnames"></p-sortIcon></th>
+            <th pSortableColumn="email">{{"users.email" | translate}}<p-sortIcon field="email"></p-sortIcon></th>
+        </tr>
+        <tr>
+            <th><p-columnFilter type="text" field="username" matchMode="equals" [showMenu]="false"></p-columnFilter></th> 
+            <th><p-columnFilter type="text" field="name" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="surnames" matchMode="equals" [showMenu]="false"></p-columnFilter> </th>
+            <th><p-columnFilter type="text" field="email" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-users>
+        <tr >
+            <td >{{users.username}}</td>
+            <td >{{users.name}}</td>
+            <td >{{users.surnames}}</td>
+            <td >{{users.email}}</td>
+
+            <td>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                class="p-button-rounded p-button-text p-button-plain icon"></button>
+                <button pButton pRipple type="button" icon="pi pi-trash"
+                class="p-button-rounded p-button-text p-button-plain icon"></button>
+            </td>
+        </tr>
+           
+    </ng-template>
+</p-table>
+</div>

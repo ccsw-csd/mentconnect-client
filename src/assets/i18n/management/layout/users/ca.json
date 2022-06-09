@@ -1,0 +1,9 @@
+{
+    "users":{
+        "username": "Nom d'usuari",
+        "name": "Nom",
+        "surnames": "Cognoms",
+        "email": "correu electrònic"
+
+    }
+}

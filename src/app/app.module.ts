@@ -11,20 +11,23 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
-import { UsersListComponent } from './management/views/users/users-list/users-list.component';
 import { TableModule } from 'primeng/table'
+import { UsersListComponent } from './management/views/layout/users-list/users-list.component';
+import { ManagementModule } from './management/management.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersListComponent
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    ManagementModule,
     SecurityModule,
     MessagesModule,
     MessageModule,
