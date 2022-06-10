@@ -3,6 +3,7 @@
         "username": "Username",
         "name": "Name",
         "surnames": "Surnames",
-        "email": "Email"
+        "email": "Email",
+        "accions":"Actions"
     }
 }
