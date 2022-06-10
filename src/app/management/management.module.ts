@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table'
 import { PaginatorModule } from 'primeng/paginator';
 import { TranslateModule } from '@ngx-translate/core';
-import { UsersListComponent } from './views/layout/users-list/users-list.component';
+import { UsersListComponent } from './views/users-list/users-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 
