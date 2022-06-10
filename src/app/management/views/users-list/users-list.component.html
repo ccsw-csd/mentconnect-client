@@ -1,10 +1,9 @@
-<div >
 <p-table  [value]="users" (onLazyLoad)="loadPage($event)" [scrollable]="false"
 responsiveLayout="stack" [paginator]="true" [rows]="5" 
 [paginator]="true" [rows]="10" [paginator]="true" [rows]="15" 
 [lazy]="true" [totalRecords]="totalRecords" 
 [showCurrentPageReport]="true"
-
+responsive="true" 
 currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptions]="[5,10,15]" paginatorPosition="bottom"  >
 <p-paginator></p-paginator>
     <ng-template  pTemplate="header" >
@@ -23,7 +22,7 @@ currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptio
         </tr>
     </ng-template>
 
-    <ng-template pTemplate="body" let-users >
+    <ng-template pTemplate="body" let-users>
         <tr >
             <td >{{users.username}}</td>
             <td >{{users.name}}</td>
@@ -39,4 +38,3 @@ currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptio
         </tr>
     </ng-template>
 </p-table>
-</div>
