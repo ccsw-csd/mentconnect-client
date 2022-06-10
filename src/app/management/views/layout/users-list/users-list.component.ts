@@ -1,7 +1,7 @@
 import { Component, OnInit,OnChanges } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
-import {UserList} from 'src/app/management/models/UserList';
+import {User} from 'src/app/management/models/User';
 import { UserService } from 'src/app/management/services/users/services/user.service';
 
 @Component({
@@ -11,40 +11,27 @@ import { UserService } from 'src/app/management/services/users/services/user.ser
 })
 export class UsersListComponent implements OnInit {
 
-  pageNumber : number = 0;
+  pageNumber: number = 0;
   pageSize: number = 5;
-  totalElements: number =0;
+  property: string = 'id';
+  direction: string = 'ASC';
 
-  property : string ='id';
-  direction: string ='ASC';
   
-  loading:boolean;
   totalRecords: number;
-
-  cols : any[];
-  users: UserList[];
+  users: User[];
 
   constructor(private userservice: UserService
     ) { }
 
-  
-  getAll(){
-this.userservice.findAll().subscribe(
- (result: any) => {
-    let users : UserList[] = [];
-    for (let i = 0; i < result.length; i ++){
-      let user = result [i] as UserList;
-      users.push(user);
-    }
-    this.users =users;
-   
-   });
+  ngOnInit(): void {
+ 
+    this.loadPage();
 
   }
 
-  loadPage(event?:LazyLoadEvent){
-    this.loading = true;
 
+  loadPage(event?:LazyLoadEvent){
+  
     let pageable: Pageable = {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
@@ -61,22 +48,15 @@ this.userservice.findAll().subscribe(
       if (event.sortField != null){
         pageable.sort = [{property:event.sortField, direction:event.sortOrder ==1 ? 'asc':'desc'}];
       }
+
+      
       this.userservice.findPage(pageable,event.filters?.id?.value,event.filters?.username?.value,event.filters?.name?.value,event.filters?.surnames?.value,event.filters?.email?.value).subscribe(data =>{
         this.users = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
         this.totalRecords = data.totalElements;
-        this.loading = false;
+      
       });
     }
   }
-
-  
-  ngOnInit() : void {
-  this.getAll();
-
-  this.loadPage();
-
-  }
-
 }

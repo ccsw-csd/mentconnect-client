@@ -1,10 +1,8 @@
 import { Pageable } from "src/app/core/models/Pageable";
-import { UserList } from "./UserList";
+import { User } from "./User";
 
 export class UserPage {
-    content: UserList[];
+    content: User[];
     pageable: Pageable;
     totalElements: number;
-
-
 }
