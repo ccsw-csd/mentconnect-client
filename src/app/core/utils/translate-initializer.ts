@@ -9,7 +9,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "security/login",
         "core/layout/menu",
         "core/layout/welcome",
-        "management/layout/users",
+        "management/users",
     ]);
   };
   
