@@ -2,8 +2,8 @@
     "questionnaire":{
         "title":"Qüestionaris",
         "description":"Descripció",
-        "questionsNumber":"Nombre de preguntes",
-        "patientsNumber":"Nombre de pacients",
+        "questionsNumber":"Número de preguntes",
+        "patientsNumber":"Número de pacients",
         "user":"Usuari",
         "createDate":"Data de Creació",
         "lastEditDate":"Última edició",
