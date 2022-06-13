@@ -1,11 +1,10 @@
 <p-table  [value]="users" (onLazyLoad)="loadPage($event)" [scrollable]="false"
-responsiveLayout="stack" [paginator]="true" [rows]="5" 
+responsiveLayout="scroll" [paginator]="true" [rows]="5" scrollHeight="calc(100vh - 190px)"
 [paginator]="true" [rows]="10" [paginator]="true" [rows]="15" 
 [lazy]="true" [totalRecords]="totalRecords" 
 [showCurrentPageReport]="true"
 responsive="true" 
 currentPageReportTemplate="{first} - {last} of {totalRecords}" [rowsPerPageOptions]="[5,10,15]" paginatorPosition="bottom"  >
-<p-paginator></p-paginator>
     <ng-template  pTemplate="header" >
         <tr >
             <th pSortableColumn="username">{{"users.username" | translate}}<p-sortIcon field="username"></p-sortIcon></th>
