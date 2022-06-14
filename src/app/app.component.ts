@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { PrimeNGConfig } from 'primeng/api';
 import { RoleService } from './core/services/role.service';
 
 @Component({
@@ -9,10 +11,15 @@ import { RoleService } from './core/services/role.service';
 export class AppComponent {
   title : String = 'mentconnect-client';
 
-  constructor( private roleService: RoleService)
+  constructor( 
+    private config: PrimeNGConfig, 
+    private translateService: TranslateService, 
+    private roleService: RoleService)
   {}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
+    
     this.roleService.findRoles().subscribe((roles => {
       sessionStorage.setItem("roles", JSON.stringify(roles));
     }));
