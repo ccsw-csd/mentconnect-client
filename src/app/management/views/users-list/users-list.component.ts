@@ -18,7 +18,7 @@ export class UsersListComponent implements OnInit {
   
   totalRecords: number;
   users: User[];
-  loading: boolean;
+  loading: boolean = true;
 
   constructor(
     private userservice: UserService
