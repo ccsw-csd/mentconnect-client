@@ -35,11 +35,5 @@
                 }
             }
         }
-    },
-    "primeng": {
-        "dayNamesMin": ["Diu","Dil","Dim","Dim","Dij","Div","Dis"],
-        "monthNames": ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Septembre","Octubre","Novembre","Desembre"],
-        "monthNamesShort": ["Gen", "Feb", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Des"],
-        "firstDayOfWeek": 1
     }
 }

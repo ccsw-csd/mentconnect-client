@@ -5,7 +5,6 @@ import { UserFull } from '../../models/UserFull';
 import { PatientFull } from '../../models/PatientFull';
 import { PatientService } from '../../services/patient/patient.service';
 import { MessageService } from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
 
 interface Gender {
   value: string,
@@ -30,8 +29,7 @@ export class PatientDischargeComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private translate: TranslateService,
-    private messageService: MessageService,
-    private config: PrimeNGConfig
+    private messageService: MessageService
   ) {
     this.genders = [
       {value: this.translate.instant('patientDischarge.form.input.gender.male'), code: 'H'},
@@ -48,7 +46,6 @@ export class PatientDischargeComponent implements OnInit {
         this.patientRoles.push(rol);
       }
     });
-    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
   }
 
   toRegister(patient:any){
@@ -71,9 +68,8 @@ export class PatientDischargeComponent implements OnInit {
       (err:any) => {
         console.log(patient);
         this.isloading = false;
-        ['username', 'name', 'surnames', 'email', 'nif', 'gender', 'dateBirth', 'phone', 'sip', 'medicalHistory'].forEach(del => delete patient[del]);
+        ['username', 'nif'].forEach(del => delete patient[del]);
         this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
-        
       }
     );
   }
