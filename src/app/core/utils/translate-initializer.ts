@@ -8,7 +8,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, "./assets/i18n/", [
         "security/login",
         "core/layout/menu",
-        "core/layout/welcome"
+        "core/layout/welcome",
+        "management/users",
     ]);
   };
   
