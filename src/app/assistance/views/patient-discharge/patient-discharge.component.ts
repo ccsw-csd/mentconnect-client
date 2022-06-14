@@ -49,6 +49,7 @@ export class PatientDischargeComponent implements OnInit {
   }
 
   toRegister(patient:any){
+    //TODO
     var usernameToLower = patient.username.toLowerCase();
     var date  = new Date(patient.dateBirth);
     var dateFormat = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
