@@ -49,28 +49,25 @@ export class PatientDischargeComponent implements OnInit {
   }
 
   toRegister(patient:any){
+    var usernameToLower = patient.username.toLowerCase();
     var date  = new Date(patient.dateBirth);
     var dateFormat = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
 
-    this.userObj = new UserFull(patient.username, patient.name, patient.surnames, patient.email, this.patientRoles);
+    this.userObj = new UserFull(usernameToLower, patient.name, patient.surnames, patient.email, this.patientRoles);
     this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, dateFormat, patient.phone, patient.sip, patient.medicalHistory);
-    console.log(this.userObj);
-    console.log(this.patientObj);
 
     this.isloading = true;
-    this.patientService.registerPatient(this.patientObj).subscribe(
-      (res:PatientFull) => {
+    this.patientService.registerPatient(this.patientObj).subscribe({
+      next: (res:PatientFull) => {
         this.isloading = false;
-        console.log(patient);
-        ['username', 'name', 'surnames', 'email', 'nif', 'gender', 'dateBirth', 'phone', 'sip', 'medicalHistory'].forEach(del => delete patient[del]);
-        this.messageService.add({key: 'patientDischargeMessage', severity:'success', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.successs.detail')});
+        patient.resetForm();
+        this.messageService.add({key: 'patientDischargeMessage', severity:'success', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.detail')});
       },
-      (err:any) => {
-        console.log(patient);
+      error: (err:any) => {
         this.isloading = false;
         ['username', 'nif'].forEach(del => delete patient[del]);
         this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
       }
-    );
+    });
   }
 }
