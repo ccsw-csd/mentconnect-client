@@ -10,6 +10,11 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule} from 'primeng/dropdown';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessagesModule } from "primeng/messages";
+import { MessageModule } from "primeng/message";
+import { ToastModule } from 'primeng/toast';
+import { BlockUIModule } from 'primeng/blockui';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { CalendarModule } from 'primeng/calendar';
     InputMaskModule,
     DropdownModule,
     TranslateModule,
-    CalendarModule
+    CalendarModule,
+    ProgressSpinnerModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
+    BlockUIModule
   ]
 })
 export class AssistanceModule { }

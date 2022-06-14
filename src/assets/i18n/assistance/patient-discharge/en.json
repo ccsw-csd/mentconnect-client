@@ -8,13 +8,13 @@
             "input": {
                 "nif" : "NIF *",
                 "username" : "Username *",
-                "sex": {
-                    "title" : "Sex",
+                "gender": {
+                    "title" : "Gender",
                     "male" : "Male",
                     "female" : "Female",
                     "other" : "Other"
                 },
-                "age" : "Age",
+                "dateBirth" : "Date birth",
                 "name" : "Name *",
                 "surname" : "Surname *",
                 "email" : "Email *",
@@ -23,7 +23,23 @@
                 "clinic" : "H.Clinic"
             },
             "required" : "* Required fields",
-            "register" : "Register"
+            "register" : "Register",
+            "patientDischargeMessage": {
+                "success": {
+                    "title" : "Patient added",
+                    "detail" : "The patient has been added correctly"
+                },
+                "error": {
+                    "title" : "Error on Patient",
+                    "detail" : "The NIF or the username is already added"
+                }
+            }
         }
+    },
+    "primeng": {
+        "dayNamesMin": ["Su","Mo","Tu","We","Th","Fr","Sa"],
+        "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+        "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "firstDayOfWeek": 1
     }
 }

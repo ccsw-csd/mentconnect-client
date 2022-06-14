@@ -13,6 +13,10 @@ import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
 import { AssistanceModule } from './assistance/assistance.module';
 
+import { registerLocaleData } from '@angular/common';
+import LocaleEs from '@angular/common/locales/es';
+registerLocaleData(LocaleEs, 'es');
+
 @NgModule({
   declarations: [
     AppComponent

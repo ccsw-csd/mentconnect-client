@@ -8,13 +8,13 @@
             "input": {
                 "nif" : "NIF *",
                 "username" : "Usuari *",
-                "sex": {
-                    "title" : "Sexe",
+                "gender": {
+                    "title" : "Gènere",
                     "male" : "Home",
                     "female" : "Dona",
                     "other" : "Altre"
                 },
-                "age" : "Edat",
+                "dateBirth" : "Data de naixement",
                 "name" : "Nom *",
                 "surname" : "Cognoms *",
                 "email" : "Correu electrònic *",
@@ -23,7 +23,23 @@
                 "clinic" : "H.Clínica"
             },
             "required" : "* Camps obligatoris",
-            "register" : "Registrar"
+            "register" : "Registrar",
+            "patientDischargeMessage": {
+                "success": {
+                    "title" : "Pacient afegit",
+                    "detail" : "El pacient ha sigut afegit correctament."
+                },
+                "error": {
+                    "title" : "Error en Pacient",
+                    "detail" : "El NIF o l'usuari ja està afegit."
+                }
+            }
         }
+    },
+    "primeng": {
+        "dayNamesMin": ["Diu","Dil","Dim","Dim","Dij","Div","Dis"],
+        "monthNames": ["Gener","Febrer","Març","Abril","Maig","Juny","Juliol","Agost","Septembre","Octubre","Novembre","Desembre"],
+        "monthNamesShort": ["Gen", "Feb", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Des"],
+        "firstDayOfWeek": 1
     }
 }
