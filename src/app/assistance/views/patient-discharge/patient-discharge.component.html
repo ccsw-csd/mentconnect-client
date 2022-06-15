@@ -16,7 +16,7 @@
                 <label for="inputtext">{{"patientDischarge.form.input.nif" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                <input class="form-control" [(ngModel)]="patient.username" type="text" pInputText pKeyFilter="alphanum" required name="patient.user.username"/>
+                <input class="form-control" [(ngModel)]="patient.username" type="text" pInputText pattern="[a-z0-9]+" required name="patient.user.username"/>
               <label for="inputtext">{{"patientDischarge.form.input.username" | translate}}</label>
             </span>
               <span class="p-float-label mb-5">

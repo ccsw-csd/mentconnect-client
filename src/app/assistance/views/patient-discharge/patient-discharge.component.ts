@@ -50,11 +50,10 @@ export class PatientDischargeComponent implements OnInit {
 
   toRegister(patient:any){
     //TODO
-    var usernameToLower = patient.username.toLowerCase();
     var date  = new Date(patient.dateBirth);
     var dateFormat = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
 
-    this.userObj = new UserFull(usernameToLower, patient.name, patient.surnames, patient.email, this.patientRoles);
+    this.userObj = new UserFull(patient.username, patient.name, patient.surnames, patient.email, this.patientRoles);
     this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, dateFormat, patient.phone, patient.sip, patient.medicalHistory);
 
     this.isloading = true;
@@ -66,7 +65,7 @@ export class PatientDischargeComponent implements OnInit {
       },
       error: (err:any) => {
         this.isloading = false;
-        ['username', 'nif'].forEach(del => delete patient[del]);
+        patient.resetForm();
         this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
       }
     });
