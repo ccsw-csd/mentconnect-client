@@ -48,13 +48,10 @@ export class PatientDischargeComponent implements OnInit {
     });
   }
 
-  toRegister(patient:any){
-    //TODO
-    var date  = new Date(patient.dateBirth);
-    var dateFormat = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
+  toRegister(patient:any) {
 
     this.userObj = new UserFull(patient.username, patient.name, patient.surnames, patient.email, this.patientRoles);
-    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, dateFormat, patient.phone, patient.sip, patient.medicalHistory);
+    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.parsetoIsoDate(patient.dateBirth), patient.phone, patient.sip, patient.medicalHistory);
 
     this.isloading = true;
     this.patientService.registerPatient(this.patientObj).subscribe({
@@ -69,5 +66,12 @@ export class PatientDischargeComponent implements OnInit {
         this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
       }
     });
+  }
+
+  parsetoIsoDate(date) : Date {
+    const tDate = new Date(date);
+    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
+
+    return tDate;
   }
 }
