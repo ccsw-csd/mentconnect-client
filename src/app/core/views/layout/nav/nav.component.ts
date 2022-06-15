@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Role } from 'src/app/core/models/Role';
-import { User } from '../../../models/User';
+import { UserDetailsJWT } from '../../../models/UserDetailsJWT';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -12,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  user : User | null = null;
+  user : UserDetailsJWT | null = null;
   items: MenuItem[];
 
   constructor(

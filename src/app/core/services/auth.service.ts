@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ResponseCredentials } from '../models/ResponseCredentials';
 import { Role } from '../models/Role';
-import { User } from '../models/User';
+import { UserDetailsJWT } from '../models/UserDetailsJWT';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
 
   credentials : ResponseCredentials | undefined;
   token : string | null = null;
-  user: User | null = null;
+  user: UserDetailsJWT | null = null;
 
   constructor(
     private jwtHelper: JwtHelperService,
@@ -24,7 +24,7 @@ export class AuthService {
     this.putUserInfo(this.jwtHelper.decodeToken(res.accessToken));
   }
 
-  putUserInfo(user: User) {
+  putUserInfo(user: UserDetailsJWT) {
     this.user = user;
   }
 
@@ -85,7 +85,7 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(accessToken);
   }
 
-  getUserInfo() : User | null {
+  getUserInfo() : UserDetailsJWT | null {
     return this.user;
   }
 
