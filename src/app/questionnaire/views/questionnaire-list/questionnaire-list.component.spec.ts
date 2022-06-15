@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { delay, of } from 'rxjs';
+import { delay, filter, of } from 'rxjs';
 
 import { QuestionnaireListComponent } from './questionnaire-list.component';
 import { HttpClientTestingModule, HttpTestingController } from  '@angular/common/http/testing';
@@ -48,6 +48,8 @@ describe('QuestionnaireListComponent', () => {
   "createDate":"2022-05-30","lastEditDate":"2022-05-30"}];
     user = [{ "id": 1, "username": "admin", "name": "Admin", "surnames": "Mentconnect", "email": "admin@meentconnect.com" }];
 
+
+   
   });
 
 
@@ -59,6 +61,7 @@ describe('QuestionnaireListComponent', () => {
 
     it('should call loadPage', () =>{
 
+      
       let questionnairePage = new QuestionnairePage();
 
       questionnaire.pageSize = 5;

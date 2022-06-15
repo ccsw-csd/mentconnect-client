@@ -8,4 +8,6 @@ export class Questionnaire {
     user: User;
     createDate: Date;
     lastEditDate: Date;
+
+  
 }
