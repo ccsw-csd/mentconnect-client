@@ -4,6 +4,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { RoleService } from './core/services/role.service';
 
 @Component({
+  
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

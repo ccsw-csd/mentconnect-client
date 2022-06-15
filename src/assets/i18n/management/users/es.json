@@ -1,0 +1,9 @@
+{
+    "users": {
+        "username": "Nombre del usuario",
+        "name": "Nombre",
+        "surnames": "Apellidos",
+        "email": "Correo electrónico",
+        "actions": "Acciones"
+    }
+}

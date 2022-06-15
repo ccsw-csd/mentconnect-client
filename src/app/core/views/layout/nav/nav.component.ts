@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
       {label: this.translate.instant('menu.schedule'), icon: PrimeIcons.CALENDAR, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
       {label: this.translate.instant('menu.management.title'), icon: PrimeIcons.COG, visible: this.auth.hasRole([]),
         items:[
-          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([]), command: () => this.toggleSideNav()},
+          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/users', visible: this.auth.hasRole([]), command: () => this.toggleSideNav()},
           {label: this.translate.instant('menu.management.estadistics'), icon: PrimeIcons.CHART_BAR, routerLink: '/welcome', visible: this.auth.hasRole([]), command: () => this.toggleSideNav()}
         ]
       },

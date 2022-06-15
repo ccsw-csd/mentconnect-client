@@ -10,7 +10,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         "security/login",
         "core/layout/menu",
         "core/layout/welcome",
-        "assistance/patient-discharge"
+        "assistance/patient-discharge",
+        "management/users"
     ]);
   };
   
