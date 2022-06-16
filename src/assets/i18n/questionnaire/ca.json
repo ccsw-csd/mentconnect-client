@@ -7,6 +7,9 @@
         "user":"Usuari",
         "createDate":"Data de Creació",
         "lastEditDate":"Última edició",
-        "actions":"Accions"
+        "actions":"Accions",
+        "filter":{
+            "user":"Seleccioneu Usuari"
+        }
     }
 }

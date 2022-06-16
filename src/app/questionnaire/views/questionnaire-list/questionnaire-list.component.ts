@@ -39,7 +39,6 @@ export class QuestionnaireListComponent implements OnInit {
       users => this.users = users
     );
 
-
     this.loading = true;
   }
 
@@ -63,8 +62,6 @@ export class QuestionnaireListComponent implements OnInit {
         pageable.sort = [{ property: event.sortField, direction: event.sortOrder == 1 ? "asc" : "desc" }];
     }
 
-    this.userFilt = event.filters?.user?.value != null ? event.filters?.user?.value : null;
-    console.log(this.userFilt)
     this.questionnaireService.getQuestionnaires(pageable, event.filters?.description?.value, event.filters?.questionsNumber?.value,
        event.filters?.patientsNumber?.value, event.filters?.user?.value).subscribe(data => {
       this.questionnaires = data.content;

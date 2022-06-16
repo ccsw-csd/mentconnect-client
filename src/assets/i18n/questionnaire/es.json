@@ -7,6 +7,9 @@
         "user":"Usuario",
         "createDate":"F.creación",
         "lastEditDate":"U.edición",
-        "actions":"Acciones"
+        "actions":"Acciones",
+        "filter":{
+            "user":"Selecciones Usuario"
+        }
     }
 }
