@@ -1,4 +1,4 @@
-import { Role } from "./Role";
+import { Role } from "../../assistance/models/Role";
 
 export class UserFull {
     id!: number;

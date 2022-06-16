@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Role } from '../../models/Role';
-import { UserFull } from '../../models/UserFull';
+import { UserFull } from '../../../management/models/UserFull';
 import { PatientFull } from '../../models/PatientFull';
 import { PatientService } from '../../services/patient/patient.service';
 import { MessageService } from 'primeng/api';

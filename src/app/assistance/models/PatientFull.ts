@@ -1,4 +1,4 @@
-import { UserFull } from "./UserFull"; 
+import { UserFull } from "../../management/models/UserFull"; 
 
 export class PatientFull {
     id!: number;
