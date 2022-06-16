@@ -1,4 +1,4 @@
-export class User {
+export class UserDetailsJWT {
     id: number;
     username: string;
     name: string; 
