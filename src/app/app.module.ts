@@ -12,6 +12,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
+import { UsersListComponent } from './management/views/users-list/users-list.component';
+import { ManagementModule } from './management/management.module';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { QuestionnaireModule } from './questionnaire/questionnaire.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    ManagementModule,
     SecurityModule,
     MessagesModule,
     MessageModule,
@@ -33,7 +36,8 @@ import { QuestionnaireModule } from './questionnaire/questionnaire.module';
         deps: [HttpClient]
       }
     }),
-    QuestionnaireModule
+    QuestionnaireModule,
+    
   ],
   providers: [
     {

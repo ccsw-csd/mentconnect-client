@@ -9,6 +9,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "security/login",
         "core/layout/menu",
         "core/layout/welcome",
+        "management/users",
         "questionnaire"
     ]);
   };
