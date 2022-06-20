@@ -9,16 +9,17 @@
     </div>
 
     <div class="col-7 flex flex-colum p-fluid align-items-center justify-content-center">
-      <form class="formgrid w-full grid" #patient="ngForm" (ngSubmit)="toRegister(patient)">
+      <form class="formgrid w-full grid" name="patientForm" #patient="ngForm" (ngSubmit)="toRegister(patient)">
           <div class="field col mr-6">
               <span class="p-float-label mb-5 mt-0">
-                <input class="form-control" [(ngModel)]="patient.nif" type="text" pInputText pKeyFilter="alphanum" required name="patient.nif"/>
+                  <input class="form-control" [(ngModel)]="patient.nif" type="text" pInputText pKeyFilter="alphanum" required name="patient.nif"/>
                 <label for="inputtext">{{"patientDischarge.form.input.nif" | translate}}</label>
               </span>
               <span class="p-float-label mb-5">
-                <input class="form-control" [(ngModel)]="patient.username" type="text" pInputText pattern="[a-z0-9]+" required name="patient.user.username"/>
-              <label for="inputtext">{{"patientDischarge.form.input.username" | translate}}</label>
-            </span>
+                  <input id="username" #username="ngModel" class="form-control" [(ngModel)]="patient.username" type="text" pInputText pattern="[a-z0-9]+" required name="patient.user.username"/>
+                <label for="inputtext">{{"patientDischarge.form.input.username.title" | translate}}</label>
+                <small *ngIf="username.errors?.['pattern']" class="fixed flex text-red-500">{{"patientDischarge.form.input.username.lowerCase" | translate}}</small>
+              </span>
               <span class="p-float-label mb-5">
                   <input class="form-control" [(ngModel)]="patient.name" type="text" pInputText pKeyFilter="alpha" required name="patient.user.name"/>
                 <label for="inputtext">{{"patientDischarge.form.input.name" | translate}}</label>

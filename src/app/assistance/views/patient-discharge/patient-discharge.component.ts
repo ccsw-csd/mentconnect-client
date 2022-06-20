@@ -30,17 +30,11 @@ export class PatientDischargeComponent implements OnInit {
     private patientService: PatientService,
     private translate: TranslateService,
     private messageService: MessageService
-  ) {
-    this.genders = [
-      {value: this.translate.instant('patientDischarge.form.input.gender.male'), code: 'H'},
-      {value: this.translate.instant('patientDischarge.form.input.gender.female'), code: 'M'},
-      {value: this.translate.instant('patientDischarge.form.input.gender.other'), code: '0'},
-    ];
-   }
+  ) {}
 
   ngOnInit(): void {
     this.roles = JSON.parse(sessionStorage.getItem("roles"));
-
+    this.genders = JSON.parse(sessionStorage.getItem("genders"));
     this.roles.forEach(rol => {
       if(rol.code == "PAT_INFO" || rol.code == "PAT_PHOTO"){
         this.patientRoles.push(rol);

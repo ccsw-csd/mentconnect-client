@@ -7,7 +7,10 @@
         "form": {
             "input": {
                 "nif" : "NIF *",
-                "username" : "Username *",
+                "username" : {
+                    "title" : "Username *",
+                    "lowerCase" : "Only lower case allowed"
+                },
                 "gender": {
                     "title" : "Gender",
                     "male" : "Male",
