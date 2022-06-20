@@ -10,6 +10,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "core/layout/menu",
         "core/layout/welcome",
         "questionnaire"
+        "management/users",
     ]);
   };
   

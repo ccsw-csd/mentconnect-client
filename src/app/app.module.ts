@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,20 +11,27 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
+import { TableModule } from 'primeng/table'
+import { UsersListComponent } from './management/views/users-list/users-list.component';
+import { ManagementModule } from './management/management.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    ManagementModule,
     SecurityModule,
     MessagesModule,
     MessageModule,
+    TableModule,
     TranslateModule.forRoot({
       loader :{
         provide : TranslateLoader,

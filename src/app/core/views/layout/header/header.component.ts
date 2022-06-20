@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { User } from '../../../models/User';
+import { UserDetailsJWT } from '../../../models/UserDetailsJWT';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 
@@ -11,7 +11,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
 
-  user : User | null = null;
+  user : UserDetailsJWT | null = null;
   navOpen = true;
   isloading : boolean = false;
   @Output() navOpenEvent = new EventEmitter();
