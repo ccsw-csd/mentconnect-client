@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NavComponent } from './nav.component';
 
@@ -8,7 +11,12 @@ describe('NavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      declarations: [ NavComponent ],
+      imports: [RouterTestingModule, TranslateModule.forRoot()],
+      providers: [
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService
+      ]
     })
     .compileComponents();
   });

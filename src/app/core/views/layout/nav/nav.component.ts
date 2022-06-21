@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Role } from 'src/app/core/models/Role';
@@ -12,6 +12,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  @Output() navOpenEvent = new EventEmitter();
   user : UserDetailsJWT | null = null;
   items: MenuItem[];
 
@@ -26,20 +27,23 @@ export class NavComponent implements OnInit {
     this.items = [
       {label: this.translate.instant('menu.assistance.title'), icon: PrimeIcons.USERS, visible: this.auth.hasRole([Role.Staff]),
         items:[
-          {label: this.translate.instant('menu.assistance.discharge'), icon: PrimeIcons.USER_PLUS, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])},
-          {label: this.translate.instant('menu.assistance.patients'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])}
+          {label: this.translate.instant('menu.assistance.discharge'), icon: PrimeIcons.USER_PLUS, routerLink: '/patient-discharge', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
+          {label: this.translate.instant('menu.assistance.patients'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()}
         ]
       },
-      {label: this.translate.instant('menu.questionnaire'), icon: PrimeIcons.PENCIL, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])},
-      {label: this.translate.instant('menu.schedule'), icon: PrimeIcons.CALENDAR, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])},
+      {label: this.translate.instant('menu.questionnaire'), icon: PrimeIcons.PENCIL, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
+      {label: this.translate.instant('menu.schedule'), icon: PrimeIcons.CALENDAR, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
       {label: this.translate.instant('menu.management.title'), icon: PrimeIcons.COG, visible: this.auth.hasRole([]),
         items:[
-          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/users', visible: this.auth.hasRole([])},
-          {label: this.translate.instant('menu.management.estadistics'), icon: PrimeIcons.CHART_BAR, routerLink: '/welcome', visible: this.auth.hasRole([])}
+          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/users', visible: this.auth.hasRole([]), command: () => this.toggleSideNav()},
+          {label: this.translate.instant('menu.management.estadistics'), icon: PrimeIcons.CHART_BAR, routerLink: '/welcome', visible: this.auth.hasRole([]), command: () => this.toggleSideNav()}
         ]
       },
       {label: this.translate.instant('menu.logOut'), icon: PrimeIcons.SIGN_OUT, command: () => { this.logout(); }}
-      ];
+    ];
+  }
+  toggleSideNav() {
+    this.navOpenEvent.emit(false);
   }
 
   getUserName() : string {

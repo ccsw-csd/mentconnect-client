@@ -6,10 +6,12 @@ import { TranslateHttpLoader } from "./translate-http-loader";
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, "./assets/i18n/", [
+        "primeng",
         "security/login",
         "core/layout/menu",
         "core/layout/welcome",
-        "management/users",
+        "assistance/patient-discharge",
+        "management/users"
     ]);
   };
   
