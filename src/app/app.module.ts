@@ -19,7 +19,7 @@ import { ManagementModule } from './management/management.module';
   declarations: [
     AppComponent,
 
-
+    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +39,7 @@ import { ManagementModule } from './management/management.module';
       }
     }),
     QuestionnaireModule,
-
+    
   ],
   providers: [
     {
