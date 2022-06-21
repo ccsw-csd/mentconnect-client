@@ -17,7 +17,6 @@ const routes: Routes = [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Admin] } },
       { path: 'questionnaire', component: QuestionnaireListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
-      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles:[Role.Admin]  } },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ]
   },  
