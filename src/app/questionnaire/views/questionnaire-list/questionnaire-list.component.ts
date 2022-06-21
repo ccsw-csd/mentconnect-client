@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
-import { User } from 'src/app/core/models/User';
+import { User } from 'src/app/management/models/User';
 import { Questionnaire } from '../../model/Questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { UserService } from '../../services/user.service';

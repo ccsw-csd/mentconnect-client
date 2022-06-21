@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pageable } from 'src/app/core/models/Pageable';
-import { User } from 'src/app/core/models/User';
+import { User } from 'src/app/management/models/User';
 import { environment } from 'src/environments/environment';
 import { QuestionnairePage } from '../model/QuestionnairePage';
 
