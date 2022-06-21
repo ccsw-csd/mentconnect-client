@@ -17,11 +17,10 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
-      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Admin] } },
       { path: 'questionnaire', component: QuestionnaireListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
-      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles:[Role.Admin]  } },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles:[] }},
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
@@ -31,8 +30,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       useHash: true,
-      enableTracing: false,
-    }),
+      enableTracing: false
+    })
   ],
   exports: [RouterModule]
 })
