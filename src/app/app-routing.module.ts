@@ -6,7 +6,9 @@ import { LayoutComponent } from './core/views/layout/layout.component';
 import { WelcomeComponent } from './core/views/welcome/welcome.component';
 import { Role } from './core/models/Role';
 import { QuestionnaireListComponent } from './questionnaire/views/questionnaire-list/questionnaire-list.component';
+import { PatientDischargeComponent } from './assistance/views/patient-discharge/patient-discharge.component';
 import { UsersListComponent } from './management/views/users-list/users-list.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {
@@ -17,9 +19,11 @@ const routes: Routes = [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Admin] } },
       { path: 'questionnaire', component: QuestionnaireListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
+      { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
+      { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles:[Role.Admin]  } },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ]
-  },  
+  },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

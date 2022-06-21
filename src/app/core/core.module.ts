@@ -19,6 +19,7 @@ import { BadgeModule } from 'primeng/badge';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { DividerModule } from 'primeng/divider';
 
+
 @NgModule({
   declarations: [
     LayoutComponent,
