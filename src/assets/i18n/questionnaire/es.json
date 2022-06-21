@@ -1,0 +1,15 @@
+{
+    "questionnaire":{
+        "title":"Cuestionarios",
+        "description":"Descripción",
+        "questionsNumber":"Nº preguntas",
+        "patientsNumber":"Nº pacientes",
+        "user":"Usuario",
+        "createDate":"F.creación",
+        "lastEditDate":"U.edición",
+        "actions":"Acciones",
+        "filter":{
+            "user":"Selecciones Usuario"
+        }
+    }
+}

@@ -10,11 +10,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         "security/login",
         "core/layout/menu",
         "core/layout/welcome",
+        "questionnaire",
         "assistance/patient-discharge",
         "management/users"
     ]);
   };
-  
+
 export function appInitializerFactory(translate: TranslateService, injector: Injector) {
 
     return () => new Promise<any>((resolve: any) => {
@@ -32,7 +33,7 @@ export function appInitializerFactory(translate: TranslateService, injector: Inj
 }
 
 
-function localeNotSupported(locale : string) : boolean {    
+function localeNotSupported(locale : string) : boolean {
     if (locale == 'es') return false;
     if (locale == 'en') return false;
     if (locale == 'ca') return false;
@@ -48,10 +49,10 @@ function getUserLocale() : string {
     if (userLocale == null)
         userLocale = navigator.language.substring(0,2);
 
-    if (localeNotSupported(userLocale)) 
+    if (localeNotSupported(userLocale))
         userLocale = 'en';
-        
-    localStorage.setItem('userLocale', userLocale);  
+
+    localStorage.setItem('userLocale', userLocale);
 
     return userLocale;
 }

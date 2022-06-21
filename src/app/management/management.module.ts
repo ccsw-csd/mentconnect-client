@@ -6,7 +6,6 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
-
 import { UsersListComponent } from './views/users-list/users-list.component';
 
 @NgModule({

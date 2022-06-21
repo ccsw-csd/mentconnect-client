@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private translate: TranslateService
-  ) { 
+  ) {
   }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
           {label: this.translate.instant('menu.assistance.patients'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()}
         ]
       },
-      {label: this.translate.instant('menu.questionnaire'), icon: PrimeIcons.PENCIL, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
+      {label: this.translate.instant('menu.questionnaire'), icon: PrimeIcons.PENCIL, routerLink: '/questionnaire', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
       {label: this.translate.instant('menu.schedule'), icon: PrimeIcons.CALENDAR, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff]), command: () => this.toggleSideNav()},
       {label: this.translate.instant('menu.management.title'), icon: PrimeIcons.COG, visible: this.auth.hasRole([]),
         items:[
