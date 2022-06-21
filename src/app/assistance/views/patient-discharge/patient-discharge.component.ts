@@ -5,6 +5,7 @@ import { UserFull } from '../../../management/models/UserFull';
 import { PatientFull } from '../../models/PatientFull';
 import { PatientService } from '../../services/patient/patient.service';
 import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 interface Gender {
   value: string,
@@ -29,12 +30,16 @@ export class PatientDischargeComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private translate: TranslateService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.roles = JSON.parse(sessionStorage.getItem("roles"));
-    this.genders = JSON.parse(sessionStorage.getItem("genders"));
+    //this.genders = this.activatedRoute.snapshot.data['genders'];
+    this.activatedRoute.data.subscribe(({ genders }) => {
+      this.genders = genders;
+    });
     this.roles.forEach(rol => {
       if(rol.code == "PAT_INFO" || rol.code == "PAT_PHOTO"){
         this.patientRoles.push(rol);
