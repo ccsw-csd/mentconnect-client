@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { Role } from 'src/app/core/models/Role';
-import { User } from '../../../models/User';
+import { UserDetailsJWT } from '../../../models/UserDetailsJWT';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -12,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  user : User | null = null;
+  user : UserDetailsJWT | null = null;
   items: MenuItem[];
 
   constructor(
@@ -34,7 +34,7 @@ export class NavComponent implements OnInit {
       {label: this.translate.instant('menu.schedule'), icon: PrimeIcons.CALENDAR, routerLink: '/welcome', visible: this.auth.hasRole([Role.Staff])},
       {label: this.translate.instant('menu.management.title'), icon: PrimeIcons.COG, visible: this.auth.hasRole([]),
         items:[
-          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/welcome', visible: this.auth.hasRole([])},
+          {label: this.translate.instant('menu.management.users'), icon: PrimeIcons.USERS, routerLink: '/users', visible: this.auth.hasRole([])},
           {label: this.translate.instant('menu.management.estadistics'), icon: PrimeIcons.CHART_BAR, routerLink: '/welcome', visible: this.auth.hasRole([])}
         ]
       },
