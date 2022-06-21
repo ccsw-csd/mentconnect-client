@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuestionnaireListComponent } from './views/questionnaire-list/questionnaire-list.component';
-import {TableModule} from 'primeng/table';
-import {PaginatorModule} from 'primeng/paginator';
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {MultiSelectModule} from 'primeng/multiselect';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 
-
+import { QuestionnaireListComponent } from './views/questionnaire-list/questionnaire-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +18,6 @@ import { TranslateModule } from '@ngx-translate/core';
     PaginatorModule,
     InputTextModule,
     ButtonModule,
-    MultiSelectModule,
     TranslateModule
   ]
 })

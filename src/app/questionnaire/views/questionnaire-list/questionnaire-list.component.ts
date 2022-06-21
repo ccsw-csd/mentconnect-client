@@ -13,7 +13,6 @@ import { UserService } from '../../services/user.service';
 })
 export class QuestionnaireListComponent implements OnInit {
 
-  userFilt;
   pageNumber: number = 0;
   pageSize: number = 10;
 
@@ -23,18 +22,15 @@ export class QuestionnaireListComponent implements OnInit {
   questionnaires: Questionnaire[];
   users: User[];
   
-  loading: boolean =true;
+  loading: boolean = true;
   totalRecords: number;
 
   constructor(
     private questionnaireService: QuestionnaireService,
-    private userService: UserService,
-    
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.questionnaireService.getQuestionnaires;
-    
     this.userService.getUsers().subscribe(
       users => this.users = users
     );
@@ -62,8 +58,8 @@ export class QuestionnaireListComponent implements OnInit {
         pageable.sort = [{ property: event.sortField, direction: event.sortOrder == 1 ? "asc" : "desc" }];
     }
 
-    this.questionnaireService.getQuestionnaires(pageable, event.filters?.description?.value, event.filters?.questionsNumber?.value,
-       event.filters?.patientsNumber?.value, event.filters?.user?.value).subscribe(data => {
+    this.questionnaireService.getQuestionnaires(pageable, event.filters?.description?.value, event.filters?.questionsNumber?.value, 
+      event.filters?.patientsNumber?.value, event.filters?.user?.value).subscribe(data => {
       this.questionnaires = data.content;
       this.pageNumber = data.pageable.pageNumber;
       this.pageSize = data.pageable.pageSize;

@@ -7,7 +7,5 @@ export class Questionnaire {
     patientsNumber: number;
     user: User;
     createDate: Date;
-    lastEditDate: Date;
-
-  
+    lastEditDate: Date;  
 }

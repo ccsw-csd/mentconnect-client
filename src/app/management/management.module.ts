@@ -7,8 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { UsersListComponent } from './views/users-list/users-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,10 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     TableModule,
     PaginatorModule,
-    TranslateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
+    TranslateModule
   ]
 })
 export class ManagementModule { }
