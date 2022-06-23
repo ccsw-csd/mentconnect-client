@@ -17,5 +17,12 @@ export class UserService {
   findPage(pageable: Pageable, id?:number, username?:string, name?:string, surnames?:string, email?:string): Observable<UserPage>{
     return this.http.post<UserPage>(environment.server + "/user/findPage", {id:id, username:username, name:name, surnames:surnames, email:email, pageable:pageable});
   }
+  
+  modifyUser(id?:number,username?:string,name?:string, surnames?:string,email?:string): Observable<UserPage>{
+    return this.http.put<UserPage>(environment.server + "/user", { id: id, username: username, name: name, surnames: surnames, email: email });
+
+  }
+  
+
 
 }

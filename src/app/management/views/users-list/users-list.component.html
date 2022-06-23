@@ -28,7 +28,7 @@
             <td>{{users.email}}</td>
             <td style='flex: 0 0 150px;'>
                 <div>
-                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon" (click)="showEditDialog()"></button>
                     <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon"></button>
                 </div>
             </td>
@@ -36,3 +36,25 @@
     </ng-template>
 
 </p-table>
+
+<p-dialog header="Guardar" [(visible)]="displayEditDialog"  [resizable]="true" [style]=" {width: '300px', height: '300px'}" class="p-mb-2">
+    <ng-form class="p-mx-auto">
+        
+            <label for="Username">Username</label>
+            <input id="username"/>
+     
+       
+        <br>
+        <label for="Name" >Name</label>
+        <input id="name" />
+        <br>
+        <label for="Surnames">Surnames</label>
+        <input id="surnames" />
+        <br>
+        <label for="Email">Email</label>
+        <input id="email" />
+        <p:button value="save"  style="width: 100px;height:50px; margin-top:10px;background-color:white">Save</p:button>
+        <p:button>Cancel</p:button>
+    </ng-form>
+
+</p-dialog>

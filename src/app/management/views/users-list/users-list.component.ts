@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
+import { Dialog } from 'primeng/dialog';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { UserService } from 'src/app/management/services/users/services/user.service';
-
+import { UsersEditComponent } from '../users-edit/users-edit.component';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -11,6 +12,8 @@ import { UserService } from 'src/app/management/services/users/services/user.ser
 })
 export class UsersListComponent implements OnInit {
 
+  selectedUser: User;
+  displayEditDialog :boolean = false;
   pageNumber: number = 0;
   pageSize: number = 5;
   property: string = 'id';
@@ -18,14 +21,17 @@ export class UsersListComponent implements OnInit {
   
   totalRecords: number;
   users: User[];
+  user : User;
   loading: boolean = true;
 
   constructor(
-    private userservice: UserService
+    private userservice: UserService,
+
   ) { }
 
   ngOnInit(): void {
   }
+
 
   loadPage(event?:LazyLoadEvent){
 
@@ -57,4 +63,19 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
+
+  onSelectedUser(user: User): number{
+    this.selectedUser = user;
+    return this.selectedUser.id;
+  }
+  
+  showEditDialog() {
+    this.showEditDialog
+    
+    command: () => this.showEditDialog(data => {
+      data = 
+    });
+    this.displayEditDialog = true;
+  }
 }
+
