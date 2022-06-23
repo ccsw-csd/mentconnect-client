@@ -21,7 +21,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-users>
-        <tr>
+        <tr (click)="onSelectedUser(users)">
             <td>{{users.username}}</td>
             <td>{{users.name}}</td>
             <td>{{users.surnames}}</td>
@@ -41,18 +41,18 @@
     <ng-form class="p-mx-auto">
         
             <label for="Username">Username</label>
-            <input id="username"/>
+            <input id="username" class="form-control" [(ngModel)]="user.username" name="username"/>
      
        
         <br>
-        <label for="Name" >Name</label>
-        <input id="name" />
+        <label for="Name">Name</label>
+        <input id="name" class="form-control" [(ngModel)]="user.name" name="name"/>
         <br>
         <label for="Surnames">Surnames</label>
-        <input id="surnames" />
+        <input id="surnames" class="form-control" [(ngModel)]="user.surnames" name="surnames"/>
         <br>
         <label for="Email">Email</label>
-        <input id="email" />
+        <input id="email" class="form-control" [(ngModel)]="user.email" name="email"/>
         <p:button value="save"  style="width: 100px;height:50px; margin-top:10px;background-color:white">Save</p:button>
         <p:button>Cancel</p:button>
     </ng-form>

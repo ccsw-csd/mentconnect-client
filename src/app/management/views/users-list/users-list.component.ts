@@ -72,9 +72,7 @@ export class UsersListComponent implements OnInit {
   showEditDialog() {
     this.showEditDialog
     
-    command: () => this.showEditDialog(data => {
-      data = 
-    });
+    command: () => this.showEditDialog()
     this.displayEditDialog = true;
   }
 }
