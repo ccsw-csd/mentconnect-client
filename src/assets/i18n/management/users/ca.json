@@ -4,6 +4,7 @@
         "name": "Nom",
         "surnames": "Cognoms",
         "email": "Correu electrònic",
-        "actions": "Accions"
+        "actions": "Accions",
+        "role" : "Rol"
     }
 }

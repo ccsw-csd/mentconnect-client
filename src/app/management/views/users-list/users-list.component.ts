@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { UserService } from 'src/app/management/services/users/services/user.service';
+import { UsersEditComponent } from '../users-edit/users-edit.component';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  providers: [DialogService, DynamicDialogRef, MessageService]
 })
 export class UsersListComponent implements OnInit {
 
@@ -19,9 +22,11 @@ export class UsersListComponent implements OnInit {
   totalRecords: number;
   users: User[];
   loading: boolean = true;
+  lastTableLazyLoadEvent: LazyLoadEvent;
 
-  constructor(
-    private userservice: UserService
+  constructor(private userservice: UserService,
+    private dialogService: DialogService,
+    private ref: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +46,7 @@ export class UsersListComponent implements OnInit {
     }
 
     if(event != null){
+      this.lastTableLazyLoadEvent = event;
       pageable.pageSize = event.rows;
       pageable.pageNumber = event.first / event.rows;
 
@@ -57,4 +63,21 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
+
+  editUser(user: User){
+    this.ref = this.dialogService.open(UsersEditComponent, {
+      header: 'Editar ' + user.name,
+      width: '40%',
+      data: {
+        user: user, loading: this.loading,
+        lastTableLazyLoadEvent: this.lastTableLazyLoadEvent
+      },
+      closable: false
+    });
+
+    this.ref.onClose.subscribe(res =>{
+      this.loadPage(this.lastTableLazyLoadEvent);
+    });
+  }
+  
 }

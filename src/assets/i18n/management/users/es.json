@@ -4,6 +4,7 @@
         "name": "Nombre",
         "surnames": "Apellidos",
         "email": "Correo electrónico",
-        "actions": "Acciones"
+        "actions": "Acciones",
+        "role" : "Rol"
     }
 }

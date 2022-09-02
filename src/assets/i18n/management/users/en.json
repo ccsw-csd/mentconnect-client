@@ -4,6 +4,7 @@
         "name": "Name",
         "surnames": "Surnames",
         "email": "Email",
-        "accions":"Actions"
+        "accions":"Actions",
+        "role" : "Role"
     }
 }
