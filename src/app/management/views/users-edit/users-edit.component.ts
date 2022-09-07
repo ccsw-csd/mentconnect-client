@@ -41,13 +41,7 @@ export class UsersEditComponent implements OnInit {
   }
 
   onSave(user: UserFull){
-    this.userService.modifyUser(
-      user.id, 
-      user.username, 
-      user.name, 
-      user.surnames, 
-      user.email, 
-      user.roles['id'], user.roles['code'], user.roles['type']).subscribe({
+    this.userService.modifyUser(user.id, user.username, user.name, user.surnames, user.email, user.roles).subscribe({
       next: () => {
         this.onClose();
       }

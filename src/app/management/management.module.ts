@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { UsersListComponent } from './views/users-list/users-list.component';
 import { UsersEditComponent } from './views/users-edit/users-edit.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UsersEditComponent } from './views/users-edit/users-edit.component';
     PaginatorModule,
     InputTextModule,
     ToastModule,
-    TranslateModule
+    TranslateModule,
+    MultiSelectModule
   ]
 })
 export class ManagementModule { }

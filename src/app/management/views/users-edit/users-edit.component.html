@@ -14,11 +14,11 @@
         <label for="surnames-input" class="block">{{ "users.surnames" | translate }}</label>
     </span>
     <span class="p-float-label field">
-        <input id="email-input" class="w-full" pInputText [(ngModel)]="userFull.email" name="email" required>
+        <input id="email-input" class="w-full" pInputText type="email" [email]="true" [(ngModel)]="userFull.email" name="email" required>
         <label for="email-input" class="block">{{ "users.email" | translate }}</label>
     </span>
     <span class="p-float-label field">
-        <p-dropdown id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role" required></p-dropdown>
+        <p-multiSelect id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role" required></p-multiSelect>
         <label for="rol-dropdown" class="block">{{ "users.role" | translate }}</label>
     </span>
 </div>
