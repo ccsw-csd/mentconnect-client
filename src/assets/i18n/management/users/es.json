@@ -5,6 +5,31 @@
         "surnames": "Apellidos",
         "email": "Correo electrónico",
         "actions": "Acciones",
-        "role" : "Rol"
+        "role" : "Rol",
+        "form": {
+            "input": {
+                "username" : {
+                    "title" : "Usuario *",
+                    "lowerCase" : "Solo se permiten minúsculas"
+                },
+                "name" : "Nombre *",
+                "surname" : "Apellidos *",
+                "email" : "Correo electrónico *",
+                "role" : "Rol"
+            },
+            "required" : "* Campos obligatorios",
+            "save" : "Guardar",
+            "close" : "Cerrar",
+            "usersMessage": {
+                "success": {
+                    "title" : "Usuario modificado",
+                    "detail" : "El usuario se ha modificado correctamente."
+                },
+                "error": {
+                    "title" : "Error en el usuario",
+                    "detail" : "Error al modificar el usuario."
+                }
+            }
+        }
     }
 }

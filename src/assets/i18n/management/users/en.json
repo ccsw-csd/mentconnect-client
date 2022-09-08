@@ -5,6 +5,31 @@
         "surnames": "Surnames",
         "email": "Email",
         "accions":"Actions",
-        "role" : "Role"
+        "role" : "Role",
+        "form": {
+            "input": {
+                "username" : {
+                    "title" : "User *",
+                    "lowerCase" : "Only lower case allowed"
+                },
+                "name" : "Name *",
+                "surname" : "Surnames *",
+                "email" : "Email *",
+                "role" : "Role"
+            },
+            "required" : "* Required fields",
+            "save" : "Save",
+            "close" : "Close",
+            "usersMessage": {
+                "success": {
+                    "title" : "Modified user",
+                    "detail" : "User has been modify correctly."
+                },
+                "error": {
+                    "title" : "Error on User",
+                    "detail" : "Error on modify user."
+                }
+            }
+        }
     }
 }

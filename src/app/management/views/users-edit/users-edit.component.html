@@ -3,32 +3,33 @@
     <br>
     <span class="p-float-label field">
         <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username" name="username" disabled required>
-        <label for="username-input" class="block">{{ "users.username" | translate }}</label>
+        <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
     </span>
     <span class="p-float-label field">
         <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" required>
-        <label for="name-input" class="block">{{ "users.name" | translate }}</label>
+        <label for="name-input" class="block">{{ "users.form.input.name" | translate }}</label>
     </span>
     <span class="p-float-label field">
         <input id="surnames-input" class="w-full" pInputText [(ngModel)]="userFull.surnames" name="surnames" required>
-        <label for="surnames-input" class="block">{{ "users.surnames" | translate }}</label>
+        <label for="surnames-input" class="block">{{ "users.form.input.surname" | translate }}</label>
     </span>
     <span class="p-float-label field">
         <input id="email-input" class="w-full" pInputText type="email" [email]="true" [(ngModel)]="userFull.email" name="email" required>
-        <label for="email-input" class="block">{{ "users.email" | translate }}</label>
+        <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
     </span>
     <span class="p-float-label field">
         <p-multiSelect id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role"></p-multiSelect>
-        <label for="rol-dropdown" class="block">{{ "users.role" | translate }}</label>
+        <label for="rol-dropdown" class="block">{{ "users.form.input.role" | translate }}</label>
     </span>
+    <div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"users.form.required" | translate}}</i></div>
 </div>
 
 <div class = "flex flex-row-reverse w-auto mt-6">
     <div>
-         <button type="button" class="p-button-primary w-6rem" [disabled]="userFull.username==null || userFull.name==null || userFull.surnames==null || userFull.email==null" (click)="onSave(userFull)" pButton label="Guardar"></button> 
+         <button type="button" class="p-button-primary w-6rem" [disabled]="userFull.username=='' || userFull.name=='' || userFull.surnames=='' || userFull.email==''" (click)="onSave(userFull)" pButton label="{{ 'users.form.save' | translate}}"></button> 
     </div>
     <div class="px-2">
-        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton label="Cerrar"></button>
+        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton label="{{ 'users.form.close' | translate}}"></button>
     </div>   
 </div>
 
