@@ -18,14 +18,14 @@
         <label for="email-input" class="block">{{ "users.email" | translate }}</label>
     </span>
     <span class="p-float-label field">
-        <p-multiSelect id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role" required></p-multiSelect>
+        <p-multiSelect id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role"></p-multiSelect>
         <label for="rol-dropdown" class="block">{{ "users.role" | translate }}</label>
     </span>
 </div>
 
 <div class = "flex flex-row-reverse w-auto mt-6">
     <div>
-         <button type="button" class="p-button-primary w-6rem" [disabled]="userFull.username==null || userFull.name==null || userFull.surnames==null || userFull.email==null || userFull.roles==null" (click)="onSave(userFull)" pButton label="Guardar"></button> 
+         <button type="button" class="p-button-primary w-6rem" [disabled]="userFull.username==null || userFull.name==null || userFull.surnames==null || userFull.email==null" (click)="onSave(userFull)" pButton label="Guardar"></button> 
     </div>
     <div class="px-2">
         <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton label="Cerrar"></button>

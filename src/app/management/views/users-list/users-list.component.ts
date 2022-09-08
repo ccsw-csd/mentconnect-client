@@ -67,7 +67,8 @@ export class UsersListComponent implements OnInit {
   editUser(user: User){
     this.ref = this.dialogService.open(UsersEditComponent, {
       header: 'Editar ' + user.name,
-      width: '50%',
+      width: '30%',
+      height: '65%',
       data: {
         user: user, loading: this.loading,
         lastTableLazyLoadEvent: this.lastTableLazyLoadEvent
