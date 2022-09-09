@@ -32,8 +32,8 @@
             <td>{{users.email}}</td>
             <td style='flex: 0 0 150px;'>
                 <div>
-                    <button pButton pRipple type="button" icon="pi pi-pencil"
-                        class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" (click)="editUser(users)"
+                        class="p-button-rounded p-button-text p-button-plain icon" ></button>
                     <button pButton pRipple type="button" icon="pi pi-trash"
                         class="p-button-rounded p-button-text p-button-plain icon"></button>
                 </div>
