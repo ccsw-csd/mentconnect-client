@@ -1,8 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { User } from '../../models/User';
-import { UserFull } from '../../models/UserFull';
 import { UsersEditComponent } from './users-edit.component';
 
 describe('UsersEditComponent', () => {
@@ -11,6 +9,8 @@ describe('UsersEditComponent', () => {
   let mockRoleService;
   let mockDynamicDialogConfig;
   let mockDynamicDialogRef;
+  let mockTranslateService;
+  let mockMessageService;
   let USERFULL;
 
   beforeEach( () => {
@@ -20,12 +20,16 @@ describe('UsersEditComponent', () => {
     mockRoleService = jasmine.createSpyObj(["findRoles"])
     mockDynamicDialogRef = jasmine.createSpyObj(["close"])
     mockDynamicDialogConfig = jasmine.createSpyObj([""])
+    mockMessageService = jasmine.createSpyObj(["add"])
+    mockTranslateService= jasmine.createSpyObj(["instant"])
     
     usersEdit = new UsersEditComponent(
       mockUserService,
       mockRoleService,
       mockDynamicDialogRef,
-      mockDynamicDialogConfig
+      mockDynamicDialogConfig,
+      mockTranslateService,
+      mockMessageService
       );
   });
 
