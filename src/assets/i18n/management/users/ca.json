@@ -4,6 +4,32 @@
         "name": "Nom",
         "surnames": "Cognoms",
         "email": "Correu electrònic",
-        "actions": "Accions"
+        "actions": "Accions",
+        "role" : "Rol",
+        "form": {
+            "input": {
+                "username" : {
+                    "title" : "Usuari *",
+                    "lowerCase" : "Només es permet minúscules"
+                },
+                "name" : "Nom *",
+                "surname" : "Cognoms *",
+                "email" : "Correu electrònic",
+                "role" : "Rol"
+            },
+            "required" : "* Camps obligatoris",
+            "save" : "Guardar",
+            "close" : "Tancar",
+            "usersMessage": {
+                "success": {
+                    "title" : "Usuari modificat",
+                    "detail" : "L' usuari ha sigut modificat correctament."
+                },
+                "error": {
+                    "title" : "Error en l' usuari",
+                    "detail" : "Error al modificar l' usuari."
+                }
+            }
+        }
     }
 }
