@@ -6,14 +6,30 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { UserService } from '../../services/user.service';
+import { Questionnaire } from '../../model/Questionnaire';
+import { LazyLoadEvent } from 'primeng/api';
+import { QuestionnairePage } from '../../model/QuestionnairePage';
+import { Pageable } from 'src/app/core/models/Pageable';
 
 describe('QuestionnaireListComponent', () => {
   let component: QuestionnaireListComponent;
   let fixture: ComponentFixture<QuestionnaireListComponent>;
   let mockQuestionnaireService;
   let mockUserService;
-  let questionnaire;
   let user:any[];
+  let pageable: Pageable = {
+    pageNumber: 1,
+    pageSize: 10,
+    sort: [{
+      property: null,
+      direction: null
+    }]
+  }
+  let QUESTIONNAIRES_ITEM = [
+    new Questionnaire({id:1, description: "Desc 1",questions:2,patients:3,user:null,createDate:null,lastEditDate:null})
+  ];
+
+  
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,9 +51,6 @@ describe('QuestionnaireListComponent', () => {
 
     component = new QuestionnaireListComponent(mockQuestionnaireService,mockUserService);
 
-    questionnaire = [{"id":1,"description":"prueba","questionsNumber":0,"patientsNumber":0,
-    "user":{"id":1,"username":"admin","name":"Admin","surnames":"Mentconnect","email":"admin@meentconnect.com"},
-    "createDate":"2022-05-30","lastEditDate":"2022-05-30"}];
     user = [{ "id": 1, "username": "admin", "name": "Admin", "surnames": "Mentconnect", "email": "admin@meentconnect.com" }];
 
   });
@@ -46,18 +59,46 @@ describe('QuestionnaireListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('loadPage', () =>{
+  it('should return questionnairesPage', () =>{
 
-    it('should call loadPage', () =>{
+    let event = {} as LazyLoadEvent;
+    event = {first: 0, rows: 10}
 
-      mockQuestionnaireService.getQuestionnaires.and.returnValue(of(questionnaire));
-      mockUserService.getUsers.and.returnValue(of(user));
-      component.loadPage(questionnaire);
-      questionnaire.pageSize = 10;
-   
-      expect(mockQuestionnaireService.getQuestionnaires).toHaveBeenCalled;
-      expect(component.pageSize).toEqual(questionnaire.pageSize)
-    });
+    let questionnairePage = new QuestionnairePage()
+    questionnairePage.content = QUESTIONNAIRES_ITEM;
+    questionnairePage.pageable = pageable;
+
+    mockQuestionnaireService.getQuestionnaires.and.returnValue(of(questionnairePage));
+    mockUserService.getUsers.and.returnValue(of(user));
+    component.loadPage(event);
+
+    expect(component.pageNumber).toEqual(questionnairePage.pageable.pageNumber);
+    expect(component.questionnaires).toEqual(QUESTIONNAIRES_ITEM);
 
   });
+
+  it('find with filters should return questionnairesPage', () =>{
+
+    let event = {} as LazyLoadEvent;
+    event = {first: 0, rows: 10}
+
+    let questionnairePage = new QuestionnairePage()
+    questionnairePage.content = QUESTIONNAIRES_ITEM;
+    questionnairePage.pageable = pageable;
+
+    let description: {value: 'Desc', matchMode: 'equals'}
+    let patientsNumber: {value: 2, matchMode: 'like'}
+    let questionsNumber: {value: 3, matchMode: 'like'}
+    let user: {value: [{ "id": 1, "username": "admin", "name": "Admin", "surnames": "Mentconnect", "email": "admin@meentconnect.com" }], matchMode: 'equals'}
+    event = { filters: {description: description, questionsNumber:questionsNumber, patientsNumber:patientsNumber, user:user} };
+
+    mockQuestionnaireService.getQuestionnaires.and.returnValue(of(questionnairePage));
+    mockUserService.getUsers.and.returnValue(of(user));
+    component.loadPage(event);
+
+    expect(component.pageNumber).toEqual(questionnairePage.pageable.pageNumber);
+    expect(component.questionnaires).toEqual(QUESTIONNAIRES_ITEM);
+
+  });
+
 });

@@ -39,8 +39,8 @@
   <ng-template pTemplate="body" let-questionnaire>
     <tr>
       <td>{{questionnaire.description}}</td>
-      <td>{{questionnaire.questionsNumber}}</td>
-      <td>{{questionnaire.patientsNumber}}</td>
+      <td>{{questionnaire.questions}}</td>
+      <td>{{questionnaire.patients}}</td>
       <td>{{questionnaire.user.name}} {{questionnaire.user.surnames}}</td>
       <td>{{questionnaire.createDate | date:'dd/MM/yyyy' }}</td>  <!-- TODO fromato de locale --> 
       <td>{{questionnaire.lastEditDate | date:'dd/MM/yyyy' }}</td> <!-- TODO fromato de locale -->

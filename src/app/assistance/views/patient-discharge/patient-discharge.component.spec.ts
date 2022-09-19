@@ -10,6 +10,8 @@ describe('PatientDischargeComponent', () => {
   let PATIENT;
   let mockPatientService;
   let mockTranslateService;
+  let mockMessageService;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,8 +39,8 @@ describe('PatientDischargeComponent', () => {
     };
     mockPatientService = jasmine.createSpyObj(['registerPatient']);
     mockTranslateService = jasmine.createSpyObj(['instant']);
-
-    component = new PatientDischargeComponent(mockPatientService, mockTranslateService);
+    mockMessageService = jasmine.createSpyObj(['']);
+    component = new PatientDischargeComponent(mockPatientService, mockTranslateService, mockMessageService);
   });
 
   it('should create', () => {
@@ -49,24 +51,24 @@ describe('PatientDischargeComponent', () => {
   describe('toRegister', () =>{
     it('should call toRegister', () =>{
       mockPatientService.registerPatient.and.returnValue(of(true));
-      component.patient = PATIENT;
-      component.toRegister();
+      component.patientObj = PATIENT;
+      component.toRegister(component.patientObj);
       
       expect(mockPatientService.registerPatient).toHaveBeenCalled();
     });
 
     it('should call toRegister with specific parameter', () =>{
       mockPatientService.registerPatient.and.returnValue(of(true));
-      component.patient = PATIENT;
-      component.toRegister();
+      component.patientObj = PATIENT;
+      component.toRegister(component.patientObj);
       
-      expect(mockPatientService.registerPatient).toHaveBeenCalledWith(component.patient);
+      expect(mockPatientService.registerPatient).toHaveBeenCalledWith(component.patientObj);
     });
 
     it('should suscribe when call toRegister', () =>{
       mockPatientService.registerPatient.and.returnValue(of(true));
-      component.patient = PATIENT;
-      component.toRegister();
+      component.patientObj = PATIENT;
+      component.toRegister(component.patientObj);
       
       expect(mockPatientService.registerPatient.subscribe).toHaveBeenCalled;
     });

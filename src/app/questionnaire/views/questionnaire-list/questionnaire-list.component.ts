@@ -65,6 +65,7 @@ export class QuestionnaireListComponent implements OnInit {
       this.pageSize = data.pageable.pageSize;
       this.totalRecords = data.totalElements;
       this.loading = false;
+      
     });
   }
 
