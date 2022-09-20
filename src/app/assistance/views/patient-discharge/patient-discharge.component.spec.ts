@@ -3,6 +3,8 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { PatientDischargeComponent } from './patient-discharge.component';
+import { FormsModule } from '@angular/forms';
+import { Role } from '../../models/Role';
 
 describe('PatientDischargeComponent', () => {
   let component: PatientDischargeComponent;
@@ -11,12 +13,14 @@ describe('PatientDischargeComponent', () => {
   let mockPatientService;
   let mockTranslateService;
   let mockMessageService;
+  let patient
+  
 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PatientDischargeComponent ],
-      imports: [HttpClientTestingModule, TranslateModule.forRoot()]
+      imports: [HttpClientTestingModule, TranslateModule.forRoot(), FormsModule]
     })
     .compileComponents();
   });
@@ -37,10 +41,14 @@ describe('PatientDischargeComponent', () => {
       SIP: 213,
       clinic: 8
     };
+
+    
     mockPatientService = jasmine.createSpyObj(['registerPatient']);
     mockTranslateService = jasmine.createSpyObj(['instant']);
-    mockMessageService = jasmine.createSpyObj(['']);
+    mockMessageService = jasmine.createSpyObj(['add']);
     component = new PatientDischargeComponent(mockPatientService, mockTranslateService, mockMessageService);
+
+    
   });
 
   it('should create', () => {
@@ -50,6 +58,10 @@ describe('PatientDischargeComponent', () => {
 
   describe('toRegister', () =>{
     it('should call toRegister', () =>{
+
+      sessionStorage.setItem("roles", '[{"id":1,"code":"ADMIN","type":"INT"}]')
+      component.patientRoles=[{id: 3, code: "PAT_INFO", type: null}]
+      
       mockPatientService.registerPatient.and.returnValue(of(true));
       component.patientObj = PATIENT;
       component.toRegister(component.patientObj);
