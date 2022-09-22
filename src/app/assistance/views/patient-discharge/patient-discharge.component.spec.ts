@@ -13,8 +13,7 @@ describe('PatientDischargeComponent', () => {
   let mockPatientService;
   let mockTranslateService;
   let mockMessageService;
-  let patient
-  
+ 
 
 
   beforeEach(async () => {
