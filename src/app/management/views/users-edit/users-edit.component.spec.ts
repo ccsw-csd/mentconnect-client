@@ -54,4 +54,4 @@ describe('UsersEditComponent', () => {
     expect(usersEdit.onSave(EXISTS_USER)).not.toBeNull()
   });
 
-}); 
+});
