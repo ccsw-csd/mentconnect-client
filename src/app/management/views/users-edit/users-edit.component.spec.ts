@@ -1,4 +1,6 @@
-import { of } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of, throwError } from 'rxjs';
 import { UsersEditComponent } from './users-edit.component';
 
 describe('UsersEditComponent', () => {
@@ -7,19 +9,21 @@ describe('UsersEditComponent', () => {
   let mockRoleService;
   let mockDynamicDialogConfig;
   let mockDynamicDialogRef;
-  let USERFULL;
   let mockTranslateService;
   let mockMessageService;
+  let EXISTS_USER;
+  let NOT_EXISTS_USER
 
   beforeEach( () => {
-    USERFULL = { id: 1, username: "admin", name: "Admin", surnames: "Admin", email: "Admin@admin", roles: [{id:1, code: "ADMIN", type:"INT"}] }
-    
+    EXISTS_USER = { id: 1, username: "admin", name: "Admin", surnames: "Admin", email: "Admin@admin", roles: [{id:1, code: "ADMIN", type:"INT"}] }
+    NOT_EXISTS_USER = { id: 2, username: "admin", name: "Admin", surnames: "Admin", email: "Admin@admin", roles: [{id:1, code: "ADMIN", type:"INT"}] }
+
     mockUserService = jasmine.createSpyObj(["findAll", "modifyUser", "userFull"])
     mockRoleService = jasmine.createSpyObj(["findRoles"])
     mockDynamicDialogRef = jasmine.createSpyObj(["close"])
     mockDynamicDialogConfig = jasmine.createSpyObj([""])
-    mockTranslateService = jasmine.createSpyObj(["instant"])
     mockMessageService = jasmine.createSpyObj(["add"])
+    mockTranslateService= jasmine.createSpyObj(["instant"])
     
     usersEdit = new UsersEditComponent(
       mockUserService,
@@ -32,14 +36,22 @@ describe('UsersEditComponent', () => {
   });
 
   it('getUserFullShouldReturnUserFull', () =>{
-    mockUserService.userFull.and.returnValue(of(USERFULL));
+    mockUserService.userFull.and.returnValue(of(EXISTS_USER));
     usersEdit.getUserFull(1);
-    expect(usersEdit.userFull).toEqual(USERFULL);
+    expect(usersEdit.userFull).toEqual(EXISTS_USER);
   });
 
   it('editIfArgumentsAreCorrect', () =>{
-    mockUserService.modifyUser.and.returnValue(of(USERFULL))
-    usersEdit.onSave(USERFULL)
-    expect(usersEdit.onSave(USERFULL)).not.toBeNull()
+    mockUserService.modifyUser.and.returnValue(of(EXISTS_USER))
+    usersEdit.onSave(EXISTS_USER)
+    expect(usersEdit.onSave(EXISTS_USER)).not.toBeNull()
   });
+
+  it('notEditIfNameOrPriorityAlreadyExists', () =>{
+    let error = new HttpErrorResponse({ status: 409, error:{}})
+    mockUserService.modifyUser.and.returnValue(throwError(() => error))
+    usersEdit.onSave(NOT_EXISTS_USER)
+    expect(usersEdit.onSave(EXISTS_USER)).not.toBeNull()
+  });
+
 });
