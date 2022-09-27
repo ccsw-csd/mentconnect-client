@@ -1,7 +1,7 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { delay, filter, of } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { QuestionnaireListComponent } from './questionnaire-list.component';
-import { HttpClientTestingModule, HttpTestingController } from  '@angular/common/http/testing';
+import { HttpClientTestingModule } from  '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuestionnaireService } from '../../services/questionnaire.service';
@@ -26,7 +26,7 @@ describe('QuestionnaireListComponent', () => {
     }]
   }
   let QUESTIONNAIRES_ITEM = [
-    new Questionnaire({id:1, description: "Desc 1",questions:2,patients:3,user:null,createDate:null,lastEditDate:null})
+    new Questionnaire({id:1, description: "Desc 1",questions:null,patients:null,user:null,createDate:null,lastEditDate:null})
   ];
 
   

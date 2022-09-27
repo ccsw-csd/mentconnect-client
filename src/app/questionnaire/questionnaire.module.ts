@@ -5,7 +5,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
-
+import {TooltipModule} from 'primeng/tooltip';
 import { QuestionnaireListComponent } from './views/questionnaire-list/questionnaire-list.component';
 
 @NgModule({
@@ -18,7 +18,8 @@ import { QuestionnaireListComponent } from './views/questionnaire-list/questionn
     PaginatorModule,
     InputTextModule,
     ButtonModule,
-    TranslateModule
+    TranslateModule,
+    TooltipModule,
   ]
 })
 export class QuestionnaireModule { }

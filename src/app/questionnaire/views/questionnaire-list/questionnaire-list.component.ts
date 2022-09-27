@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
@@ -65,8 +65,23 @@ export class QuestionnaireListComponent implements OnInit {
       this.pageSize = data.pageable.pageSize;
       this.totalRecords = data.totalElements;
       this.loading = false;
-      
     });
+  }
+
+  showQuestions(questionnaire: Questionnaire, questionsNumber:number){
+    let questions: string = ""
+    for(let i=0; i<questionsNumber; i++){
+      questions += questionnaire.questions[i].question + "\n"
+    }
+    return questions 
+  }
+
+  showPatients(questionnaire: Questionnaire, patientsNumber:number){
+    let patients: string = ""
+    for(let i=0; i<patientsNumber; i++){
+      patients += questionnaire.patients[i].user.name + " " + questionnaire.patients[i].user.surnames + "\n"
+    }
+    return patients 
   }
 
 }

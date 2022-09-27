@@ -1,10 +1,12 @@
 import { User } from "src/app/management/models/User";
+import { Patient } from "src/app/patient/model/Patient";
+import { Question } from "src/app/question/model/Question";
 
 export class Questionnaire {
     id: number;
     description: string;
-    questions: number;
-    patients: number;
+    questions: Question;
+    patients: Patient;
     user: User;
     createDate: Date;
     lastEditDate: Date;  
