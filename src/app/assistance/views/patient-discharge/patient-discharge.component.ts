@@ -57,12 +57,12 @@ export class PatientDischargeComponent implements OnInit {
     this.patientService.registerPatient(this.patientObj).subscribe({
       next: (res:PatientFull) => {
         this.isloading = false;
-        patient.resetForm()
+        patient.resetForm();
         this.messageService.add({key: 'patientDischargeMessage', severity:'success', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.detail')});
       },
       error: (err:any) => {
         this.isloading = false;
-        patient.resetForm()
+        patient.resetForm();
         this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
       }
     });

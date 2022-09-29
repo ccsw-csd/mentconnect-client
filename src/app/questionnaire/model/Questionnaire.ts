@@ -5,8 +5,8 @@ import { Question } from "src/app/question/model/Question";
 export class Questionnaire {
     id: number;
     description: string;
-    questions: Question;
-    patients: Patient;
+    questions: Question[];
+    patients: Patient[];
     user: User;
     createDate: Date;
     lastEditDate: Date;  

@@ -16,6 +16,7 @@ describe('QuestionnaireListComponent', () => {
   let fixture: ComponentFixture<QuestionnaireListComponent>;
   let mockQuestionnaireService;
   let mockUserService;
+  let mockTranslateService;
   let user:any[];
   let pageable: Pageable = {
     pageNumber: 1,
@@ -48,8 +49,9 @@ describe('QuestionnaireListComponent', () => {
     fixture.detectChanges();
     mockQuestionnaireService = jasmine.createSpyObj(['getQuestionnaires']);
     mockUserService = jasmine.createSpyObj(['getUsers'])
+    mockTranslateService = jasmine.createSpyObj(['get'])
 
-    component = new QuestionnaireListComponent(mockQuestionnaireService,mockUserService);
+    component = new QuestionnaireListComponent(mockQuestionnaireService,mockUserService, mockTranslateService);
 
     user = [{ "id": 1, "username": "admin", "name": "Admin", "surnames": "Mentconnect", "email": "admin@meentconnect.com" }];
 

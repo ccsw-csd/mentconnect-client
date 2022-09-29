@@ -1,10 +1,12 @@
+import { User } from "src/app/management/models/User";
+
 export class Patient{
     id: number;
-    user_id: number; 
+    user: User; 
     nif: string;
     gender: string;
-    date_birth: Date;
+    dateBirth: Date;
     phone: string;
     sip: string;
-    medical_history: string;
+    medicalHistory: string;
 }
