@@ -1,54 +1,30 @@
 {
     "answer":{
-        "type_1":{
+        "dichotomic":{
             "description": "Dicotòmica",
-            "value_1":{
-                "description": "Si"
-            },
-            "value_2":{
-                "description": "No"
-            }
+            "yes": "Si",
+            "no": "No"
         },
-        "type_2":{
+        "polytomousqualitative":{
             "description": "Qualitativa politómica",
-            "value_1":{
-                "description": "Molt malament"
-            },
-            "value_2":{
-                "description": "Malament"
-            },
-            "value_3":{
-                "description": "Normal"
-            },
-            "value_4":{
-                "description": "Bé"
-            },
-            "value_5":{
-                "description": "Molt bé"
-            }
+            "verybad": "Molt malament",
+            "bad": "Malament",
+            "normal": "Normal",
+            "good": "Bé",
+            "verygood": "Molt bé"
         },
-        "type_3":{
+        "polytomousquantitative":{
             "description": "Quantitativa politómica",
-            "value_1":{
-                "description": "Res"
-            },
-            "value_2":{
-                "description": "Poc"
-            },
-            "value_3":{
-                "description": "Moderat"
-            },
-            "value_4":{
-                "description": "Bastant"
-            },
-            "value_5":{
-                "description": "Molt"
-            }
+            "nothing":"Res",
+            "alittlebit": "Poc",
+            "moderate": "Moderat",
+            "prettymuch": "Bastant",
+            "alot": "Molt"
         },
-        "type_4":{
-            "description": "Numèrica"
+        "numeric":{
+            "description": "Numèric"
         }
-    },
+    }, 
     "question_1":{
         "description": "T'està generant ansietat el menjar?"
     },
@@ -124,5 +100,4 @@
     "question_25":{
         "description": "Si t'has pres la glucèmia, quina és la teua glucèmia?"
     }
-    
 }

@@ -13,7 +13,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "questionnaire",
         "assistance/patient-discharge",
         "management/users",
-        "database"
+        "questionnaire/questionnaire-list"
     ]);
   };
 

@@ -1,51 +1,27 @@
 {
     "answer":{
-        "type_1":{
+        "dichotomic":{
             "description": "Dicotómica",
-            "value_1":{
-                "description": "Si"
-            },
-            "value_2":{
-                "description": "No"
-            }
+            "yes": "Si",
+            "no": "No"
         },
-        "type_2":{
+        "polytomousqualitative":{
             "description": "Cualitativa politómica",
-            "value_1":{
-                "description": "Muy mal"
-            },
-            "value_2":{
-                "description": "Mal"
-            },
-            "value_3":{
-                "description": "Normal"
-            },
-            "value_4":{
-                "description": "Bien"
-            },
-            "value_5":{
-                "description": "Muy bien"
-            }
+            "verybad": "Muy mal",
+            "bad": "Mal",
+            "normal": "Normal",
+            "good": "Bien",
+            "verygood": "Muy bien"
         },
-        "type_3":{
-            "description": "Cuantativa politómica",
-            "value_1":{
-                "description": "Nada"
-            },
-            "value_2":{
-                "description": "Poco"
-            },
-            "value_3":{
-                "description": "Moderado"
-            },
-            "value_4":{
-                "description": "Bastante"
-            },
-            "value_5":{
-                "description": "Mucho"
-            }
+        "polytomousquantitative":{
+            "description": "Cuantitativa politómica",
+            "nothing":"Nada",
+            "alittlebit": "Un poco",
+            "moderate": "Moderado",
+            "prettymuch": "Bastante",
+            "alot": "Mucho"
         },
-        "type_4":{
+        "numeric":{
             "description": "Numérica"
         }
     },
@@ -124,5 +100,4 @@
     "question_25":{
         "description": "Si te has tomado la glucemia, ¿cuál es tu glucemia?"
     }
-    
 }
