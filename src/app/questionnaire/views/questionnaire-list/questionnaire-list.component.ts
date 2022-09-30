@@ -1,4 +1,5 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
@@ -27,7 +28,8 @@ export class QuestionnaireListComponent implements OnInit {
 
   constructor(
     private questionnaireService: QuestionnaireService,
-    private userService: UserService
+    private userService: UserService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,22 @@ export class QuestionnaireListComponent implements OnInit {
       this.totalRecords = data.totalElements;
       this.loading = false;
     });
+  }
+
+  showQuestions(questionnaire: Questionnaire, questionsNumber:number){
+    let questions: string = ""
+    questionnaire.questions.map(question => 
+      this.translateService.get(question.question).subscribe((text:string) =>{
+        questions+=text+"\n"
+      })
+    )
+    return questions 
+  }
+
+  showPatients(questionnaire:Questionnaire){
+    let patients: string = ""
+    questionnaire.patients.map(patient =>patients = patient.user.name + " " + patient.user.surnames + "\n");
+    return patients
   }
 
 }

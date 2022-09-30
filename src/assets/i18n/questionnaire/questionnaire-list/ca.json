@@ -1,0 +1,103 @@
+{
+    "answer":{
+        "dichotomic":{
+            "description": "Dicotòmica",
+            "yes": "Si",
+            "no": "No"
+        },
+        "polytomousqualitative":{
+            "description": "Qualitativa politómica",
+            "verybad": "Molt malament",
+            "bad": "Malament",
+            "normal": "Normal",
+            "good": "Bé",
+            "verygood": "Molt bé"
+        },
+        "polytomousquantitative":{
+            "description": "Quantitativa politómica",
+            "nothing":"Res",
+            "alittlebit": "Poc",
+            "moderate": "Moderat",
+            "prettymuch": "Bastant",
+            "alot": "Molt"
+        },
+        "numeric":{
+            "description": "Numèric"
+        }
+    }, 
+    "question_1":{
+        "description": "T'està generant ansietat el menjar?"
+    },
+    "question_2":{
+        "description": "Has tingut variació de l'apetit?"
+    },
+    "question_3":{
+        "description": "Has tingut alteracions en el moviment o rigidesa?"
+    },
+    "question_4":{
+        "description": "Has tingut problemes en el treball o estudis?"
+    },
+    "question_5":{
+        "description": "Et trobes més irritable o nerviós?"
+    },
+    "question_6":{
+        "description": "Has tingut variació en la rutina del somni?"
+    },
+    "question_7":{
+        "description": "Tens dificultat per a conciliar o mantindre el somni?"
+    },
+    "question_8":{
+        "description": "Et costa concentrar-te en alguna tasca o conversa?"
+    },
+    "question_9":{
+        "description": "Se t'obliden coses o dades amb freqüència?"
+    },
+    "question_10":{
+        "description": "Has tingut idees de causar-te algun tipus de dolor?"
+    },
+    "question_11":{
+        "description": "Has tingut idees de causar als altres algun tipus de dolor?"
+    },
+    "question_12":{
+        "description": "T'has allunyat de familiars o amics?"
+    },
+    "question_13":{
+        "description": "Com has dormit hui?"
+    },
+    "question_14":{
+        "description": "Com et trobes hui anímicament?"
+    },
+    "question_15":{
+        "description": "Has pres alcohol?"
+    },
+    "question_16":{
+        "description": "Has pres algun tipus de drogues?"
+    },
+    "question_17":{
+        "description": "Tens ganes d'eixir de casa?"
+    },
+    "question_18":{
+        "description": "Has realitzat algun tipus d'activitat física?"
+    },
+    "question_19":{
+        "description": "Segueixes una rutina diària?"
+    },
+    "question_20":{
+        "description": "Has realitzat activitats a l'aire lliure?"
+    },
+    "question_21":{
+        "description": "Has passat temps amb altres persones?"
+    },
+    "question_22":{
+        "description": "Si t'has pesat recentment, quin és el teu pes?"
+    },
+    "question_23":{
+        "description": "Si t'has pres la tensió arterial, quina és la teua *TA?"
+    },
+    "question_24":{
+        "description": "Si t'has pres la freqüència cardíaca, quin és el teu FC?"
+    },
+    "question_25":{
+        "description": "Si t'has pres la glucèmia, quina és la teua glucèmia?"
+    }
+}

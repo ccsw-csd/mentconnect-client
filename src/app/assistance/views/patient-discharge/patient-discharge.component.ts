@@ -50,7 +50,6 @@ export class PatientDischargeComponent implements OnInit {
   }
 
   toRegister(patient:any) {
-
     this.userObj = new UserFull(patient.username, patient.name, patient.surnames, patient.email, this.patientRoles);
     this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.parsetoIsoDate(patient.dateBirth), patient.phone, patient.sip, patient.medicalHistory);
 

@@ -1,0 +1,103 @@
+{
+    "answer":{
+        "dichotomic":{
+            "description": "Dicotómica",
+            "yes": "Si",
+            "no": "No"
+        },
+        "polytomousqualitative":{
+            "description": "Cualitativa politómica",
+            "verybad": "Muy mal",
+            "bad": "Mal",
+            "normal": "Normal",
+            "good": "Bien",
+            "verygood": "Muy bien"
+        },
+        "polytomousquantitative":{
+            "description": "Cuantitativa politómica",
+            "nothing":"Nada",
+            "alittlebit": "Un poco",
+            "moderate": "Moderado",
+            "prettymuch": "Bastante",
+            "alot": "Mucho"
+        },
+        "numeric":{
+            "description": "Numérica"
+        }
+    },
+    "question_1":{
+        "description": "¿Te está generando ansiedad la comida?"
+    },
+    "question_2":{
+        "description": "¿Has tenido variación del apetito?"
+    },
+    "question_3":{
+        "description": "¿Has tenido alteraciones en el movimiento o rigidez?"
+    },
+    "question_4":{
+        "description": "¿Has tenido problemas en el trabajo o estudios?"
+    },
+    "question_5":{
+        "description": "¿Te encuentras más irritable o nervioso?"
+    },
+    "question_6":{
+        "description": "¿Has tenido variación en la rutina del sueño?"
+    },
+    "question_7":{
+        "description": "¿Tienes dificultad para conciliar o mantener el sueño?"
+    },
+    "question_8":{
+        "description": "¿Te cuesta concentrarte en alguna tarea o conversación?"
+    },
+    "question_9":{
+        "description": "¿Se te olvidan cosas o datos con frecuencia?"
+    },
+    "question_10":{
+        "description": "¿Has tenido ideas de causarte algún tipo de dolor?"
+    },
+    "question_11":{
+        "description": "¿Has tenido ideas de causar a los demás algún tipo de dolor?"
+    },
+    "question_12":{
+        "description": "¿Te has alejado de familiares o amigos?"
+    },
+    "question_13":{
+        "description": "¿Cómo has dormido hoy?"
+    },
+    "question_14":{
+        "description": "¿Cómo te encuentras hoy anímicamente?"
+    },
+    "question_15":{
+        "description": "¿Has tomado alcohol?"
+    },
+    "question_16":{
+        "description": "¿Has tomado algún tipo de drogas?"
+    },
+    "question_17":{
+        "description": "¿Tienes ganas de salir de casa?"
+    },
+    "question_18":{
+        "description": "¿Has realizado algún tipo de actividad física?"
+    },
+    "question_19":{
+        "description": "¿Sigues una rutina diaria?"
+    },
+    "question_20":{
+        "description": "¿Has realizado actividades al aire libre?"
+    },
+    "question_21":{
+        "description": "¿Has pasado tiempo con otras personas?"
+    },
+    "question_22":{
+        "description": "Si te has pesado recientemente, ¿cuál es tu peso?"
+    },
+    "question_23":{
+        "description": "Si te has tomado la tensión arterial, ¿cuál es tu TA?"
+    },
+    "question_24":{
+        "description": "Si te has tomado la frecuencia cardíaca, ¿cuál es tu FC?"
+    },
+    "question_25":{
+        "description": "Si te has tomado la glucemia, ¿cuál es tu glucemia?"
+    }
+}
