@@ -1,6 +1,6 @@
 import { User } from "src/app/management/models/User";
-import { Patient } from "src/app/patient/model/Patient";
-import { Question } from "src/app/question/model/Question";
+import { Patient } from "src/app/assistance/models/Patient";
+import { Question } from "src/app/questionnaire/model/Question";
 
 export class Questionnaire {
     id: number;

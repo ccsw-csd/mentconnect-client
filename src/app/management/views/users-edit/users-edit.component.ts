@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Role } from 'src/app/assistance/models/Role';
+import { Role } from 'src/app/management/models/Role';
 import { RoleService } from 'src/app/core/services/role.service';
 import { User } from '../../models/User';
 import { UserFull } from '../../models/UserFull';

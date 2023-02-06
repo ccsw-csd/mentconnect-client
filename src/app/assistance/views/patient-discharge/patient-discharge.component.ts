@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Role } from '../../models/Role';
+import { Role } from '../../../management/models/Role';
 import { UserFull } from '../../../management/models/UserFull';
 import { PatientFull } from '../../models/PatientFull';
 import { PatientService } from '../../services/patient/patient.service';

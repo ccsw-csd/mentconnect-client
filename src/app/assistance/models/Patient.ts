@@ -1,6 +1,6 @@
 import { User } from "src/app/management/models/User";
 
-export class Patient{
+export class Patient {
     id: number;
     user: User; 
     nif: string;
