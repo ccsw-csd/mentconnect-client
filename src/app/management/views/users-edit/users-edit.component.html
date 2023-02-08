@@ -1,48 +1,63 @@
 <p-toast position="top-center"></p-toast>
-<div class="flex flex-column w-auto">
-    <br>
-    <form id="formulario" #form="ngForm">
-        <span class="p-float-label field">
-            <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username" name="username" disabled required>
-            <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
-        </span>
-        <span class="p-float-label field">
-            <input id="email-input"  pInputText type="email" class="w-full" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email"  required>
-            <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
-        </span>
-        <span class="p-float-label field">
-            <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" required>
-            <label for="name-input" class="block">{{ "users.form.input.name" | translate }}</label>
-        </span>
-        <span class="p-float-label field">
-            <input id="surnames-input" class="w-full" pInputText [(ngModel)]="userFull.surnames" name="surnames" required>
-            <label for="surnames-input" class="block">{{ "users.form.input.surname" | translate }}</label>
-        </span>
+<br>
+<form class="formgrid w-full grid" #form="ngForm">
+    <div class="col-12 h-full flex align-items-center justify-content-center ">
+        <div class="field col">
+            <span class="p-float-label field">
+                <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username"
+                    name="username" disabled required>
+                <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
+            </span>
+            <span class="p-float-label field ">
+                <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" required>
+                <label for="name-input" class="block">{{ "users.form.input.name" | translate }}</label>
+            </span>
+        </div>
+        <div class="field col">
 
+            <span class="p-float-label field">
+                <input id="email-input" pInputText type="email" class="w-full"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email"
+                    required>
+                <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
+            </span>
+            <span class="p-float-label field">
+                <input id="surnames-input" class="w-full" pInputText [(ngModel)]="userFull.surnames" name="surnames"
+                    required>
+                <label for="surnames-input" class="block">{{ "users.form.input.surname" | translate }}</label>
+            </span>
+        </div>
+    </div>
+    <div class="col-12  flex align-items-center justify-content-center ">
+        <div class="field col">
+            <span class="p-float-label">
+                <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false"
+                    [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles"
+                    [listStyle]="{'max-height':'132px', 'font-size':'12px'}">
+                    <p-header>{{ "users.form.input.role" | translate }}</p-header>
+                    <ng-template let-roles pTemplate="item">
+                        <div class="role-item">
+                            <div>{{roles.code}}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+                <!-- <label for="roles-input" class="block">{{ "users.form.input.role" | translate }}</label> -->
+            </span>
+        </div>
+    </div>
+</form>
 
-        <span class="p-float-label-list">
-            <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false" [checkbox]="true"  [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'max-height':'175px', 'font-size':'12px'}"  [style]="{'width':'29.6rem'}">
-                <p-header>{{ "users.form.input.role" | translate }}</p-header>
-                <ng-template let-roles pTemplate="item">
-                    <div class="role-item">
-                        <div>{{roles.code}}</div>
-                    </div>
-                </ng-template>
-            </p-listbox>
-            <!-- <label for="roles-input" class="block">{{ "users.form.input.role" | translate }}</label> -->
-        </span>
-
-
-    </form>
-    <div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"users.form.required" | translate}}</i></div>
+<div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"users.form.required" | translate}}</i>
 </div>
 
-<div class = "flex flex-row-reverse w-auto mt-6">
+
+<div class="flex flex-row-reverse w-auto mt-6">
     <div>
-         <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click)="onSave(userFull)" pButton label="{{ 'users.form.save' | translate}}"></button> 
+        <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click)="onSave(userFull)"
+            pButton label="{{ 'users.form.save' | translate}}"></button>
     </div>
     <div class="px-2">
-        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton label="{{ 'users.form.close' | translate}}"></button>
-    </div>   
+        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton
+            label="{{ 'users.form.close' | translate}}"></button>
+    </div>
 </div>
-
