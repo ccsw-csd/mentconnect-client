@@ -1,10 +1,14 @@
 <p-toast position="top-center"></p-toast>
 <div class="flex flex-column w-auto">
     <br>
-    <form #form="ngForm">
+    <form id="formulario" #form="ngForm">
         <span class="p-float-label field">
             <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username" name="username" disabled required>
             <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
+        </span>
+        <span class="p-float-label field">
+            <input id="email-input"  pInputText type="email" class="w-full" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email"  required>
+            <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
         </span>
         <span class="p-float-label field">
             <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" required>
@@ -14,14 +18,21 @@
             <input id="surnames-input" class="w-full" pInputText [(ngModel)]="userFull.surnames" name="surnames" required>
             <label for="surnames-input" class="block">{{ "users.form.input.surname" | translate }}</label>
         </span>
-        <span class="p-float-label field">
-            <input id="email-input" class="w-full" pInputText type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email" required>
-            <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
+
+
+        <span class="p-float-label-list">
+            <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false" [checkbox]="true"  [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'max-height':'175px', 'font-size':'12px'}"  [style]="{'width':'29.6rem'}">
+                <p-header>{{ "users.form.input.role" | translate }}</p-header>
+                <ng-template let-roles pTemplate="item">
+                    <div class="role-item">
+                        <div>{{roles.code}}</div>
+                    </div>
+                </ng-template>
+            </p-listbox>
+            <!-- <label for="roles-input" class="block">{{ "users.form.input.role" | translate }}</label> -->
         </span>
-        <span class="p-float-label field">
-            <p-multiSelect id="rol-dropdown" [options]="roles" [(ngModel)]="userFull.roles" optionLabel="code" autoWidth="false" [style]="{'width':'100%'}" name="role"></p-multiSelect>
-            <label for="rol-dropdown" class="block">{{ "users.form.input.role" | translate }}</label>
-        </span>
+
+
     </form>
     <div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"users.form.required" | translate}}</i></div>
 </div>
