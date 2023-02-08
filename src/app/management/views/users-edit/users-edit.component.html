@@ -1,7 +1,7 @@
 <p-toast position="top-center"></p-toast>
 <br>
 <form class="formgrid w-full grid" #form="ngForm">
-    <div class="col-12 h-full flex align-items-center justify-content-center ">
+    <div class="col-12 h-full flex align-items-center justify-content-center ml-2">
         <div class="field col">
             <span class="p-float-label field">
                 <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username"
@@ -28,7 +28,7 @@
             </span>
         </div>
     </div>
-    <div class="col-12  flex align-items-center justify-content-center ">
+    <div class="col-12  flex align-items-center justify-content-center ml-2">
         <div class="field col">
             <span class="p-float-label">
                 <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false"
