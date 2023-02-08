@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { UsersListComponent } from './views/users-list/users-list.component';
 import { UsersEditComponent } from './views/users-edit/users-edit.component';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     InputTextModule,
     ToastModule,
     TranslateModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ListboxModule
+
   ]
 })
 export class ManagementModule { }
