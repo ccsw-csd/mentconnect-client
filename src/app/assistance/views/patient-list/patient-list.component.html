@@ -1,0 +1,62 @@
+<p-table #ut [value]="patients" [lazy]="true" (onLazyLoad)="loadPage($event)" [loading]="loading" scrollable="true" 
+    scrollHeight="calc(100vh - 150px)" responsiveLayout="scroll" [paginator]="true" [rows]="10"
+    [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+    currentPageReportTemplate="{first} - {last} / {totalRecords}" paginatorPosition="bottom">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="nif">{{"patients.nif" | translate}}<p-sortIcon field="nif"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">{{"patients.name" | translate}}<p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="surnames">{{"patients.surnames" | translate}}<p-sortIcon field="surnames"></p-sortIcon>
+            </th>
+            <th pSortableColumn="gender">{{"patients.gender" | translate}}<p-sortIcon field="gender"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateBirth">{{"patients.dateBirth" | translate}}<p-sortIcon field="dateBirth"></p-sortIcon>
+            </th>
+            <th pSortableColumn="sip">{{"patients.sip" | translate}}<p-sortIcon field="sip"></p-sortIcon>
+            </th>
+            <th pSortableColumn="medicalHistory">{{"patients.medicalHistory" | translate}}<p-sortIcon field="medicalHistory"></p-sortIcon>
+            </th>
+            <th style='flex: 0 0 150px;'>{{"patients.actions" | translate}}</th>
+        </tr>
+        <tr>
+            <th><p-columnFilter type="text" field="nif" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="name" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="surnames" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="gender" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="dateBirth" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="sip" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="medicalHistory" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th style='flex: 0 0 150px;'></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-patients>
+        <tr>
+            <td>{{patients.nif}}</td>
+            <td>{{patients.user.name}}</td>
+            <td>{{patients.user.surnames}}</td>
+            <td>{{getGender(patients.gender)}}</td>
+            <td> {{getAge(currentYear, patients.dateBirth| date:'yyyy')}} </td>
+            <td>{{patients.sip}}</td>
+            <td>{{patients.medicalHistory}}</td>
+            <td style='flex: 0 0 150px;'>
+                <div>
+
+                    <button pButton pRipple type="button" icon="pi pi-pencil" title="Acceso a la pantalla de edición de los datos personales del/la paciente."
+                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-chart-bar" title="Información recopilada de los cuestionarios realizados por el/la paciente e información de la adherencia del tratamiento de la medicación asignada."
+                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-check-circle" title="La asignación de los cuestionarios a un/a determinado/a paciente."
+                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-book" title="Registro de todas las entradas de diario que ha realizado el/la paciente."
+                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    <button pButton pRipple type="button" icon="pi pi-plus-circle" title="Gestión de la medicación del paciente."
+                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

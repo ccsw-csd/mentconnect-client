@@ -14,9 +14,10 @@ import { ManagementModule } from './management/management.module';
 import { AssistanceModule } from './assistance/assistance.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

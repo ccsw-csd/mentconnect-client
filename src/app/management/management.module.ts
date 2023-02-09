@@ -12,7 +12,6 @@ import { UsersListComponent } from './views/users-list/users-list.component';
 import { UsersEditComponent } from './views/users-edit/users-edit.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ListboxModule } from 'primeng/listbox';
-import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [
