@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Patient } from 'src/app/assistance/models/Patient';
 import { PatientService } from 'src/app/assistance/services/patient/patient.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-patient-list',
@@ -23,15 +24,22 @@ export class PatientListComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   currentYear: number;
-
-
+  
+  translateService: TranslateService;
+  
   constructor(private userservice: PatientService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    // public translateService: TranslateService
+  ) { 
+    // translateService.setDefaultLang("es");
+    // translateService.addLangs(["en"]);
+    // translateService.use("es");
+  }
 
   ngOnInit(): void {
+
   }
 
   ngAfterContentChecked() : void {
@@ -79,16 +87,36 @@ export class PatientListComponent implements OnInit {
 
   getGender(gender:string){
     let genderFormated;
-    if(gender == 'H'){
-      genderFormated = 'Hombre';
-    }else if(gender == 'M'){
-      genderFormated = 'Mujer';
-    }else if(gender == 'O'){
-      genderFormated = 'Otro';
-    }else{
-      genderFormated = 'Error';
-    }
-    return genderFormated;
+    // this.translateService.get(gender).subscribe((text:string) =>{
+    //   genderFormated == 'Hombre';
+    // })
+    // genderFormated = this.translateService.get(gender).subscribe(genderFormated );
+    // this.translate.get("captionCode").subscribe(translated => this.myLocalizedString = translated);
+    // if(gender == 'H'){
+    //   genderFormated = 'Hombre';
+    // }else if(gender == 'M'){
+    //   genderFormated = 'Mujer';
+    // }else if(gender == 'O'){
+    //   genderFormated = 'Otro';
+    // }else{
+    //   genderFormated = 'Error';
+    // }
+    
+    // this.translateService.get("e").subscribe((translations) => {
+    //     console.log(translations.patients.gender);
+    // });
+    //genderFormated = this.translateService.get(gender);
+    //genderFormated = this.translateService.get(gender);
+  //   this.translateService.get('table.gender', {value: gender}).subscribe((res: string) => {
+  //     console.log(res);
+  //     //=> 'hello world'
+  // });
+  //console.log(this.translateService.translations);
+
+  //PETA LA APP CON ESTA INSTRUCCION:
+   //this.translateService.getTranslation("es").subscribe((gender) => { console.log(gender); });
+
+   return genderFormated;
   } 
 
 
