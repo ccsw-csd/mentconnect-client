@@ -5,6 +5,12 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { Patient } from 'src/app/assistance/models/Patient';
 import { PatientService } from 'src/app/assistance/services/patient/patient.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PatientFull } from '../../models/PatientFull';
+
+interface Gender {
+  value: string,
+  code: string
+}
 
 @Component({
   selector: 'app-patient-list',
@@ -13,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
   providers: [DialogService, DynamicDialogRef, MessageService]
 })
 export class PatientListComponent implements OnInit {
-
+  
   pageNumber: number = 0;
   pageSize: number = 5;
   property: string = 'id';
@@ -24,19 +30,21 @@ export class PatientListComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   currentYear: number;
-  
-  translateService: TranslateService;
-  
+  genders: Gender[];
+
   constructor(private userservice: PatientService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
     private cdr: ChangeDetectorRef,
-    // public translateService: TranslateService
+    public translateService: TranslateService
   ) { 
-    // translateService.setDefaultLang("es");
-    // translateService.addLangs(["en"]);
-    // translateService.use("es");
+      this.genders = [
+        {value: this.translateService.instant('patients.gender.H'), code: 'H'},
+        {value: this.translateService.instant('patients.gender.M'), code: 'M'},
+        {value: this.translateService.instant('patients.gender.O'), code: '0'},
+      ];
   }
+  
 
   ngOnInit(): void {
 
@@ -44,12 +52,12 @@ export class PatientListComponent implements OnInit {
 
   ngAfterContentChecked() : void {
     this.cdr.detectChanges();
+
   }
   
 
   loadPage(event?:LazyLoadEvent){
     this.loading = true;
-    let age = 0;
     let pageable: Pageable = {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
@@ -67,9 +75,9 @@ export class PatientListComponent implements OnInit {
       if (event.sortField != null){
         pageable.sort = [{property:event.sortField, direction:event.sortOrder == 1 ? 'asc':'desc'}];
       }
-      // age = event.filters?.dateBirth?.value.getFullYear();
+
       
-      this.userservice.findPage(pageable, event.filters?.nif?.value, event.filters?.name?.value, event.filters?.surnames?.value, event.filters?.gender?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value).subscribe(data => {
+      this.userservice.findPage(pageable, event.filters?.nif?.value, event.filters?.name?.value, event.filters?.surnames?.value, event.filters?.gender?.value, event.filters?.age?.value, event.filters?.email?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value).subscribe(data => {
         this.patients = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
@@ -83,42 +91,18 @@ export class PatientListComponent implements OnInit {
     this.currentYear = new Date().getFullYear();
     let age = currentYear - yearBirth;
     return age;
-  } 
-
-  getGender(gender:string){
-    let genderFormated;
-    // this.translateService.get(gender).subscribe((text:string) =>{
-    //   genderFormated == 'Hombre';
-    // })
-    // genderFormated = this.translateService.get(gender).subscribe(genderFormated );
-    // this.translate.get("captionCode").subscribe(translated => this.myLocalizedString = translated);
-    // if(gender == 'H'){
-    //   genderFormated = 'Hombre';
-    // }else if(gender == 'M'){
-    //   genderFormated = 'Mujer';
-    // }else if(gender == 'O'){
-    //   genderFormated = 'Otro';
-    // }else{
-    //   genderFormated = 'Error';
-    // }
     
-    // this.translateService.get("e").subscribe((translations) => {
-    //     console.log(translations.patients.gender);
-    // });
-    //genderFormated = this.translateService.get(gender);
-    //genderFormated = this.translateService.get(gender);
-  //   this.translateService.get('table.gender', {value: gender}).subscribe((res: string) => {
-  //     console.log(res);
-  //     //=> 'hello world'
-  // });
-  //console.log(this.translateService.translations);
-
-  //PETA LA APP CON ESTA INSTRUCCION:
-   //this.translateService.getTranslation("es").subscribe((gender) => { console.log(gender); });
-
-   return genderFormated;
   } 
 
+  
+  getGender(gender:String){
+    let genderFormated: string = "";
+    this.translateService.get("patients.gender."+gender).subscribe((text:string) =>{
+      genderFormated = text + "\n";
+    })
+    return genderFormated;
+  } 
 
+  
 
 }

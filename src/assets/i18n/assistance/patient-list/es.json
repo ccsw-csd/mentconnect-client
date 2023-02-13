@@ -3,19 +3,18 @@
         "nif": "NIF",
         "name": "Nombre",
         "surnames": "Apellidos",
-        "gender": "Sexo",
+        "gender": {
+            "title" : "Sexo",
+            "H" : "Hombre",
+            "M" : "Mujer",
+            "O" : "Otro"
+        },
         "dateBirth": "Edad",
+        "email": "Email",
+        "phone": "Teléfono",
         "sip": "SIP",
         "medicalHistory": "H.Clínica",
         "actions": "Acciones",
         "role" : "Rol"
-    },
-    "table":{
-        "gender": {
-            "H" : "Hombre",
-            "M" : "Mujer",
-            "O" : "Otro"
-        }
     }
-
 }

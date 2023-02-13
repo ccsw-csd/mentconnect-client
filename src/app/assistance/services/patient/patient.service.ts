@@ -19,8 +19,11 @@ export class PatientService {
     return this.http.post<PatientFull>(environment.server+ '/patient', patient);
   }
 
-  findPage(pageable: Pageable, nif?:number, name?:string, surnames?:string, gender?:string, dateBirth?:number, sip?: string, medicalHistory?: string): Observable<PatientPage>{
+  findPage(pageable: Pageable, nif?:number, name?:string, surnames?:string, gender?:string, age?:number, email?:string, phone?:string, sip?: string, medicalHistory?: string): Observable<PatientPage>{
+    return this.http.post<PatientPage>(environment.server + "/patient/findPage", {nif:nif, name:name, surnames:surnames, gender:gender, age:age, email:email, phone:phone, sip:sip, medicalHistory:medicalHistory, pageable:pageable});
+  }
 
-    return this.http.post<PatientPage>(environment.server + "/patient/findPage", {nif:nif, name:name, surnames:surnames, gender:gender, dateBirth:dateBirth, sip:sip, medicalHistory:medicalHistory, pageable:pageable});
+  userFull(id: number): Observable<PatientFull>{
+    return this.http.get<PatientFull>(environment.server + "/patient/full/" + id);
   }
 }

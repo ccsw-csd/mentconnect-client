@@ -7,13 +7,17 @@
         <tr>
             <th pSortableColumn="nif">{{"patients.nif" | translate}}<p-sortIcon field="nif"></p-sortIcon>
             </th>
-            <th pSortableColumn="name">{{"patients.name" | translate}}<p-sortIcon field="name"></p-sortIcon>
+            <th pSortableColumn="user.name">{{"patients.name" | translate}}<p-sortIcon field="user.name"></p-sortIcon>
             </th>
-            <th pSortableColumn="surnames">{{"patients.surnames" | translate}}<p-sortIcon field="surnames"></p-sortIcon>
+            <th pSortableColumn="user.surnames">{{"patients.surnames" | translate}}<p-sortIcon field="user.surnames"></p-sortIcon>
             </th>
-            <th pSortableColumn="gender">{{"patients.gender" | translate}}<p-sortIcon field="gender"></p-sortIcon>
+            <th pSortableColumn="gender">{{"patients.gender.title" | translate}}<p-sortIcon field="patients.gender"></p-sortIcon>
             </th>
             <th pSortableColumn="dateBirth">{{"patients.dateBirth" | translate}}<p-sortIcon field="dateBirth"></p-sortIcon>
+            </th>
+            <th pSortableColumn="user.email">{{"patients.email" | translate}}<p-sortIcon field="user.email"></p-sortIcon>
+            </th>
+            <th pSortableColumn="phone">{{"patients.phone" | translate}}<p-sortIcon field="phone"></p-sortIcon>
             </th>
             <th pSortableColumn="sip">{{"patients.sip" | translate}}<p-sortIcon field="sip"></p-sortIcon>
             </th>
@@ -23,12 +27,20 @@
         </tr>
         <tr>
             <th><p-columnFilter type="text" field="nif" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="name" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="surnames" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="gender" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="dateBirth" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="sip" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="medicalHistory" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="name"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="surnames"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th>
+                <p-columnFilter field="genders" matchMode="like" [showMenu]="false">
+                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                        <p-multiSelect [(ngModel)]="patients" [options]="genders" [showHeader]="false" (onChange)="filter($event.value)" optionValue="code" optionLabel="value" placeholder='{{"patients.filter.genre" | translate}}'></p-multiSelect>
+                    </ng-template>
+                </p-columnFilter>
+            </th>
+            <th><p-columnFilter type="numeric" field="dateBirth" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="email" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="phone" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="numeric" field="sip" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="numeric" field="medicalHistory" matchMode="like" [showMenu]="false"></p-columnFilter></th>
             <th style='flex: 0 0 300px;'></th>
         </tr>
     </ng-template>
@@ -38,8 +50,10 @@
             <td>{{patients.nif}}</td>
             <td>{{patients.user.name}}</td>
             <td>{{patients.user.surnames}}</td>
-            <td>{{getGender(patients.gender | translate)}}</td>
+            <td>{{getGender(patients.gender)}}</td>
             <td> {{getAge(currentYear, patients.dateBirth| date:'yyyy')}} </td>
+            <td>{{patients.user.email}}</td>
+            <td>{{patients.phone}}</td>
             <td>{{patients.sip}}</td>
             <td>{{patients.medicalHistory}}</td>
             <td style='flex: 0 0 300px;'>
