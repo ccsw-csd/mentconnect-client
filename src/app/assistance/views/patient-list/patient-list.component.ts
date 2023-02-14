@@ -30,6 +30,7 @@ export class PatientListComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   currentYear: number;
+  filterGender: Patient[];
   genders: Gender[];
 
   constructor(private userservice: PatientService,
@@ -38,15 +39,18 @@ export class PatientListComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translateService: TranslateService
   ) { 
-      this.genders = [
-        {value: this.translateService.instant('patients.gender.H'), code: 'H'},
-        {value: this.translateService.instant('patients.gender.M'), code: 'M'},
-        {value: this.translateService.instant('patients.gender.O'), code: '0'},
-      ];
+       this.genders = [
+         {value: this.translateService.instant('patients.gender.H'), code: 'H'},
+         {value: this.translateService.instant('patients.gender.M'), code: 'M'},
+         {value: this.translateService.instant('patients.gender.O'), code: 'O'}
+       ];
   }
   
 
   ngOnInit(): void {
+    this.userservice.getPatients().subscribe(
+      patients => this.patients = patients
+    );
 
   }
 
@@ -77,7 +81,14 @@ export class PatientListComponent implements OnInit {
       }
 
       
-      this.userservice.findPage(pageable, event.filters?.nif?.value, event.filters?.name?.value, event.filters?.surnames?.value, event.filters?.gender?.value, event.filters?.age?.value, event.filters?.email?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value).subscribe(data => {
+
+      this.userservice.findPage(pageable, event.filters?.nif?.value, {
+        name: event.filters?.name?.value,
+        id: event.filters?.id?.value,
+        username: event.filters?.username?.value,
+        surnames: event.filters?.surnames?.value,
+        email: event.filters?.email?.value,
+      }, event.filters?.gender?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value).subscribe(data => {
         this.patients = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;

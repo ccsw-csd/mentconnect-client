@@ -30,15 +30,16 @@
             <th><p-columnFilter type="text" field="name"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
             <th><p-columnFilter type="text" field="surnames"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
             <th>
-                <p-columnFilter field="genders" matchMode="like" [showMenu]="false">
+                <p-columnFilter field="gender" matchMode="equals" [showMenu]="false">
                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                        <p-multiSelect [(ngModel)]="patients" [options]="genders" [showHeader]="false" (onChange)="filter($event.value)" optionValue="code" optionLabel="value" placeholder='{{"patients.filter.genre" | translate}}'></p-multiSelect>
+                      <p-dropdown [ngModel]="value" appendTo="body" [options]="genders" optionValue="code" optionLabel="value" name="patient.gender" (onChange)="filter($event.value)"> 
+                      </p-dropdown>
                     </ng-template>
-                </p-columnFilter>
-            </th>
-            <th><p-columnFilter type="numeric" field="dateBirth" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+                  </p-columnFilter>
+              </th>
+            <th></th>
             <th><p-columnFilter type="text" field="email" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="phone" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="phone" matchMode="like" [showMenu]="false" ></p-columnFilter></th>
             <th><p-columnFilter type="numeric" field="sip" matchMode="like" [showMenu]="false"></p-columnFilter></th>
             <th><p-columnFilter type="numeric" field="medicalHistory" matchMode="like" [showMenu]="false"></p-columnFilter></th>
             <th style='flex: 0 0 300px;'></th>
