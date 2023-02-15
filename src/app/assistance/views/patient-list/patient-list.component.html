@@ -26,22 +26,22 @@
             <th style='flex: 0 0 300px;'>{{"patients.actions" | translate}}</th>
         </tr>
         <tr>
-            <th><p-columnFilter type="text" field="nif" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="name"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="surnames"  matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="nif" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="name"  matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="surnames"  matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th>
                 <p-columnFilter field="gender" matchMode="equals" [showMenu]="false">
                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                      <p-dropdown [ngModel]="value" appendTo="body" [options]="genders" optionValue="code" optionLabel="value" name="patient.gender" (onChange)="filter($event.value)"> 
+                      <p-dropdown [ngModel]="value" appendTo="body" [options]="genders" placeholder='{{"patients.filter.user" | translate}}' optionValue="code" optionLabel="value" name="patient.gender" (onChange)="filter($event.value)"> 
                       </p-dropdown>
                     </ng-template>
                   </p-columnFilter>
               </th>
             <th></th>
-            <th><p-columnFilter type="text" field="email" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="text" field="phone" matchMode="like" [showMenu]="false" ></p-columnFilter></th>
-            <th><p-columnFilter type="numeric" field="sip" matchMode="like" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="numeric" field="medicalHistory" matchMode="like" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="email" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="phone" matchMode="equals" [showMenu]="false" ></p-columnFilter></th>
+            <th><p-columnFilter type="numeric" field="sip" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="numeric" field="medicalHistory" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th style='flex: 0 0 300px;'></th>
         </tr>
     </ng-template>

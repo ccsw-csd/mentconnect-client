@@ -15,6 +15,9 @@
         "sip": "SIP",
         "medicalHistory": "H.Clinic",
         "actions": "Actions",
-        "role" : "Role"
+        "role" : "Role",
+        "filter":{
+            "user":"Select gender"
+        }
     }
 }
