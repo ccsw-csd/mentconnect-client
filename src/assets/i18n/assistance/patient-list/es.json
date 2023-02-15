@@ -9,7 +9,7 @@
             "M" : "Mujer",
             "O" : "Otro"
         },
-        "dateBirth": "Edad",
+        "dateBirth": "Día de nacimiento",
         "email": "Email",
         "phone": "Teléfono",
         "sip": "SIP",

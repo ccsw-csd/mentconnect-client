@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Patient } from 'src/app/assistance/models/Patient';
 import { PatientService } from 'src/app/assistance/services/patient/patient.service';
 import { TranslateService } from '@ngx-translate/core';
-import { PatientFull } from '../../models/PatientFull';
 
 interface Gender {
   value: string,
@@ -19,12 +18,10 @@ interface Gender {
   providers: [DialogService, DynamicDialogRef, MessageService]
 })
 export class PatientListComponent implements OnInit {
-  
   pageNumber: number = 0;
   pageSize: number = 5;
   property: string = 'id';
   direction: string = 'ASC';
-  
   totalRecords: number;
   patients: Patient[];
   loading: boolean = true;
@@ -46,7 +43,6 @@ export class PatientListComponent implements OnInit {
        ];
   }
   
-
   ngOnInit(): void {
     this.userservice.getPatients().subscribe(
       patients => this.patients = patients
@@ -58,7 +54,6 @@ export class PatientListComponent implements OnInit {
     this.cdr.detectChanges();
 
   }
-  
 
   loadPage(event?:LazyLoadEvent){
     this.loading = true;
@@ -80,15 +75,13 @@ export class PatientListComponent implements OnInit {
         pageable.sort = [{property:event.sortField, direction:event.sortOrder == 1 ? 'asc':'desc'}];
       }
 
-      
-
       this.userservice.findPage(pageable, event.filters?.nif?.value, {
         name: event.filters?.name?.value,
         id: event.filters?.id?.value,
         username: event.filters?.username?.value,
         surnames: event.filters?.surnames?.value,
         email: event.filters?.email?.value,
-      }, event.filters?.gender?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value).subscribe(data => {
+      }, event.filters?.gender?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value, event.filters?.dateBirth?.value).subscribe(data => {
         this.patients = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
@@ -98,14 +91,6 @@ export class PatientListComponent implements OnInit {
     }
   }
 
-  getAge(currentYear:number,yearBirth:number ){
-    this.currentYear = new Date().getFullYear();
-    let age = currentYear - yearBirth;
-    return age;
-    
-  } 
-
-  
   getGender(gender:String){
     let genderFormated: string = "";
     this.translateService.get("patients.gender."+gender).subscribe((text:string) =>{
@@ -113,7 +98,4 @@ export class PatientListComponent implements OnInit {
     })
     return genderFormated;
   } 
-
-  
-
 }

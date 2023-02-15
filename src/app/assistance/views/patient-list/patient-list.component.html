@@ -37,7 +37,7 @@
                     </ng-template>
                   </p-columnFilter>
               </th>
-            <th></th>
+            <th><p-columnFilter type="date" field="dateBirth" matchMode="equals" [showMenu]="true"></p-columnFilter></th>
             <th><p-columnFilter type="text" field="email" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th><p-columnFilter type="text" field="phone" matchMode="equals" [showMenu]="false" ></p-columnFilter></th>
             <th><p-columnFilter type="numeric" field="sip" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
@@ -52,7 +52,7 @@
             <td>{{patients.user.name}}</td>
             <td>{{patients.user.surnames}}</td>
             <td>{{getGender(patients.gender)}}</td>
-            <td> {{getAge(currentYear, patients.dateBirth| date:'yyyy')}} </td>
+            <td>{{patients.dateBirth | date: 'dd/MM/yyyy'}}</td>
             <td>{{patients.user.email}}</td>
             <td>{{patients.phone}}</td>
             <td>{{patients.sip}}</td>
