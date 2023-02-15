@@ -18,6 +18,13 @@
         "role" : "Rol",
         "filter":{
             "user":"Selecciona sexo"
+        },
+        "button":{
+            "edit":"Acceso a la pantalla de edición de los datos personales del/la paciente.",
+            "stat":"Información recopilada de los cuestionarios realizados por el/la paciente e información de la adherencia del tratamiento de la medicación asignada.",
+            "eval":"La asignación de los cuestionarios a un/a determinado/a paciente.",
+            "diary":"Registro de todas las entradas de diario que ha realizado el/la paciente.",
+            "medication":"Gestión de la medicación del paciente."
         }
     }
 }
