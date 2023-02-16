@@ -1,5 +1,5 @@
 <p-table #ut [value]="patients" [lazy]="true" (onLazyLoad)="loadPage($event)" [loading]="loading" scrollable="true" 
- responsiveLayout="scroll" [paginator]="true" [rows]="10"
+    scrollHeight="calc(100vh - 190px)" responsiveLayout="scroll" [paginator]="true" [rows]="10"
     [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     currentPageReportTemplate="{first} - {last} / {totalRecords}" paginatorPosition="bottom">
 
@@ -37,7 +37,14 @@
                     </ng-template>
                   </p-columnFilter>
               </th>
-            <th><p-columnFilter type="date" field="dateBirth" matchMode="equals" [showMenu]="true"></p-columnFilter></th>
+            <th>
+                
+                <p-columnFilter type="date" field="dateBirth" matchMode="is" [showMenu]="false">
+                    <ng-template pTemplate="filter" let-filter="filterCallback">
+                       <p-calendar (onSelect)="filter($event)" dateFormat="dd/mm/yy" ></p-calendar>
+                    </ng-template>
+               </p-columnFilter>
+            </th>
             <th><p-columnFilter type="text" field="email" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th><p-columnFilter type="text" field="phone" matchMode="equals" [showMenu]="false" ></p-columnFilter></th>
             <th><p-columnFilter type="numeric" field="sip" matchMode="equals" [showMenu]="false"></p-columnFilter></th>

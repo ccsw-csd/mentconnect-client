@@ -41,7 +41,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ToastModule,
     BlockUIModule,
     TableModule,
-    MultiSelectModule
+    MultiSelectModule,
   ]
 })
 export class AssistanceModule { }
