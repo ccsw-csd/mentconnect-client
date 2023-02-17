@@ -9,7 +9,7 @@
             "M" : "Dona",
             "O" : "Altre"
         },
-        "dateBirth": "Dia de Naixement",
+        "dateBirth": "D.Naix",
         "email": "Correu Electrònic",
         "phone": "Telèfon",
         "sip": "SIP",
@@ -17,7 +17,7 @@
         "actions": "Accions",
         "role" : "Rol",
         "filter":{
-            "user":"Selecciona sexe"
+            "user":"Sexe"
         },
         "button":{
             "edit":"Accés a la pantalla d'edició de les dades personals del pacient.",

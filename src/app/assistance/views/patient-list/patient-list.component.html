@@ -41,14 +41,14 @@
                 
                 <p-columnFilter type="date" field="dateBirth" matchMode="is" [showMenu]="false">
                     <ng-template pTemplate="filter" let-filter="filterCallback">
-                       <p-calendar (onSelect)="filter($event)" dateFormat="dd/mm/yy" ></p-calendar>
+                       <p-calendar (onSelect)="filter($event)" dateFormat="dd/mm/yy" [panelStyle]="{'width':'350px'}" ></p-calendar>
                     </ng-template>
                </p-columnFilter>
             </th>
             <th><p-columnFilter type="text" field="email" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th><p-columnFilter type="text" field="phone" matchMode="equals" [showMenu]="false" ></p-columnFilter></th>
-            <th><p-columnFilter type="numeric" field="sip" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
-            <th><p-columnFilter type="numeric" field="medicalHistory" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="sip" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
+            <th><p-columnFilter type="text" field="medicalHistory" matchMode="equals" [showMenu]="false"></p-columnFilter></th>
             <th style='flex: 0 0 300px;'></th>
         </tr>
     </ng-template>

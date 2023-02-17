@@ -9,7 +9,7 @@
             "M" : "Mujer",
             "O" : "Otro"
         },
-        "dateBirth": "Día de nacimiento",
+        "dateBirth": "F.Nac",
         "email": "Email",
         "phone": "Teléfono",
         "sip": "SIP",
@@ -17,7 +17,7 @@
         "actions": "Acciones",
         "role" : "Rol",
         "filter":{
-            "user":"Selecciona sexo"
+            "user":"Sexo"
         },
         "button":{
             "edit":"Acceso a la pantalla de edición de los datos personales del/la paciente.",

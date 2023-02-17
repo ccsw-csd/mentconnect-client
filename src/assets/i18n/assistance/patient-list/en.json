@@ -9,7 +9,7 @@
             "M" : "Female",
             "O" : "Other"
         },
-        "dateBirth": "Birthday",
+        "dateBirth": "Bthday",
         "email": "Email",
         "phone": "Phone",
         "sip": "SIP",
@@ -17,7 +17,7 @@
         "actions": "Actions",
         "role" : "Role",
         "filter":{
-            "user":"Select gender"
+            "user":"Gender"
         },
         "button":{
             "edit":"Access to the screen for editing the personal data of the patient.",
