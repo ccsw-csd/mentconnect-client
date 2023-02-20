@@ -4,7 +4,7 @@ export class PatientFull {
     id!: number;
     user!: UserFull;
     nif!: string;
-    gender: string;
+    gender!: string;
     dateBirth!: Date;
     phone!: string;
     sip: number;

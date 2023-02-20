@@ -12,6 +12,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "core/layout/welcome",
         "questionnaire",
         "assistance/patient-discharge",
+        "assistance/patient-list",
         "management/users",
         "questionnaire/questionnaire-list"
     ]);

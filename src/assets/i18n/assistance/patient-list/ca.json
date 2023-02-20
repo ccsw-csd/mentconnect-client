@@ -1,0 +1,30 @@
+{
+    "patients": {
+        "nif": "NIF",
+        "name": "Nom",
+        "surnames": "Cognoms",
+        "gender": {
+            "title" : "Gènere",
+            "H" : "Home",
+            "M" : "Dona",
+            "O" : "Altre"
+        },
+        "dateBirth": "D.Naix",
+        "email": "Correu Electrònic",
+        "phone": "Telèfon",
+        "sip": "SIP",
+        "medicalHistory": "H.Clínica",
+        "actions": "Accions",
+        "role" : "Rol",
+        "filter":{
+            "user":"Sexe"
+        },
+        "button":{
+            "edit":"Accés a la pantalla d'edició de les dades personals del pacient.",
+            "stat":"Informació recopilada dels qüestionaris realitzats pel/per la pacient i informació de l'adherència del tractament de la medicació assignada.",
+            "eval":"L'assignació dels qüestionaris a un determinat pacient.",
+            "diary":"Registre de totes les entrades de diari que ha realitzat el/la pacient.",
+            "medication":"Gestió de la medicació del pacient."
+        }
+    }
+}
