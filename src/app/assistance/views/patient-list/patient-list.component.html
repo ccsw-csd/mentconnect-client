@@ -38,7 +38,6 @@
                   </p-columnFilter>
               </th>
             <th>
-                
                 <p-columnFilter type="date" field="dateBirth" matchMode="is" [showMenu]="false">
                     <ng-template pTemplate="filter" let-filter="filterCallback">
                        <p-calendar (onSelect)="filter($event)" dateFormat="dd/mm/yy" [panelStyle]="{'width':'350px'}" ></p-calendar>
