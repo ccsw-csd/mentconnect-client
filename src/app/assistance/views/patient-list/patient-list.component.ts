@@ -44,9 +44,6 @@ export class PatientListComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.userservice.getPatients().subscribe(
-      patients => this.patients = patients
-    );
 
   }
 

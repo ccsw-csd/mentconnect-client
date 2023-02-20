@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { PatientFull } from '../../models/PatientFull';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { PatientPage } from '../../models/PatientPage';
-import { Patient } from '../../models/Patient';
 import { User } from 'src/app/management/models/User';
 
 @Injectable({
@@ -25,13 +24,7 @@ export class PatientService {
     return this.http.post<PatientPage>(environment.server + "/patient/findPage", {nif:nif, user:user, gender:gender, phone:phone, sip:sip, medicalHistory:medicalHistory, dateBirth:dateBirth, pageable:pageable});
   }
   
-
   userFull(id: number): Observable<PatientFull>{
     return this.http.get<PatientFull>(environment.server + "/patient/full/" + id);
-  }
-
-
-  getPatients(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(environment.server + '/patient/findAll');
   }
 }
