@@ -15,10 +15,13 @@ import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
 import { ToastModule } from 'primeng/toast';
 import { BlockUIModule } from 'primeng/blockui';
-
+import { PatientListComponent } from './views/patient-list/patient-list.component';
+import { TableModule } from 'primeng/table'
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
-    PatientDischargeComponent
+    PatientDischargeComponent,
+    PatientListComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,9 @@ import { BlockUIModule } from 'primeng/blockui';
     MessagesModule,
     MessageModule,
     ToastModule,
-    BlockUIModule
+    BlockUIModule,
+    TableModule,
+    MultiSelectModule,
   ]
 })
 export class AssistanceModule { }

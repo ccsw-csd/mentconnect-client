@@ -30,7 +30,6 @@ import { ListboxModule } from 'primeng/listbox';
     TranslateModule,
     MultiSelectModule,
     ListboxModule
-
   ]
 })
 export class ManagementModule { }

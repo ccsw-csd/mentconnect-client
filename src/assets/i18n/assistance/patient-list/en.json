@@ -1,0 +1,30 @@
+{
+    "patients": {
+        "nif": "NIF",
+        "name": "Name",
+        "surnames": "Surname",
+        "gender": {
+            "title" : "Gender",
+            "H" : "Male",
+            "M" : "Female",
+            "O" : "Other"
+        },
+        "dateBirth": "Bthday",
+        "email": "Email",
+        "phone": "Phone",
+        "sip": "SIP",
+        "medicalHistory": "H.Clinic",
+        "actions": "Actions",
+        "role" : "Role",
+        "filter":{
+            "user":"Gender"
+        },
+        "button":{
+            "edit":"Access to the screen for editing the personal data of the patient.",
+            "stat":"Information collected from the questionnaires carried out by the patient and information on the adherence to the treatment of the assigned medication.",
+            "eval":"The assignment of the questionnaires to a specific patient.",
+            "diary":"Record of all diary entries made by the patient.",
+            "medication":"Patient medication management."
+        }
+    }
+}

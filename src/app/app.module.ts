@@ -8,16 +8,16 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { appInitializerFactory, HttpLoaderFactory } from './core/utils/translate-initializer';
-
 import { CoreModule } from './core/core.module';
 import { SecurityModule } from './security/security.module';
 import { ManagementModule } from './management/management.module';
 import { AssistanceModule } from './assistance/assistance.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
