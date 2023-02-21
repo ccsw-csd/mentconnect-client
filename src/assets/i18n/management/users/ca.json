@@ -15,7 +15,8 @@
                 "name" : "Nom *",
                 "surname" : "Cognoms *",
                 "email" : "Correu electrònic",
-                "role" : "Rol"
+                "role" : "Rol",
+                "patients" : "Pacients"
             },
             "required" : "* Camps obligatoris",
             "save" : "Guardar",

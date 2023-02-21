@@ -1,6 +1,4 @@
-<p-toast position="top-center"></p-toast>
-<br>
-<form class="formgrid w-full grid" #form="ngForm">
+<form class="formgrid w-full grid mt-2" #form="ngForm">
     <div class="col-12 h-full flex align-items-center justify-content-center ml-2">
         <div class="field col">
             <span class="p-float-label field">
@@ -41,7 +39,21 @@
                         </div>
                     </ng-template>
                 </p-listbox>
-                <!-- <label for="roles-input" class="block">{{ "users.form.input.role" | translate }}</label> -->
+            </span>
+        </div>
+        
+        <div class="field col">
+            <span class="p-float-label">
+                <p-listbox name="patient" [options]="patients" [(ngModel)]="userFull.patients" [metaKeySelection]="false"
+                    [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="patient"
+                    [listStyle]="{'max-height':'132px', 'font-size':'12px'}">
+                    <p-header>{{ "users.form.input.patients" | translate }}</p-header>
+                    <ng-template let-patients pTemplate="item">
+                        <div class="patient-item">
+                            <div>{{patients.user.name + " " + patients.user.surnames | titlecase}}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
             </span>
         </div>
     </div>
