@@ -5,6 +5,8 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { Patient } from 'src/app/assistance/models/Patient';
 import { PatientService } from 'src/app/assistance/services/patient/patient.service';
 import { TranslateService } from '@ngx-translate/core';
+import { PatientEditComponent } from '../patient-edit/patient-edit.component';
+import { Router } from "@angular/router";
 
 interface Gender {
   value: string,
@@ -34,7 +36,8 @@ export class PatientListComponent implements OnInit {
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
     private cdr: ChangeDetectorRef,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private router: Router
   ) { 
        this.genders = [
          {value: this.translateService.instant('patients.gender.H'), code: 'H'},
@@ -95,4 +98,9 @@ export class PatientListComponent implements OnInit {
     })
     return genderFormated;
   } 
+
+
+  editPatient(patient: Patient){
+    this.router.navigate(["patient-edit", patient.id]);
+  }
 }

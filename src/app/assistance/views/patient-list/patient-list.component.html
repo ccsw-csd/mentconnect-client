@@ -66,7 +66,7 @@
             <td style='flex: 0 0 300px;'>
                 <div class="inline-flex">
                     <button pButton pRipple type="button" icon="pi pi-pencil" title='{{"patients.button.edit" | translate}}'
-                    class="p-button-rounded p-button-text p-button-plain icon"></button>
+                    class="p-button-rounded p-button-text p-button-plain icon" (click)="editPatient(patients)"></button>
                     <button pButton pRipple type="button" icon="pi pi-chart-bar" title='{{"patients.button.stat" | translate}}'
                     class="p-button-rounded p-button-text p-button-plain icon"></button>
                     <button pButton pRipple type="button" icon="pi pi-check-circle" title='{{"patients.button.eval" | translate}}'

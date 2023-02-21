@@ -7,8 +7,8 @@ export class PatientFull {
     gender!: string;
     dateBirth!: Date;
     phone!: string;
-    sip: number;
-    medicalHistory: number;
+    sip: string;
+    medicalHistory: string;
 
     constructor(user, nif, gender, dateBirth, phone, sip, medicalHistory){
         this.user = user;
