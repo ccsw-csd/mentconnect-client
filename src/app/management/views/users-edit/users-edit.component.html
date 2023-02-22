@@ -7,7 +7,7 @@
                 <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
             </span>
             <span class="p-float-label field ">
-                <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" required>
+                <input id="name-input" class="w-full" pInputText [(ngModel)]="userFull.name" name="name" [pTooltip]="userFull.name" required>
                 <label for="name-input" class="block">{{ "users.form.input.name" | translate }}</label>
             </span>
         </div>
@@ -16,12 +16,12 @@
             <span class="p-float-label field">
                 <input id="email-input" pInputText type="email" class="w-full"
                     pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email"
-                    required>
+                    [pTooltip]="userFull.email" fitContent required>
                 <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
             </span>
             <span class="p-float-label field">
                 <input id="surnames-input" class="w-full" pInputText [(ngModel)]="userFull.surnames" name="surnames"
-                    required>
+                [pTooltip]="userFull.surnames"  required>
                 <label for="surnames-input" class="block">{{ "users.form.input.surname" | translate }}</label>
             </span>
         </div>
@@ -31,11 +31,11 @@
             <span class="p-float-label">
                 <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false"
                     [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles"
-                    [listStyle]="{'max-height':'132px', 'font-size':'12px'}">
+                    [listStyle]="{'height':'132px', 'font-size':'12px'}">
                     <p-header>{{ "users.form.input.role" | translate }}</p-header>
                     <ng-template let-roles pTemplate="item">
                         <div class="role-item">
-                            <div>{{roles.code}}</div>
+                            <div [pTooltip]= roles.code >{{roles.code}}</div>
                         </div>
                     </ng-template>
                 </p-listbox>
@@ -46,11 +46,11 @@
             <span class="p-float-label">
                 <p-listbox name="patient" [options]="patients" [(ngModel)]="userFull.patients" [metaKeySelection]="false"
                     [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="patient"
-                    [listStyle]="{'max-height':'132px', 'font-size':'12px'}">
+                    [listStyle]="{'height':'132px', 'font-size':'12px'}">
                     <p-header>{{ "users.form.input.patients" | translate }}</p-header>
                     <ng-template let-patients pTemplate="item">
-                        <div class="patient-item">
-                            <div>{{patients.user.name + " " + patients.user.surnames | titlecase}}</div>
+                        <div class="patient-item" >
+                            <div [pTooltip]='patients.user.name + " " + patients.user.surnames | titlecase'>{{patients.user.name + " " + patients.user.surnames | titlecase}}</div>
                         </div>
                     </ng-template>
                 </p-listbox>
@@ -59,11 +59,11 @@
     </div>
 </form>
 
-<div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"users.form.required" | translate}}</i>
+<div class="relative"><i class="absolute text-400 font-italic right-0 top-0 mr-3">{{"users.form.required" | translate}}</i>
 </div>
 
 
-<div class="flex flex-row-reverse w-auto mt-6">
+<div class="flex flex-row-reverse w-auto mt-5 mr-3">
     <div>
         <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click)="onSave(userFull)"
             pButton label="{{ 'users.form.save' | translate}}"></button>
