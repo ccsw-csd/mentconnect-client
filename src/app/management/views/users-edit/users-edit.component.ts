@@ -7,6 +7,8 @@ import { User } from '../../models/User';
 import { UserFull } from '../../models/UserFull';
 import { UserService } from '../../services/users/services/user.service';
 import { MessageService } from 'primeng/api';
+import { Patient } from '../../../assistance/models/Patient';
+import { PatientService } from '../../../assistance/services/patient/patient.service';
 
 @Component({
   selector: 'app-users-edit',
@@ -19,10 +21,12 @@ export class UsersEditComponent implements OnInit {
   user: User;
   userFull: UserFull = new UserFull();
   roles: Role[] = [];
+  patients: Patient[] = [];
 
   constructor(
     private userService: UserService,
     private roleService: RoleService,
+    private patientService:PatientService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private translate: TranslateService,
@@ -33,6 +37,9 @@ export class UsersEditComponent implements OnInit {
     this.user = Object.assign({user: User}, this.config.data.user);
     this.roleService.findRoles().subscribe(rolesArray =>
       this.roles = [...this.roles,...rolesArray]
+    );
+    this.patientService.findAllPatients().subscribe(
+      patientsArray => this.patients = patientsArray
     );
     this.getUserFull(this.user.id);
   }
@@ -46,7 +53,7 @@ export class UsersEditComponent implements OnInit {
   }
 
   onSave(user: UserFull){
-    this.userService.modifyUser(user.id, user.username, user.name, user.surnames, user.email, user.roles).subscribe({
+    this.userService.modifyUser(user).subscribe({
       next: () => {
         this.onClose();
         this.messageService.add({key: 'usersMessage', severity:'success', summary: this.translate.instant('user.form.usersMessage.success.title'), detail: this.translate.instant('user.form.usersMessage.success.detail')});

@@ -12,6 +12,7 @@ import { UsersListComponent } from './views/users-list/users-list.component';
 import { UsersEditComponent } from './views/users-edit/users-edit.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ListboxModule } from 'primeng/listbox';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ListboxModule } from 'primeng/listbox';
     ToastModule,
     TranslateModule,
     MultiSelectModule,
-    ListboxModule
+    ListboxModule,
+    TooltipModule
   ]
 })
 export class ManagementModule { }

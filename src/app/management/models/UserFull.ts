@@ -1,4 +1,5 @@
 import { Role } from "./Role";
+import { Patient } from '../../assistance/models/Patient';
 
 export class UserFull {
     id!: number;
@@ -7,13 +8,15 @@ export class UserFull {
     surnames: string; 
     email: string;
     roles: Role[];
+    patients: Patient[];
 
-    constructor(username?, name?, surnames?, email?, roles?){
+    constructor(username?, name?, surnames?, email?, roles?, patients?){
         this.username = username;
         this.name = name;
         this.surnames = surnames;
         this.email = email;
         this.roles = roles;
+        this.patients = patients;
     }
 }
   
