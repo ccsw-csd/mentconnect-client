@@ -24,11 +24,11 @@ export class PatientService {
     return this.http.post<PatientPage>(environment.server + "/patient/findPage", {nif:nif, user:user, gender:gender, phone:phone, sip:sip, medicalHistory:medicalHistory, dateBirth:dateBirth, pageable:pageable});
   }
   
-  userFull(id: number): Observable<PatientFull>{
-    return this.http.get<PatientFull>(environment.server + "/patient/full/" + id);
+  patientFull(id: number): Observable<PatientFull>{
+    return this.http.get<PatientFull>(environment.server + "/patient/" + id);
   }
 
   modifyPatient(id?:number, nif?:string, user?:User, gender?:string, phone?:string, sip?: string, medicalHistory?: string,dateBirth?:Date): Observable<PatientFull>{
-    return this.http.put<PatientFull>(environment.server + "/patient", {id:id, nif:nif, user:user, gender:gender, phone:phone, sip:sip, medicalHistory:medicalHistory, dateBirth:dateBirth});
+    return this.http.put<PatientFull>(environment.server + "/patient/", {id:id, nif:nif, user:user, gender:gender, phone:phone, sip:sip, medicalHistory:medicalHistory, dateBirth:dateBirth});
   }
 }

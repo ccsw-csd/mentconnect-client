@@ -10,6 +10,7 @@ export class PatientFull {
     sip: string;
     medicalHistory: string;
 
+
     constructor(user, nif, gender, dateBirth, phone, sip, medicalHistory){
         this.user = user;
         this.nif = nif;
