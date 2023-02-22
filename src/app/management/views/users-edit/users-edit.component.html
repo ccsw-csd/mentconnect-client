@@ -2,7 +2,7 @@
     <div class="col-12 h-full flex align-items-center justify-content-center ml-2">
         <div class="field col">
             <span class="p-float-label field">
-                <input id="username-input" type="text" class="w-full" pInputText [(ngModel)]="userFull.username"
+                <input id="username-input" type="text" class="w-full mb-3" pInputText [(ngModel)]="userFull.username"
                     name="username" disabled required>
                 <label for="username-input" class="block">{{ "users.form.input.username.title" | translate }}</label>
             </span>
@@ -14,7 +14,7 @@
         <div class="field col">
 
             <span class="p-float-label field">
-                <input id="email-input" pInputText type="email" class="w-full"
+                <input id="email-input" pInputText type="email" class="w-full mb-3"
                     pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userFull.email" name="email"
                     [pTooltip]="userFull.email" fitContent required>
                 <label for="email-input" class="block">{{ "users.form.input.email" | translate }}</label>
