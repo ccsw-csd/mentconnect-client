@@ -37,11 +37,10 @@ export class PatientEditComponent implements OnInit {
     private route: ActivatedRoute,
     private roleService: RoleService
   ) {
-    //TODO : investigar centralizar genero
     this.genders = [
-      {value: this.translate.instant('patientDischarge.form.input.gender.male'), code: 'H'},
-      {value: this.translate.instant('patientDischarge.form.input.gender.female'), code: 'M'},
-      {value: this.translate.instant('patientDischarge.form.input.gender.other'), code: 'O'},
+      {value: this.translate.instant('patientEdit.form.input.gender.male'), code: 'H'},
+      {value: this.translate.instant('patientEdit.form.input.gender.female'), code: 'M'},
+      {value: this.translate.instant('patientEdit.form.input.gender.other'), code: 'O'},
     ];
   }
 
@@ -61,16 +60,14 @@ export class PatientEditComponent implements OnInit {
     this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, patient.dateBirth, patient.phone, patient.sip, patient.medicalHistory);
 
     this.isloading = true; 
-    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.parsetoIsoDate(patient.dateBirth),).subscribe({
+    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, patient.dateBirth).subscribe({
       next: (res:PatientFull) => {
         this.isloading = false;
-        //patient.resetForm();
-        this.messageService.add({key: 'patientDischargeMessage', severity:'success', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.success.detail')});
+        this.messageService.add({key: 'patientEditMessage', severity:'success', summary: this.translate.instant('patientEdit.form.patientEditMessage.success.title'), detail: this.translate.instant('patientEdit.form.patientEditMessage.success.detail')});
       },
       error: (err:any) => {
         this.isloading = false;
-        //patient.resetForm();
-        this.messageService.add({key: 'patientDischargeMessage', severity:'error', summary: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.title'), detail: this.translate.instant('patientDischarge.form.patientDischargeMessage.error.detail')});
+        this.messageService.add({key: 'patientEditMessage', severity:'error', summary: this.translate.instant('patientEdit.form.patientEditMessage.error.title'), detail: this.translate.instant('patientEdit.form.patientEditMessage.error.detail')});
       }
     });
   }
@@ -79,19 +76,8 @@ export class PatientEditComponent implements OnInit {
     this.patientService.patientFull(id).subscribe({
       next: (res) => {
         this.patientObj = res
-        console.log(res.dateBirth);
       }
-
     });
-    
-  }
-
-
-  parsetoIsoDate(date) : Date {
-    const tDate = new Date(date);
-    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
-
-    return tDate;
   }
 
   onCancel(event){

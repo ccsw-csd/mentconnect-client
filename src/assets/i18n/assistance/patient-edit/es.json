@@ -1,0 +1,44 @@
+{
+    "patientEdit": {
+        "helpCard": {
+            "title" : "Vinculación del Paciente",
+            "paragraph" : "En esta sección se realiza el alta del paciente, esa acción registra al nuevo usuario en el sistema y envía un correo electrónico a la dirección proporcionada con las instrucciones necesarias para acceder a la aplicación móvil. <br><br>Una vez finalizado el registro, diríjase a la sección de 'Pacientes' para asignar el cuestionario más adecuado al paciente y realizar el seguimiento del mismo. <br><br>¡Mantente Conectado!"
+        },
+        "form": {
+            "input": {
+                "nif" : "NIF *",
+                "username" : {
+                    "title" : "Usuario *",
+                    "lowerCase" : "Solo se permiten minúsculas"
+                },
+                "gender": {
+                    "title" : "Género",
+                    "male" : "Hombre",
+                    "female" : "Mujer",
+                    "other" : "Otro"
+                },
+                "dateBirth" : "Fecha de nacimiento",
+                "name" : "Nombre *",
+                "surname" : "Apellidos *",
+                "email" : "Correo electrónico *",
+                "phone" : "Teléfono *",
+                "sip" : "SIP",
+                "clinic" : "Historia Clínica"
+            },
+            "required" : "* Campos obligatorios",
+            "register" : "Registrar",
+            "patientEditMessage": {
+                "success": {
+                    "title" : "Paciente editado",
+                    "detail" : "El paciente ha sido editado correctamente."
+                },
+                "error": {
+                    "title" : "Error en Paciente",
+                    "detail" : "El NIF ya está añadido."
+                }
+            }
+        }
+    }
+
+    
+}

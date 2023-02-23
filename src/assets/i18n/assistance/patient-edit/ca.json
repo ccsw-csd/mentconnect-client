@@ -1,0 +1,42 @@
+{
+    "patientEdit": {
+        "helpCard": {
+            "title" : "Vinculació del Pacient",
+            "paragraph" : "En aquesta secció es realitza l'alta del pacient, aqueixa acció registra al nou usuari en el sistema i envia un correu electrònic a l'adreça proporcionada amb les instruccions necessàries per a accedir a l'aplicació mòbil. <br><br>Una vegada finalitzat el registre, dirigisca's a la secció de 'Pacients' per a assignar el qüestionari més adequat al pacient i realitzar el seguiment d'aquest. <br><br>¡Mantente connectat!"
+        },
+        "form": {
+            "input": {
+                "nif" : "NIF *",
+                "username" : {
+                    "title" : "Usuari *",
+                    "lowerCase" : "Només es permet minúscules"
+                },
+                "gender": {
+                    "title" : "Gènere",
+                    "male" : "Home",
+                    "female" : "Dona",
+                    "other" : "Altre"
+                },
+                "dateBirth" : "Data de naixement",
+                "name" : "Nom *",
+                "surname" : "Cognoms *",
+                "email" : "Correu electrònic *",
+                "phone" : "Telèfon *",
+                "sip" : "SIP",
+                "clinic" : "Història Clínica"
+            },
+            "required" : "* Camps obligatoris",
+            "register" : "Registrar",
+            "patientEditMessage": {
+                "success": {
+                    "title" : "Pacient editat",
+                    "detail" : "El pacient ha sigut editat correctament."
+                },
+                "error": {
+                    "title" : "Error en Pacient",
+                    "detail" : "El NIF ja està afegit."
+                }
+            }
+        }
+    }
+}
