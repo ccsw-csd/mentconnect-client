@@ -19,8 +19,8 @@ export class UserService {
     return this.http.post<UserPage>(environment.server + "/user/findPage", {id:id, username:username, name:name, surnames:surnames, email:email, pageable:pageable});
   }
 
-  modifyUser(id?:number, username?:string, name?:string, surnames?:string, email?:string, roles?: any): Observable<UserFull>{
-    return this.http.put<UserFull>(environment.server + "/user", {id:id, username:username, name:name, surnames:surnames, email:email, roles: roles});
+  modifyUser(userFull : UserFull): Observable<UserFull>{
+    return this.http.put<UserFull>(environment.server + "/user", userFull);
   }
 
   userFull(id: number): Observable<UserFull>{

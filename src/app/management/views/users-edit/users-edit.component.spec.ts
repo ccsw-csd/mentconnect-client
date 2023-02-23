@@ -9,6 +9,7 @@ describe('UsersEditComponent', () => {
   let usersEdit: UsersEditComponent;
   let mockUserService;
   let mockRoleService;
+  let mockPatientService;
   let mockDynamicDialogConfig;
   let mockDynamicDialogRef;
   let mockTranslateService;
@@ -20,6 +21,7 @@ describe('UsersEditComponent', () => {
     
     mockUserService = jasmine.createSpyObj(["findAll", "modifyUser", "userFull"])
     mockRoleService = jasmine.createSpyObj(["findRoles"])
+    mockPatientService = jasmine.createSpyObj(["findAllPatients"])
     mockDynamicDialogRef = jasmine.createSpyObj(["close"])
     mockDynamicDialogConfig = jasmine.createSpyObj([""])
     mockTranslateService = jasmine.createSpyObj(["instant"])
@@ -28,6 +30,7 @@ describe('UsersEditComponent', () => {
     usersEdit = new UsersEditComponent(
       mockUserService,
       mockRoleService,
+      mockPatientService,
       mockDynamicDialogRef,
       mockDynamicDialogConfig,
       mockTranslateService,

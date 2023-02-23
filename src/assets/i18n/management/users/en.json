@@ -15,7 +15,8 @@
                 "name" : "Name *",
                 "surname" : "Surnames *",
                 "email" : "Email *",
-                "role" : "Role"
+                "role" : "Role",
+                "patients" : "Patients"
             },
             "required" : "* Required fields",
             "save" : "Save",
