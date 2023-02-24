@@ -19,6 +19,7 @@ import { PatientListComponent } from './views/patient-list/patient-list.componen
 import { TableModule } from 'primeng/table'
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PatientEditComponent } from './views/patient-edit/patient-edit.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     PatientDischargeComponent,
@@ -44,6 +45,9 @@ import { PatientEditComponent } from './views/patient-edit/patient-edit.componen
     BlockUIModule,
     TableModule,
     MultiSelectModule,
+  ],
+  providers:[
+    DatePipe,
   ]
 })
 export class AssistanceModule { }

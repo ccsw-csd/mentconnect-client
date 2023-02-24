@@ -26,6 +26,8 @@
                 "clinic" : "Clinic History"
             },
             "required" : "* Required fields",
+            "save" : "Save",
+            "close" : "Close",
             "register" : "Register",
             "patientEditMessage": {
                 "success": {

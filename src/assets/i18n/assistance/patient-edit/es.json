@@ -26,6 +26,8 @@
                 "clinic" : "Historia Clínica"
             },
             "required" : "* Campos obligatorios",
+            "save" : "Guardar",
+            "close" : "Cerrar",
             "register" : "Registrar",
             "patientEditMessage": {
                 "success": {
