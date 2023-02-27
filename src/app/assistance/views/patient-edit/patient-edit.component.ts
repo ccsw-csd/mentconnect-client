@@ -25,7 +25,10 @@ export class PatientEditComponent implements OnInit {
   patientObj : PatientFull;
   userObj : UserFull;
   routeSub: any;
-  fechaFormateada: any;
+  fechaFormateada: string;
+  dateUpdate: Date;
+  newFormated:any;
+  newDate: Date;
 
   constructor(
     private patientService: PatientService,
@@ -53,9 +56,12 @@ export class PatientEditComponent implements OnInit {
   toEdit(patient: PatientFull){ 
     this.userObj = new UserFull(patient.user.username, patient.user.name, patient.user.surnames, patient.user.email, patient.user.roles);
     this.userObj.id = patient.user.id;
-    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.fechaFormateada, patient.phone, patient.sip, patient.medicalHistory);
+    if(this.dateUpdate == null){
+      this.dateUpdate = patient.dateBirth;
+    }
+    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.parsetoIsoDate(this.dateUpdate), patient.phone, patient.sip, patient.medicalHistory);
     this.isloading = true; 
-    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.fechaFormateada).subscribe({
+    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.parsetoIsoDate(this.dateUpdate)).subscribe({
       next: (res:PatientFull) => {
         this.isloading = false;
         this.messageService.add({key: 'patientEditMessage', severity:'success', summary: this.translate.instant('patientEdit.form.patientEditMessage.success.title'), detail: this.translate.instant('patientEdit.form.patientEditMessage.success.detail')});
@@ -78,5 +84,16 @@ export class PatientEditComponent implements OnInit {
 
   onCancel(event){
     this.location.back();
+  }
+
+  parsetoIsoDate(date) : Date {
+    const tDate = new Date(date);
+    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
+    return tDate;
+  }
+
+  onSelectMethod(event, date){
+    this.newFormated = this.datepipe.transform(date, "yyyy-MM-dd");
+    this.dateUpdate = new Date(this.newFormated);
   }
 }

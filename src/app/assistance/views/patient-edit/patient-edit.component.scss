@@ -1,0 +1,13 @@
+//Líneas añadidas para conseguir que cuando se vea desde el móvil la vista de editar, se consiga que la tarjeta de la foto
+//se monte encima del formulario.
+@media (max-width: 900px) {
+    #photoCard{
+       width:100% !important;
+       min-width: 300px;
+  }
+
+  #forms{
+    width:90% !important;
+    margin-left: 3rem;
+}
+}
