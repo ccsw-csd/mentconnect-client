@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 interface Gender {
   value: string,
@@ -24,12 +25,7 @@ export class PatientEditComponent implements OnInit {
   genders: Gender[];
   patientObj : PatientFull;
   userObj : UserFull;
-  routeSub: any;
-  fechaFormateada: string;
-  dateUpdate: Date;
-  newFormated:any;
-  newDate: Date;
-
+  formattedDate: string;
   constructor(
     private patientService: PatientService,
     private translate: TranslateService,
@@ -47,7 +43,7 @@ export class PatientEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientObj = new PatientFull(new UserFull(),null, null, null, null, null, null);
-    this.routeSub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
     });
 
@@ -56,12 +52,9 @@ export class PatientEditComponent implements OnInit {
   toEdit(patient: PatientFull){ 
     this.userObj = new UserFull(patient.user.username, patient.user.name, patient.user.surnames, patient.user.email, patient.user.roles);
     this.userObj.id = patient.user.id;
-    if(this.dateUpdate == null){
-      this.dateUpdate = patient.dateBirth;
-    }
-    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.parsetoIsoDate(this.dateUpdate), patient.phone, patient.sip, patient.medicalHistory);
+    this.patientObj = new PatientFull(this.userObj, patient.nif, patient.gender, this.parsetoIsoDate(patient.dateBirth), patient.phone, patient.sip, patient.medicalHistory);
     this.isloading = true; 
-    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.parsetoIsoDate(this.dateUpdate)).subscribe({
+    this.patientService.modifyPatient(patient.id, this.patientObj.nif, this.userObj, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.parsetoIsoDate(this.patientObj.dateBirth)).subscribe({
       next: (res:PatientFull) => {
         this.isloading = false;
         this.messageService.add({key: 'patientEditMessage', severity:'success', summary: this.translate.instant('patientEdit.form.patientEditMessage.success.title'), detail: this.translate.instant('patientEdit.form.patientEditMessage.success.detail')});
@@ -77,7 +70,7 @@ export class PatientEditComponent implements OnInit {
     this.patientService.patientFull(id).subscribe({
       next: (res) => {
         this.patientObj = res
-        this.fechaFormateada = this.datepipe.transform(res.dateBirth, "dd-MM-yyyy");
+        res.dateBirth = new Date(res.dateBirth)
       }
     });
   }
@@ -87,13 +80,9 @@ export class PatientEditComponent implements OnInit {
   }
 
   parsetoIsoDate(date) : Date {
-    const tDate = new Date(date);
+    let tDate = new Date(date);
     tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
     return tDate;
   }
 
-  onSelectMethod(event, date){
-    this.newFormated = this.datepipe.transform(date, "yyyy-MM-dd");
-    this.dateUpdate = new Date(this.newFormated);
-  }
 }

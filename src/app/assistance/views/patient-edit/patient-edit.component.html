@@ -1,8 +1,11 @@
-<div class="grid">
+<div class="grid min-h-full mx-0 my-0 max-w-full">
+<p-blockUI [blocked]="isloading"></p-blockUI>
+  <p-toast key="patientEditMessage" position="top-center"></p-toast>
+
   <div class="col-12 md:col-3 lg:col-3">
     <p-card [style]="{ width: '96%'}" class="mb-8 ml-6 mr-3 text-center justify-content-center">
       <ng-template pTemplate="header">
-        <img class="max-w-20rem h-10rem" alt="Card" src="assets/images/user.png"  />
+        <img class="w-10rem max-w-20rem h-10rem" alt="Card" src="assets/images/user.png"  />
       </ng-template>
       <ng-template pTemplate="body">
         <p-button icon="pi pi-trash" styleClass="p-button-secondary"></p-button>&nbsp;
@@ -54,9 +57,8 @@
         </span>
 
         <span class="p-float-label mb-5">
-          <p-calendar class="form-control" [(ngModel)]="fechaFormateada" optionValue="code" autoWidth="false"
-            [style]="{'width':'100%'}" dateFormat="dd-mm-yy" name="patientObj.dateBirth"
-            (onSelect)="onSelectMethod($event, fechaFormateada)"></p-calendar>
+          <p-calendar class="form-control" [(ngModel)]="patientObj.dateBirth" optionValue="code" autoWidth="false"
+            [style]="{'width':'100%'}" dateFormat="dd-mm-yy" name="patientObj.dateBirth"></p-calendar>
           <label for="inputtext">{{"patientDischarge.form.input.dateBirth" | translate}}</label>
         </span>
 
@@ -76,11 +78,11 @@
 
         <div class="flex flex-row-reverse  mt-5">
           <div>
-            <button type="button" class="p-button-primary" (click)="toEdit(patientObj)" pButton
-              label="{{ 'patientEdit.form.save' | translate}}"></button>
+            <button type="button" class="w-7rem p-button-primary" (click)="toEdit(patientObj)" pButton
+              label="{{ 'patientEdit.form.save' | translate}}" ></button>
           </div>
           <div class="px-2">
-            <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="p-button-secondary"
+            <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
               label="{{ 'patientEdit.form.close' | translate}}"></button>
           </div>
         </div>
