@@ -25,7 +25,6 @@ export class PatientEditComponent implements OnInit {
   genders: Gender[];
   patientObj : PatientFull;
   userObj : UserFull;
-  formattedDate: string;
   constructor(
     private patientService: PatientService,
     private translate: TranslateService,
