@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 interface Gender {
   value: string,
@@ -31,7 +31,8 @@ export class PatientEditComponent implements OnInit {
     private messageService: MessageService,
     private location: Location,
     private route: ActivatedRoute,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private router:Router
   ) {
     this.genders = [
       {value: this.translate.instant('patientEdit.form.input.gender.male'), code: 'H'},
@@ -57,6 +58,7 @@ export class PatientEditComponent implements OnInit {
       next: (res:PatientFull) => {
         this.isloading = false;
         this.messageService.add({key: 'patientEditMessage', severity:'success', summary: this.translate.instant('patientEdit.form.patientEditMessage.success.title'), detail: this.translate.instant('patientEdit.form.patientEditMessage.success.detail')});
+        this.router.navigate(['patient-list']);
       },
       error: (err:any) => {
         this.isloading = false;
