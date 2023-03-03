@@ -5,6 +5,7 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { Patient } from 'src/app/assistance/models/Patient';
 import { PatientService } from 'src/app/assistance/services/patient/patient.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from "@angular/router";
 
 interface Gender {
   value: string,
@@ -34,7 +35,8 @@ export class PatientListComponent implements OnInit {
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
     private cdr: ChangeDetectorRef,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private router: Router
   ) { 
        this.genders = [
          {value: this.translateService.instant('patients.gender.H'), code: 'H'},
@@ -44,7 +46,7 @@ export class PatientListComponent implements OnInit {
   }
   
   ngOnInit(): void {
-
+    
   }
 
   ngAfterContentChecked() : void {
@@ -78,7 +80,7 @@ export class PatientListComponent implements OnInit {
         username: event.filters?.username?.value,
         surnames: event.filters?.surnames?.value,
         email: event.filters?.email?.value,
-      }, event.filters?.gender?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value, event.filters?.dateBirth?.value).subscribe(data => {
+      }, event.filters?.gender?.value, event.filters?.phone?.value, event.filters?.sip?.value, event.filters?.medicalHistory?.value, this.parsetoIsoDate(event.filters?.dateBirth?.value)).subscribe(data => {
         this.patients = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
@@ -95,4 +97,14 @@ export class PatientListComponent implements OnInit {
     })
     return genderFormated;
   } 
+
+
+  parsetoIsoDate(date) : Date {
+    if(date == null) return null;
+    const tDate = new Date(date);
+    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
+    return tDate;
+  }
+
+
 }
