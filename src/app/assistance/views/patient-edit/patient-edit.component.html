@@ -1,90 +1,87 @@
 <div class="grid min-h-full mx-0 my-0 max-w-full">
-<p-blockUI [blocked]="isloading"></p-blockUI>
+  <p-blockUI [blocked]="isloading"></p-blockUI>
   <p-toast key="patientEditMessage" position="top-center"></p-toast>
 
-  <div class="col-12 md:col-3 lg:col-3">
-    <p-card [style]="{ width: '96%'}" class="mb-8 ml-6 mr-3 text-center justify-content-center">
+  <div class="col-12 md:col-3 lg:col-3 ">
+    <p-card class="text-center justify-content-center">
       <ng-template pTemplate="header">
-        <img class="w-10rem max-w-20rem h-10rem" alt="Card" src="assets/images/user.png"  />
+        <img alt="Card" src="assets/images/user.png" class="w-10rem h-10rem" />
       </ng-template>
       <ng-template pTemplate="body">
-        <p-button icon="pi pi-trash" styleClass="p-button-secondary"></p-button>&nbsp;
-        <p-button icon="pi pi-user-edit"></p-button>
+        <p-button icon="pi pi-trash" styleClass="p-button-secondary"></p-button>
+        <p-button icon="pi pi-user-edit" class="m-2"></p-button>
       </ng-template>
     </p-card>
-
-
   </div>
-  <div class="col-12 md:col-9 lg:col-9">
-    <form class="formgrid w-full grid justify-content-center" name="patientForm" #patient="ngForm">
-      <div class=" col-12 md:col-5 lg:col-4 md:ml-4 md:mt-4">
-        <span class="p-float-label mb-5">
-          <input id="nif-input"  type="text" class="form-control w-full" pInputText
-            [(ngModel)]="patientObj.nif" pKeyFilter="alphanum" name="nif" required />
-          <label for="inputtext">{{"patientEdit.form.input.nif" | translate}}</label>
-        </span>
 
-        <span class="p-float-label mb-5">
+  <div class="col-12 md:col-9 lg:col-9">
+    <form name="patientForm" #patient="ngForm">
+      <div class="formgrid grid">
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <input type="text" class="form-control  w-full" pInputText [(ngModel)]="patientObj.nif" pKeyFilter="alphanum"
+            name="nif" required />
+          <label for="inputtext">{{"patientEdit.form.input.nif" | translate}}</label>
+        </div>
+        <div class="p-float-label mb-4 col-12 md:col-3">
+          <p-dropdown class="form-control w-full" [(ngModel)]="patientObj.gender" styleClass="w-full"
+            [options]="genders" optionValue="code" optionLabel="value" name="patientObj.gender"></p-dropdown>
+          <label for="inputtext">{{"patientEdit.form.input.gender.title" | translate}}</label>
+        </div>
+
+        <div class="p-float-label mb-4 col-12 md:col-3">
+          <p-calendar class="form-control" [(ngModel)]="patientObj.dateBirth" optionValue="code"  styleClass="w-full"
+            dateFormat="dd-mm-yy" name="patientObj.dateBirth"></p-calendar>
+          <label for="inputtext">{{"patientDischarge.form.input.dateBirth" | translate}}</label>
+        </div>
+
+        <div class="p-float-label mb-4 col-12 md:col-6">
           <input class="form-control w-full" [(ngModel)]="patientObj.user.name" type="text" pInputText
             pKeyFilter="alpha" required name="patientObj.user.name" />
           <label for="inputtext">{{"patientEdit.form.input.name" | translate}}</label>
-        </span>
-
-        <span class="p-float-label mb-5">
-          <input class="form-control w-full" [(ngModel)]="patientObj.user.email" type="email"
-            [email]="true" pInputText required name="patientObj.user.email" />
-          <label for="inputtext">{{"patientEdit.form.input.email" | translate}}</label>
-        </span>
-
-        <span class="p-float-label mb-5">
-          <p-inputMask class="form-control w-full" autoWidth="false" [style]="{'width':'100%'}" [(ngModel)]="patientObj.phone"
-            mask="999999999" required name="patientObj.phone"></p-inputMask>
-          <label for="inputtext">{{"patientEdit.form.input.phone" | translate}}</label>
-        </span>
-
-      </div>
-
-      <div class=" col-12 md:col-5 lg:col-4 md:mt-4 lg:mt-4 md:ml-4 md:mt-4">
-        <span class="p-float-label mb-5">
-          <p-dropdown class="form-control w-full" autoWidth="false" [style]="{'width':'100%'}" [(ngModel)]="patientObj.gender"
-            [options]="genders" optionValue="code" optionLabel="value" name="patientObj.gender"></p-dropdown>
-          <label for="inputtext">{{"patientEdit.form.input.gender.title" | translate}}</label>
-        </span>
-        <span class="p-float-label mb-5">
-          <input class="form-control w-full" [(ngModel)]="patientObj.user.surnames" type="text"  pInputText
+        </div>
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <input class="form-control w-full" [(ngModel)]="patientObj.user.surnames" type="text" pInputText
             pKeyFilter="alpha" required name="patientObj.user.surnames" />
           <label for="inputtext">{{"patientEdit.form.input.surname" | translate}}</label>
-        </span>
+        </div>
 
-        <span class="p-float-label mb-5">
-          <p-calendar class="form-control" [(ngModel)]="patientObj.dateBirth" optionValue="code" autoWidth="false"
-            [style]="{'width':'100%'}" dateFormat="dd-mm-yy" name="patientObj.dateBirth"></p-calendar>
-          <label for="inputtext">{{"patientDischarge.form.input.dateBirth" | translate}}</label>
-        </span>
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <input class="form-control w-full" [(ngModel)]="patientObj.user.email" type="email" [email]="true" pInputText
+            required name="patientObj.user.email" />
+          <label for="inputtext">{{"patientEdit.form.input.email" | translate}}</label>
+        </div>
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <p-inputMask class="form-control w-full"  [(ngModel)]="patientObj.phone"  styleClass="w-full"
+            mask="999999999" required name="patientObj.phone"></p-inputMask>
+          <label for="inputtext">{{"patientEdit.form.input.phone" | translate}}</label>
+        </div>
 
-        <span class="p-float-label mb-5">
-          <p-inputMask class="form-control" [(ngModel)]="patientObj.sip" mask="99999999" autoWidth="false"
-            [style]="{'width':'100%'}" name="patientObj.sip"></p-inputMask>
+
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <p-inputMask class="form-control" [(ngModel)]="patientObj.sip" mask="99999999" autoWidth="false"  styleClass="w-full"
+             name="patientObj.sip"></p-inputMask>
           <label for="inputtext">{{"patientEdit.form.input.sip" | translate}}</label>
-        </span>
-
-        <span class="p-float-label mb-5">
-          <input class="form-control" [(ngModel)]="patientObj.medicalHistory" type="text" style="width: 100%;"
+        </div>
+        <div class="p-float-label mb-4 col-12 md:col-6">
+          <input class="form-control w-full" [(ngModel)]="patientObj.medicalHistory" type="text" 
             pInputText pKeyFilter="int" name="patientObj.medicalHistory" />
           <label for="inputtext">{{"patientEdit.form.input.clinic" | translate}}</label>
-        </span>
-        <div class="relative"><i class="absolute text-400 font-italic right-0 top-0">{{"patientEdit.form.required" |
-            translate}}</i></div><br />
+        </div>
 
-        <div class="flex flex-row-reverse  mt-5">
-          <div>
-            <button type="button" class="w-7rem p-button-primary" (click)="toEdit(patientObj)" pButton
-              label="{{ 'patientEdit.form.save' | translate}}" ></button>
-          </div>
-          <div class="px-2">
-            <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
-              label="{{ 'patientEdit.form.close' | translate}}"></button>
-          </div>
+      </div>
+      <div class="flex justify-content-end flex-wrap">
+        <div class="flex align-items-center justify-content-center"><i
+            class="text-400 font-italic flex align-items-center justify-content-center">{{"patientEdit.form.required"
+            |translate}}</i></div>
+      </div>
+      <div class="flex flex-row-reverse  mt-5">
+        <div>
+          <button type="button" class="w-7rem p-button-primary" (click)="toEdit(patientObj)" pButton
+            label="{{ 'patientEdit.form.save' | translate}}"></button>
+        </div>
+        <div class="px-2">
+          <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
+            label="{{ 'patientEdit.form.close' | translate}}"></button>
         </div>
       </div>
     </form>

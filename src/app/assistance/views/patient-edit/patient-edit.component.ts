@@ -71,7 +71,7 @@ export class PatientEditComponent implements OnInit {
     this.patientService.patientFull(id).subscribe({
       next: (res) => {
         this.patientObj = res
-        res.dateBirth = new Date(res.dateBirth)
+        this.patientObj.dateBirth = new Date(this.patientObj.dateBirth)
       }
     });
   }
