@@ -1,0 +1,44 @@
+{
+    "patientEdit": {
+        "helpCard": {
+            "title" : "Patient Bonding",
+            "paragraph" : "In this section, the patient is discharged, this action registers the new user in the system and sends an email to the address provided with the necessary instructions to access the mobile application. <br><br>Once registration is complete, go to the 'Patients' section to assign the most appropriate questionnaire to the patient and monitor them. <br><br>¡Stay Connect!"
+        },
+        "form": {
+            "input": {
+                "nif" : "NIF *",
+                "username" : {
+                    "title" : "Username *",
+                    "lowerCase" : "Only lower case allowed"
+                },
+                "gender": {
+                    "title" : "Gender",
+                    "male" : "Male",
+                    "female" : "Female",
+                    "other" : "Other"
+                },
+                "dateBirth" : "Date birth",
+                "name" : "Name *",
+                "surname" : "Surname *",
+                "email" : "Email *",
+                "phone" : "Phone *",
+                "sip" : "SIP",
+                "clinic" : "Clinic History"
+            },
+            "required" : "* Required fields",
+            "save" : "Save",
+            "close" : "Close",
+            "register" : "Register",
+            "patientEditMessage": {
+                "success": {
+                    "title" : "Patient edited",
+                    "detail" : "The patient has been edited correctly"
+                },
+                "error": {
+                    "title" : "Error on Patient",
+                    "detail" : "The NIF is already added"
+                }
+            }
+        }
+    }
+}

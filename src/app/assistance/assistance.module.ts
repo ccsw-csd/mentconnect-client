@@ -18,10 +18,13 @@ import { BlockUIModule } from 'primeng/blockui';
 import { PatientListComponent } from './views/patient-list/patient-list.component';
 import { TableModule } from 'primeng/table'
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PatientEditComponent } from './views/patient-edit/patient-edit.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     PatientDischargeComponent,
-    PatientListComponent
+    PatientListComponent,
+    PatientEditComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     BlockUIModule,
     TableModule,
     MultiSelectModule,
+  ],
+  providers:[
+    DatePipe,
   ]
 })
 export class AssistanceModule { }
