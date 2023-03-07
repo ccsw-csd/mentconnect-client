@@ -63,12 +63,16 @@ export class UsersEditComponent implements OnInit {
     const checkStuffRole = role => roles.some( ({code}) => code == role)
     if (checkStuffRole("STAFF")){
       this.stuffRole = true;
+      
     }else{
       this.stuffRole = false;
     }
   }
 
   onSave(user: UserFull){
+    if(this.stuffRole == false){
+      user.patients = [];
+    }
     this.userService.modifyUser(user).subscribe({
       next: () => {
         this.onClose();
