@@ -30,7 +30,7 @@
         <div class="field col">
             <span class="p-float-label">
                 <p-listbox name="role" [options]="roles" [(ngModel)]="userFull.roles" [metaKeySelection]="false"
-                    [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles"
+                    [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" (onClick)="changeRole($event,userFull.roles)"
                     [listStyle]="{'height':'132px', 'font-size':'12px'}">
                     <p-header>{{ "users.form.input.role" | translate }}</p-header>
                     <ng-template let-roles pTemplate="item">
@@ -42,7 +42,7 @@
             </span>
         </div>
         
-        <div class="field col">
+        <div *ngIf="stuffRole" class="field col">
             <span class="p-float-label">
                 <p-listbox name="patient" [options]="patients" [(ngModel)]="userFull.patients" [metaKeySelection]="false"
                     [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="patient"

@@ -22,6 +22,7 @@ export class UsersEditComponent implements OnInit {
   userFull: UserFull = new UserFull();
   roles: Role[] = [];
   patients: Patient[] = [];
+  stuffRole: boolean;
 
   constructor(
     private userService: UserService,
@@ -42,17 +43,36 @@ export class UsersEditComponent implements OnInit {
       patientsArray => this.patients = patientsArray
     );
     this.getUserFull(this.user.id);
+    
   }
 
   getUserFull(id: number){
     this.userService.userFull(id).subscribe({
       next: (res) => {
-        this.userFull = res
+        this.userFull = res;
+        this.checkRole(this.userFull.roles);
       }
     });
   }
 
+  changeRole(event,roles) {
+    this.checkRole(roles);
+  }
+
+  checkRole(roles){
+    const checkStuffRole = role => roles.some( ({code}) => code == role)
+    if (checkStuffRole("STAFF")){
+      this.stuffRole = true;
+      
+    }else{
+      this.stuffRole = false;
+    }
+  }
+
   onSave(user: UserFull){
+    if(this.stuffRole == false){
+      user.patients = [];
+    }
     this.userService.modifyUser(user).subscribe({
       next: () => {
         this.onClose();
@@ -67,5 +87,4 @@ export class UsersEditComponent implements OnInit {
   onClose(){
     this.ref.close();
   }
-
 }
