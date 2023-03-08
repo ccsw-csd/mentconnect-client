@@ -8,13 +8,13 @@
     <div>
         <div class="p-float-label p-input-icon-left">
             <i class="pi pi-user"></i>
-            <input type="username" pInputText [(ngModel)] = "user" required name = "user" (keyup.enter)="onLogin()"> 
+            <input type="username" pInputText [(ngModel)] = "user" required name = "user" (keyup.enter)="onLogin()" title='{{"primeng.usernamePrompt" | translate}}'> 
             <label>{{"login.form.user" | translate}}</label>
         </div>
     
         <div class="p-float-label p-input-icon-left mt-4">
             <i class="pi pi-lock"></i>
-            <input type="password" pInputText [(ngModel)] = "password" required name = "password" (keyup.enter)="onLogin()"> 
+            <input type="password" pInputText [(ngModel)] = "password" required name = "password" (keyup.enter)="onLogin()" title='{{"primeng.passwordPrompt" | translate}}'> 
             <label>{{"login.form.password" | translate}}</label>
         </div>
     
