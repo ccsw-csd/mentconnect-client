@@ -42,6 +42,7 @@
         "weak": "Feble",
         "medium": "Mig",
         "strong": "Fort",
+        "usernamePrompt": "Introdueix el nom d'usuari",
         "passwordPrompt": "Introdueix una contrasenya",
         "emptyMessage": "Resultats no trobats",
         "emptyFilterMessage": "Resultats no trobats"

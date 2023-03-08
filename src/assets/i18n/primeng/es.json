@@ -42,6 +42,7 @@
         "weak": "Débil",
         "medium": "Medio",
         "strong": "Fuerte",
+        "usernamePrompt": "Introduce el usuario",
         "passwordPrompt": "Introduce una contraseña",
         "emptyMessage": "Resultados no encontrados",
         "emptyFilterMessage": "Resultados no encontrados"
