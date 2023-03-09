@@ -1,0 +1,35 @@
+<div class="col-12">
+    <div class="card">
+        <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
+            <div class="flex align-items-center justify-content-center font-bold text-gray-900">-  {{patientObj.nif}}</div>
+            <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">Paciente: {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
+            <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card" src="assets/images/user.png" class="w-2rem h-2rem" /></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <!-- <p-virtualScroller [value]="roles" scrollHeight="500px" [itemSize]="150">
+        <ng-template pTemplate="item" let-car>
+            Car content
+        </ng-template>
+    </p-virtualScroller> -->
+
+
+
+        <div class="field col">
+            <span class="p-float-label">
+                <p-listbox name="role" [options]="roles"  [metaKeySelection]="false"
+                    [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" 
+                    [listStyle]="{'height':'132px', 'font-size':'12px'}">
+                    <p-header>{{ "users.form.input.role" | translate }}</p-header>
+                    <ng-template let-roles pTemplate="item">
+                        <div class="role-item">
+                            <div [pTooltip]= roles.code >{{roles.code}}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+            </span>
+        </div>
+    
+</div>

@@ -1,0 +1,20 @@
+    <div class="col-12">
+        <div class="card">
+            <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900">-  {{patientObj.nif}}</div>
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">Paciente: {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card" src="assets/images/user.png" class="w-2rem h-2rem" /></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <p-tabView>
+            <p-tabPanel header="Cuestionarios">
+                Cuestionarios
+            </p-tabPanel>
+            <p-tabPanel header="Medicación">
+                Medicación
+            </p-tabPanel>
+        </p-tabView>
+    </div>
