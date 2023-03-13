@@ -1,0 +1,37 @@
+{
+    "patientEvaluation": {
+        "patientCard": {
+            "patient": "Pacient"
+        },
+        "roleList":"Permisos",
+        "role": {
+            "code":{
+                "PAT_INFO" : {
+                    "title" : "Editar informació de perfil",
+                    "detail" : "Permet al pacient editar la informació d'usuari"
+                },
+                "PAT_PHOTO" : {
+                    "title" : "Editar foto de perfil",
+                    "detail" : "Permet al pacient editar la seva foto de perfil"
+                },
+                "PAT_FORUM_REED" : {
+                    "title" : "Accés al fòrum",
+                    "detail" : "Permet al pacient accedir al fòrum"
+                },
+                "PAT_FORUM_WRITE" : {
+                    "title" : "Crear anuncis al fòrum",
+                    "detail" : "Permet al/a la pacient crear anuncis al fòrum"
+                },
+                "PAT_FORUM_ANSWER" : {
+                    "title" : "Contestar al fòrum",
+                    "detail" : "Permet al/la pacient contestar els anuncis del fòrum"
+                },
+                "PAT_DAILY" : {
+                    "title" : "Generar notificació de diari",
+                    "detail" : "Crea la notificació necessària perquè el/la pacient pugui registrar entrades de diari"
+                }
+            }
+            
+        }
+    }
+}

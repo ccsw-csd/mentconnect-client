@@ -1,0 +1,37 @@
+{
+    "patientEvaluation": {
+        "patientCard": {
+            "patient": "Patient"
+        },
+        "roleList":"Permissions",
+        "role": {
+            "code":{
+                "PAT_INFO" : {
+                    "title" : "Edit profile information",
+                    "detail" : "Allows the patient to edit user information"
+                },
+                "PAT_PHOTO" : {
+                    "title" : "Edit profile photo",
+                    "detail" : "Allows the patient to edit their profile photo"
+                },
+                "PAT_FORUM_REED" : {
+                    "title" : "Forum access",
+                    "detail" : "Allows the patient to access the forum"
+                },
+                "PAT_FORUM_WRITE" : {
+                    "title" : "Create forum announcements",
+                    "detail" : "Allows the patient to create forum announcements"
+                },
+                "PAT_FORUM_ANSWER" : {
+                    "title" : "Reply in the forum",
+                    "detail" : "Allows the patient to reply to forum announcements"
+                },
+                "PAT_DAILY" : {
+                    "title" : "Generate journal notification",
+                    "detail" : "Create the necessary notification so that the patient can record journal entries"
+                }
+            }
+            
+        }
+    }
+}
