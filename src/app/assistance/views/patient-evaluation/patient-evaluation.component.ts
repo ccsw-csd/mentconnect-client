@@ -10,7 +10,8 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/management/models/Role';
 import { RoleService } from 'src/app/core/services/role.service';
-
+import { Questionnaire } from 'src/app/questionnaire/model/Questionnaire';
+import { QuestionnaireService } from 'src/app/questionnaire/services/questionnaire.service';
 
 @Component({
   selector: 'app-patient-evaluation',
@@ -23,6 +24,7 @@ export class PatientEvaluationComponent implements OnInit {
   patientObj: PatientFull;
   userObj: UserFull;
   roles: Role[] = [];
+  questionnaires: Questionnaire[] = [];
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -31,7 +33,8 @@ export class PatientEvaluationComponent implements OnInit {
     private route: ActivatedRoute,
     public datepipe: DatePipe,
     private router: Router,
-    private roleService: RoleService) {
+    private roleService: RoleService,
+    private questionnaireService: QuestionnaireService) {
      }
 
   ngOnInit(): void {
@@ -41,6 +44,9 @@ export class PatientEvaluationComponent implements OnInit {
     });
     this.roleService.findByType("EXT").subscribe(rolesArray =>
       this.roles = [...this.roles,...rolesArray]
+    );
+    this.questionnaireService.findQuestionnaires().subscribe(questionnairesArray =>
+      this.questionnaires = [...this.questionnaires,...questionnairesArray]
     );
   }
 

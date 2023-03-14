@@ -4,6 +4,8 @@
             "patient": "Patient"
         },
         "roleList":"Permissions",
+        "questionnaireAvailable": "Availables",
+        "questionnaireAsign": "Assigned",
         "role": {
             "code":{
                 "PAT_INFO" : {

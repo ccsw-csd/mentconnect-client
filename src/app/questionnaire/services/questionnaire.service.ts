@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { environment } from 'src/environments/environment';
+import { Questionnaire } from '../model/Questionnaire';
 import { QuestionnairePage } from '../model/QuestionnairePage';
 
 @Injectable({
@@ -20,5 +21,10 @@ export class QuestionnaireService {
   getQuestionnaires(pageable: Pageable, description?: string, questionsNumber?: number, patientsNumber?: number, user?: User): Observable<QuestionnairePage> {
     return this.http.post<QuestionnairePage>(this.url, { description: description, questionsNumber: questionsNumber, patientsNumber: patientsNumber, user: user, pageable: pageable });
   }
+
+  findQuestionnaires() : Observable<Questionnaire[]> {
+    return this.http.get<Questionnaire[]>(environment.server+ '/questionnaire/findAll');
+  }
+
 
 }

@@ -56,7 +56,7 @@ import { ListboxModule } from 'primeng/listbox';
     TabViewModule,
     ToolbarModule,
     VirtualScrollerModule,
-    ListboxModule
+    ListboxModule,
   ],
   providers:[
     DatePipe,
