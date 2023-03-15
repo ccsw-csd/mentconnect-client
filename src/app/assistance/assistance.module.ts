@@ -26,13 +26,15 @@ import {ToolbarModule} from 'primeng/toolbar';
 import { PatientEvaluationComponent } from './views/patient-evaluation/patient-evaluation.component';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import { ListboxModule } from 'primeng/listbox';
+import { PatientQuestionnaireComponent } from './views/patient-questionnaire/patient-questionnaire.component';
 @NgModule({
   declarations: [
     PatientDischargeComponent,
     PatientListComponent,
     PatientEditComponent,
     PatientStatsComponent,
-    PatientEvaluationComponent
+    PatientEvaluationComponent,
+    PatientQuestionnaireComponent
   ],
   imports: [
     CommonModule,
