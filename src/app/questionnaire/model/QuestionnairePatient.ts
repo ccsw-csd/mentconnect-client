@@ -3,14 +3,17 @@ import { Questionnaire } from "src/app/questionnaire/model/Questionnaire";
 
 export class QuestionnairePatient {
     id: number;
-    description: string;
     questionnaire: Questionnaire;
     patient: Patient;
     startDate: Date;
     endDate: Date;  
 
-    // public constructor(init?:Partial<QuestionnairePatient>) {
-    //     Object.assign(this, init);
-    // }
+    constructor(questionnaire, patient, startDate, endDate){
+        this.questionnaire = questionnaire;
+        this.patient = patient;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 }
 

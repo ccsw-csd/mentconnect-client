@@ -33,6 +33,7 @@ export class PatientEvaluationComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionnaireSelected : Questionnaire;
+  rolesSelected: Role[] = [];
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -69,10 +70,10 @@ export class PatientEvaluationComponent implements OnInit {
       next: (res) => {
         this.patientObj = res
         this.patientObj.dateBirth = new Date(this.patientObj.dateBirth)
+        this.rolesSelected = this.patientObj.user.roles;
       }
     });
   }
-  
 
   onCancel(event) {
     this.location.back();
@@ -102,6 +103,20 @@ export class PatientEvaluationComponent implements OnInit {
     return roleFormated;
   } 
 
+  changeRoles(rolesSelected){
+    this.patientObj.user.roles = rolesSelected;
+    this.patientService.modifyPatient(this.patientObj.id, this.patientObj.nif, this.patientObj.user, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory,this.patientObj.dateBirth).subscribe({
+      next: () => {
+        this.messageService.add({key: 'rolesEdited', severity:'success', summary: "Roles editados", detail: "Roles editados"});
+        window.location.reload();
+      },
+      error: () => {
+        this.messageService.add({key: 'rolesEdited', severity:'error', summary: "Roles no editados", detail: "Roles no editados"});
+      }
+    });
+
+  }
+
   toAssign(questionnaire: Questionnaire){
     if(this.questionnaireSelected==null){
       this.messageService.add({key: 'questionnaireEmptyMessage', severity:'error', summary: "Cuestionario vacío", detail: "Debe seleccionar un elemento de la lista de cuestionarios disponibles para asignarlos"});
@@ -112,7 +127,8 @@ export class PatientEvaluationComponent implements OnInit {
         height: '530px',
         data: {
           questionnaire: questionnaire, loading: this.loading,
-          lastTableLazyLoadEvent: this.lastTableLazyLoadEvent
+          lastTableLazyLoadEvent: this.lastTableLazyLoadEvent,
+          patient:this.patientObj
         },
         closable: false
       });

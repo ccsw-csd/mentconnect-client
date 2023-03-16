@@ -1,11 +1,12 @@
-<span class="ml-1">Rango de asignación:</span>
+<p-toast key="patientAssignMessage" position="top-center"></p-toast>
+<span class="ml-1">Rango de asignación: </span>
 <form class="formgrid w-full grid mt-2" #form="ngForm">
     
     <div class="col-12  flex align-items-center justify-content-center ml-2">
         
         <div class="field col">
             <span class="p-float-label">
-                <p-calendar class="form-control" optionValue="code"  styleClass="w-full"
+                <p-calendar class="form-control" optionValue="code"  styleClass="w-full" [(ngModel)]="questionnairePatientObj.startDate" name="questionnairePatientObj.startDate"
                     dateFormat="dd-mm-yy"></p-calendar>
                 <label for="inputtext">Fecha inicio</label>
             </span>
@@ -13,7 +14,7 @@
         
         <div  class="field col">
             <span class="p-float-label">
-                <p-calendar class="form-control" optionValue="code"  styleClass="w-full"
+                <p-calendar class="form-control" optionValue="code"  styleClass="w-full" [(ngModel)]="questionnairePatientObj.endDate" name="questionnairePatientObj.endDate"
                     dateFormat="dd-mm-yy" [panelStyle]="{'height':'20px'}"></p-calendar>
                 <label for="inputtext">Fecha fin</label>
             </span>
@@ -23,7 +24,7 @@
 
 <div class="flex flex-row-reverse w-auto mt-5 mr-3">
     <div>
-        <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " 
+    <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click) = "displayToAssign(questionnairePatientObj.startDate, questionnairePatientObj.endDate)"
             pButton label="{{ 'users.form.save' | translate}}"></button>
     </div>
     <div class="px-2">

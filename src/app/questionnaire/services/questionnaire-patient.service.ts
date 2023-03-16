@@ -22,4 +22,8 @@ export class QuestionnairePatientService {
   findQuestionnairesPatientById(id: number) : Observable<QuestionnairePatient[]> {
     return this.http.get<QuestionnairePatient[]>(environment.server + '/questionnaire_patient/'+id);
   }
+
+  assignQuestionnairePatient(questionnairePatient: QuestionnairePatient) : Observable<QuestionnairePatient>{
+    return this.http.post<QuestionnairePatient>(environment.server+ '/questionnaire_patient', questionnairePatient);
+  }
 }
