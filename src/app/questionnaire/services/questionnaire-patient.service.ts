@@ -8,9 +8,7 @@ import { QuestionnairePatient } from '../model/QuestionnairePatient';
   providedIn: 'root'
 })
 export class QuestionnairePatientService {
-
-  url: string = environment.server + '/questionnaire_patient/findAll'
-
+  
   constructor(
     private http: HttpClient
   ) { }
@@ -24,6 +22,10 @@ export class QuestionnairePatientService {
   }
 
   assignQuestionnairePatient(questionnairePatient: QuestionnairePatient) : Observable<QuestionnairePatient>{
-    return this.http.post<QuestionnairePatient>(environment.server+ '/questionnaire_patient', questionnairePatient);
+    return this.http.post<QuestionnairePatient>(environment.server+ '/questionnaire_patient/', questionnairePatient);
+  }
+
+  deleteQuestionnairePatient(id: number):Observable<QuestionnairePatient>{
+    return this.http.delete<QuestionnairePatient>(environment.server+'/questionnaire_patient/'+id);
   }
 }

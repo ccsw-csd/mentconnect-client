@@ -34,6 +34,9 @@ export class PatientEvaluationComponent implements OnInit {
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionnaireSelected : Questionnaire;
   rolesSelected: Role[] = [];
+
+  questionnairesList = [];
+  questionnairesPatientList = [];
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -54,14 +57,15 @@ export class PatientEvaluationComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
       this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>
-        this.questionnairesPatient = [...this.questionnairesPatient,...questionnairesPatientArray]
+        this.questionnairesPatient = [...this.questionnairesPatient,...questionnairesPatientArray] 
       );
+      
     });
     this.roleService.findByType("EXT").subscribe(rolesArray =>
       this.roles = [...this.roles,...rolesArray]
     );
-    this.questionnaireService.findQuestionnaires().subscribe(questionnairesArray =>
-      this.questionnaires = [...this.questionnaires,...questionnairesArray]
+    this.questionnaireService.findQuestionnaires().subscribe(
+      questionnairesArray => this.questionnaires = [...this.questionnaires,...questionnairesArray]
     );
   }
 
@@ -137,7 +141,18 @@ export class PatientEvaluationComponent implements OnInit {
         this.ngOnInit(this.lastTableLazyLoadEvent);
       });
     }
+  }
 
+  deleteAssign(questionnairePatient: QuestionnairePatient){
+    this.questionnairePatientService.deleteQuestionnairePatient(questionnairePatient.id).subscribe({
+      next: () => {
+        window.location.reload();
+        this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: "Cuestionario eliminado", detail: "Cuestionario eliminado"});
+      },
+      error: () => {
+        this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: "Cuestionario no eliminado", detail: "Cuestionario no eliminado"});
+      }
+    }); 
   }
 
 }
