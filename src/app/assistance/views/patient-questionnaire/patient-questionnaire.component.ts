@@ -24,6 +24,7 @@ export class PatientQuestionnaireComponent implements OnInit {
   questionnairePatientObj : QuestionnairePatient;
   patientObj: PatientFull;
   questionnaireObj: Questionnaire;
+  questionnaireAssigned: Boolean;
   constructor(
     public ref: DynamicDialogRef,
     private questionnairePatientService: QuestionnairePatientService,
@@ -45,29 +46,46 @@ export class PatientQuestionnaireComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
     });
-
   }
 
   displayToAssign(startDate: Date, endDate: Date){ 
+    let differenceDates = new Date(endDate).getTime() - new Date(startDate).getTime();
     this.questionnairePatientObj = new QuestionnairePatient(this.questionnaireObj, this.patientObj, this.parsetoIsoDate(startDate), this.parsetoIsoDate(endDate));
     this.isloading = true; 
-    this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
-      next: (res:QuestionnairePatient) => {
-        this.isloading = false;
-        this.messageService.add({key: 'patientAssignMessage', severity:'success', summary: "Cuestionario asignado", detail: "Cuestionario asignado"});
-        
-        this.route.params.subscribe(params => {
-          this.router.navigate(['patient-evaluation/'+params['id']])
-        });
-        window.location.reload();
-      },
-      error: (err:any) => {
-        this.isloading = false;
-        this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "Cuestionario no asignado"});
-      }
-    });
+    if(differenceDates>0){
+      this.questionnairePatientService.questionnaireAssigned(this.patientObj.id, startDate, endDate).subscribe(result=>{
+        if(result==false){
+          this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
+            next: (res:QuestionnairePatient) => {
+              this.isloading = false;
+              this.messageService.add({key: 'patientAssignMessage', severity:'success', summary: "Cuestionario asignado", detail: "Cuestionario asignado"});
+              this.route.params.subscribe(params => {
+                this.router.navigate(['patient-evaluation/'+params['id']])
+              });
+              window.location.reload();
+            },
+            error: (err:any) => {
+              this.isloading = false;
+              this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "Cuestionario no asignado"});
+            }
+          });
+        }else{
+          this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "Las fechas introducidas no deben solaparse con ningún otro cuestionario asignado"});
+        }
+      })
+  }else{
+    this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "La fecha de fin no puede ser anterior a la de inicio"});
+  }
   }
 
+checkRangeDates(startDate: Date, endDate: Date){
+  this.route.params.subscribe(params => {
+    this.questionnairePatientService.questionnaireAssigned(params['id'], startDate, endDate).subscribe(result=>{
+      this.questionnaireAssigned = result;
+    })
+  });
+
+}
   getPatientFull(id: number){
     this.patientService.patientFull(id).subscribe({
       next: (res) => {
