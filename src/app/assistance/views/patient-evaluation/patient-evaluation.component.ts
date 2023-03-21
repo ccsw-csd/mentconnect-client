@@ -128,7 +128,7 @@ export class PatientEvaluationComponent implements OnInit {
       this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
         header: 'Asignar cuestionario: ' + questionnaire.description,
         width: '850px',
-        height: '530px',
+        height: '650px',
         data: {
           questionnaire: questionnaire, loading: this.loading,
           lastTableLazyLoadEvent: this.lastTableLazyLoadEvent,

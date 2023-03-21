@@ -31,8 +31,8 @@ export class QuestionnairePatientService {
     return this.http.delete<QuestionnairePatient>(environment.server+'/questionnaire_patient/'+id);
   }
 
-  questionnaireAssigned(patientId:number, startDate: Date, endDate:Date):Observable<Boolean>{
-    return this.http.get<Boolean>(this.composeFindUrl(patientId, startDate,endDate));
+  questionnaireAssigned(patientId:number, startDate: Date, endDate:Date):Observable<QuestionnairePatient[]>{
+    return this.http.get<QuestionnairePatient[]>(this.composeFindUrl(patientId, startDate,endDate));
   }
 
 

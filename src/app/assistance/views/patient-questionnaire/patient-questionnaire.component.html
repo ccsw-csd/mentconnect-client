@@ -1,10 +1,12 @@
 <p-toast key="patientAssignMessage" position="top-center"></p-toast>
-<span class="ml-1">Rango de asignación: </span>
+<span class="ml-1">Rango de asignación: {{rangeDatesSelected}} </span>
 <form class="formgrid w-full grid mt-2" #form="ngForm">
     
     <div class="col-12  flex align-items-center justify-content-center ml-2">
-        
-        <div class="field col">
+        <div class="field">
+            <p-calendar #myCalender  dateFormat="dd-mm-yy" (click)="showRange($event, myCalender)" class="w-full" [(ngModel)]="rangeDates" name="rangeDates" [inline]="true" selectionMode="range" [showWeek]="true" [readonlyInput]="true" inputId="range"></p-calendar>
+        </div>
+        <!-- <div class="field col">
             <span class="p-float-label">
                 <p-calendar class="form-control" optionValue="code"  styleClass="w-full" [(ngModel)]="questionnairePatientObj.startDate" name="questionnairePatientObj.startDate"
                     dateFormat="dd-mm-yy"></p-calendar>
@@ -18,13 +20,13 @@
                     dateFormat="dd-mm-yy" [panelStyle]="{'height':'20px'}"></p-calendar>
                 <label for="inputtext">Fecha fin</label>
             </span>
-        </div>
+        </div> -->
     </div>
 </form>
 
 <div class="flex flex-row-reverse w-auto mt-5 mr-3">
     <div>
-    <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click) = "displayToAssign(questionnairePatientObj.startDate, questionnairePatientObj.endDate)"
+    <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click) = "displayToAssign(rangeDates)"
             pButton label="{{ 'users.form.save' | translate}}"></button>
     </div>
     <div class="px-2">
