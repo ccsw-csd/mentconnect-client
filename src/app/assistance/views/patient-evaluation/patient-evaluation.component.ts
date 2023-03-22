@@ -33,10 +33,9 @@ export class PatientEvaluationComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionnaireSelected : Questionnaire;
+  questionnaireDisabled : Boolean;
   rolesSelected: Role[] = [];
-
-  questionnairesList = [];
-  questionnairesPatientList = [];
+  filteredQuestionnaires: (Questionnaire | QuestionnairePatient)[];
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -52,21 +51,34 @@ export class PatientEvaluationComponent implements OnInit {
     private ref: DynamicDialogRef) {
      }
 
-  ngOnInit(event?:LazyLoadEvent): void {
+  ngOnInit(): void {
+    this.questionnaireDisabled = true;
     this.patientObj = new PatientFull(new UserFull(), null, null, null, null, null, null);
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
-      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>
-        this.questionnairesPatient = [...this.questionnairesPatient,...questionnairesPatientArray] 
+      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray => {
+        this.questionnairesPatient = [...this.questionnairesPatient,...questionnairesPatientArray];
+        this.questionnaireService.findQuestionnaires().subscribe(
+          questionnairesArray =>{ 
+            this.questionnaires = [...this.questionnaires,...questionnairesArray];
+            this.filteredQuestionnaires = this.filterQuestionnaires(this.questionnaires, this.questionnairesPatient);
+          }
+        ); 
+      }
       );
       
     });
     this.roleService.findByType("EXT").subscribe(rolesArray =>
       this.roles = [...this.roles,...rolesArray]
     );
-    this.questionnaireService.findQuestionnaires().subscribe(
-      questionnairesArray => this.questionnaires = [...this.questionnaires,...questionnairesArray]
-    );
+    
+    
+    
+    
+  }
+
+  function1(queryarray) {
+
   }
 
   getPatientFull(id: number) {
@@ -78,6 +90,7 @@ export class PatientEvaluationComponent implements OnInit {
       }
     });
   }
+
 
   onCancel(event) {
     this.location.back();
@@ -91,7 +104,6 @@ export class PatientEvaluationComponent implements OnInit {
 
   getTranslate(role:String){
     let roleFormated: string = "";
-    
     this.translateService.get("patientEvaluation.role.code."+role+".title").subscribe((text:string) =>{
       roleFormated = text + "\n";
     })
@@ -100,7 +112,6 @@ export class PatientEvaluationComponent implements OnInit {
 
   getTranslateDetail(role:String){
     let roleFormated: string = "";
-    
     this.translateService.get("patientEvaluation.role.code."+role+".detail").subscribe((text:string) =>{
       roleFormated = text + "\n";
     })
@@ -121,26 +132,24 @@ export class PatientEvaluationComponent implements OnInit {
 
   }
 
-  toAssign(questionnaire: Questionnaire){
+  disabled(){
     if(this.questionnaireSelected==null){
-      this.messageService.add({key: 'questionnaireEmptyMessage', severity:'error', summary: "Cuestionario vacío", detail: "Debe seleccionar un elemento de la lista de cuestionarios disponibles para asignarlos"});
+      this.questionnaireDisabled = true;
     }else{
+      this.questionnaireDisabled = false;
+    } 
+  }
+
+  toAssign(questionnaire: Questionnaire){
       this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
         header: 'Asignar cuestionario: ' + questionnaire.description,
-        width: '850px',
-        height: '650px',
         data: {
-          questionnaire: questionnaire, loading: this.loading,
-          lastTableLazyLoadEvent: this.lastTableLazyLoadEvent,
+          questionnaire: questionnaire, 
+          loading: this.loading,
           patient:this.patientObj
         },
         closable: false
       });
-  
-      this.ref.onClose.subscribe(res =>{
-        this.ngOnInit(this.lastTableLazyLoadEvent);
-      });
-    }
   }
 
   deleteAssign(questionnairePatient: QuestionnairePatient){
@@ -155,4 +164,13 @@ export class PatientEvaluationComponent implements OnInit {
     }); 
   }
 
+  filterQuestionnaires(questionnairesAvailables: Questionnaire[], questionnairesAssigned: QuestionnairePatient[]): (Questionnaire | QuestionnairePatient)[] {
+    const questionnairesAssignedIDs = new Set(questionnairesAssigned.map(({ questionnaire }) => questionnaire.id));
+    this.filteredQuestionnaires = [
+      ...questionnairesAssigned.filter(({ questionnaire }) => !questionnairesAssignedIDs.has(questionnaire.id)),
+      ...questionnairesAvailables.filter(({ id }) => !questionnairesAssignedIDs.has(id))
+    ];
+    return this.filteredQuestionnaires;
+  }
 }
+

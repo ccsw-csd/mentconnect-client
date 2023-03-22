@@ -42,15 +42,15 @@
 <label for="cuestionarios">Cuestionarios:</label> <br />
 <div class="flex">
 
-    <div class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
+    <div *ngIf="this.filteredQuestionnaires" class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
         <span class="p-float-label">
-            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" [options]="questionnaires" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
-                [showToggleAll]="false" optionLabel="questionnaires" [listStyle]="{'width':'500px','height':'220px', 'font-size':'12px'}">
+            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" [options]="filteredQuestionnaires" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
+                [showToggleAll]="false" optionLabel="filteredQuestionnaires" [listStyle]="{'width':'500px','height':'220px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
-                <ng-template let-questionnaires pTemplate="item">
-                    <div class="questionnaire-item">
-                        <div [pTooltip]=questionnaires.description><span class="text-base">{{questionnaires.description}}</span></div>
-                        <div [pTooltip]=questionnaires.user_id>Preguntas: {{questionnaires.questionsNumber}} | Usuario responsable: {{questionnaires.user.name}} {{questionnaires.user.surnames}}</div>
+                <ng-template let-filteredQuestionnaires pTemplate="item">
+                    <div class="filteredQuestionnaires-item">
+                        <div [pTooltip]=filteredQuestionnaires.description><span class="text-base">{{filteredQuestionnaires.description}}</span></div>
+                        <div [pTooltip]=filteredQuestionnaires.user_id>Preguntas: {{filteredQuestionnaires.questionsNumber}} | Usuario responsable: {{filteredQuestionnaires.user.name}} {{filteredQuestionnaires.user.surnames}}</div>
                     </div>
                 </ng-template>
             </p-listbox>
@@ -58,7 +58,7 @@
 
     </div>
     <div class="flex-none flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
-        <button (click)="toAssign(questionnaireSelected)" class="pi pi-angle-double-right text-blue-300 text-4xl" ></button>
+        <button pButton type="button" (click)="toAssign(questionnaireSelected)" icon="pi pi-angle-double-right" class="p-button-lg p-button-text " [disabled]="questionnaireDisabled" ></button>
     </div>
 
     <div class="flex-1 flex align-items-center justify-content-center font-bold  m-2 px-5 py-3 border-round">
@@ -67,7 +67,7 @@
                 [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'width':'500px', 'height':'220px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
                 <ng-template let-questionnairesPatient pTemplate="item">
-                    <button (click)="deleteAssign(questionnairesPatient)" class="pi pi-trash text-blue-300 text-4xl m-2" ></button>
+                    <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash" class="p-button-lg p-button-text " ></button>
                     <div class="questionnairePatient-item">
                         <div [pTooltip]=questionnairesPatient.description><span class="text-base">{{questionnairesPatient.questionnaire.description}}</span></div>
                         <div [pTooltip]=questionnairesPatient.user_id>Asignación: {{questionnairesPatient.startDate}} - {{questionnairesPatient.endDate}}</div>
