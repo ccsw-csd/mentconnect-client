@@ -32,8 +32,11 @@
                 </ng-template>
             </p-listbox>
         </span>
-        <div class="flex flex align-items-end justify-content-end font-bold m-2 px-5 py-3 border-round">
-            <button type="button" class="p-button-primary" pButton (click)="changeRoles(rolesSelected)">Aceptar</button>
+        
+        <div class="flex flex-row-reverse mt-5">
+            <div class="px-2">
+                <button type="button" pButton  mat-raised-button class="w-7rem p-button-primary "  (click)="changeRoles(rolesSelected)" label="Aceptar"></button>
+            </div>
         </div>
     </div>
 
@@ -42,15 +45,15 @@
 <label for="cuestionarios">Cuestionarios:</label> <br />
 <div class="flex">
 
-    <div *ngIf="this.filteredQuestionnaires" class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
+    <div  class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
         <span class="p-float-label">
-            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" [options]="filteredQuestionnaires" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
-                [showToggleAll]="false" optionLabel="filteredQuestionnaires" [listStyle]="{'width':'500px','height':'220px', 'font-size':'12px'}">
+            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
+                [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient" [listStyle]="{'width':'500px','height':'220px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
-                <ng-template let-filteredQuestionnaires pTemplate="item">
-                    <div class="filteredQuestionnaires-item">
-                        <div [pTooltip]=filteredQuestionnaires.description><span class="text-base">{{filteredQuestionnaires.description}}</span></div>
-                        <div [pTooltip]=filteredQuestionnaires.user_id>Preguntas: {{filteredQuestionnaires.questionsNumber}} | Usuario responsable: {{filteredQuestionnaires.user.name}} {{filteredQuestionnaires.user.surnames}}</div>
+                <ng-template let-questionnairesAvailablesPatient pTemplate="item">
+                    <div class="questionnairesAvailablesPatient-item">
+                        <div [pTooltip]=questionnairesAvailablesPatient.description><span class="text-base">{{questionnairesAvailablesPatient.description}}</span></div>
+                        <div [pTooltip]=questionnairesAvailablesPatient.user_id>Preguntas: {{questionnairesAvailablesPatient.questionsNumber}} | Usuario responsable: {{questionnairesAvailablesPatient.user.name}} {{questionnairesAvailablesPatient.user.surnames}}</div>
                     </div>
                 </ng-template>
             </p-listbox>

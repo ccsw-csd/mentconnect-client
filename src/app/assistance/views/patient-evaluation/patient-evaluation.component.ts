@@ -16,6 +16,7 @@ import { QuestionnairePatient } from 'src/app/questionnaire/model/QuestionnaireP
 import { QuestionnairePatientService } from 'src/app/questionnaire/services/questionnaire-patient.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PatientQuestionnaireComponent } from '../patient-questionnaire/patient-questionnaire.component';
+import { DialogConfirmationComponent } from 'src/app/core/views/dialog-confirmation/dialog-confirmation.component';
 
 @Component({
   selector: 'app-patient-evaluation',
@@ -32,10 +33,10 @@ export class PatientEvaluationComponent implements OnInit {
   questionnairesPatient: QuestionnairePatient[] = [];
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
-  questionnaireSelected : Questionnaire;
-  questionnaireDisabled : Boolean;
+  questionnaireSelected: Questionnaire;
+  questionnaireDisabled: Boolean;
   rolesSelected: Role[] = [];
-  filteredQuestionnaires: (Questionnaire | QuestionnairePatient)[];
+  questionnairesAvailablesPatient: Questionnaire[] = [];
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -49,35 +50,23 @@ export class PatientEvaluationComponent implements OnInit {
     private questionnairePatientService: QuestionnairePatientService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef) {
-     }
+  }
 
   ngOnInit(): void {
     this.questionnaireDisabled = true;
     this.patientObj = new PatientFull(new UserFull(), null, null, null, null, null, null);
+    this.roleService.findByType("EXT").subscribe(rolesArray =>
+      this.roles = rolesArray
+    );
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
-      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray => {
-        this.questionnairesPatient = [...this.questionnairesPatient,...questionnairesPatientArray];
-        this.questionnaireService.findQuestionnaires().subscribe(
-          questionnairesArray =>{ 
-            this.questionnaires = [...this.questionnaires,...questionnairesArray];
-            this.filteredQuestionnaires = this.filterQuestionnaires(this.questionnaires, this.questionnairesPatient);
-          }
-        ); 
-      }
+      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>
+        this.questionnairesPatient = questionnairesPatientArray
       );
-      
+      this.questionnairePatientService.questionnaireAvailable(params['id']).subscribe(questionnairesPatientAvailableArray =>
+        this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray
+      );
     });
-    this.roleService.findByType("EXT").subscribe(rolesArray =>
-      this.roles = [...this.roles,...rolesArray]
-    );
-    
-    
-    
-    
-  }
-
-  function1(queryarray) {
 
   }
 
@@ -93,7 +82,7 @@ export class PatientEvaluationComponent implements OnInit {
 
 
   onCancel(event) {
-    this.location.back();
+    this.router.navigate(["patient-list"]);
   }
 
   parsetoIsoDate(date): Date {
@@ -102,75 +91,81 @@ export class PatientEvaluationComponent implements OnInit {
     return tDate;
   }
 
-  getTranslate(role:String){
+  getTranslate(role: String) {
     let roleFormated: string = "";
-    this.translateService.get("patientEvaluation.role.code."+role+".title").subscribe((text:string) =>{
+    this.translateService.get("patientEvaluation.role.code." + role + ".title").subscribe((text: string) => {
       roleFormated = text + "\n";
     })
     return roleFormated;
-  } 
+  }
 
-  getTranslateDetail(role:String){
+  getTranslateDetail(role: String) {
     let roleFormated: string = "";
-    this.translateService.get("patientEvaluation.role.code."+role+".detail").subscribe((text:string) =>{
+    this.translateService.get("patientEvaluation.role.code." + role + ".detail").subscribe((text: string) => {
       roleFormated = text + "\n";
     })
     return roleFormated;
-  } 
+  }
 
-  changeRoles(rolesSelected){
+  changeRoles(rolesSelected) {
     this.patientObj.user.roles = rolesSelected;
-    this.patientService.modifyPatient(this.patientObj.id, this.patientObj.nif, this.patientObj.user, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory,this.patientObj.dateBirth).subscribe({
+    this.patientService.modifyPatient(this.patientObj.id, this.patientObj.nif, this.patientObj.user, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.patientObj.dateBirth).subscribe({
       next: () => {
-        this.messageService.add({key: 'rolesEdited', severity:'success', summary: "Roles editados", detail: "Roles editados"});
-        window.location.reload();
+        this.messageService.add({ key: 'rolesEdited', severity: 'success', summary: "Roles editados", detail: "Roles editados" });
       },
       error: () => {
-        this.messageService.add({key: 'rolesEdited', severity:'error', summary: "Roles no editados", detail: "Roles no editados"});
+        this.messageService.add({ key: 'rolesEdited', severity: 'error', summary: "Roles no editados", detail: "Roles no editados" });
       }
     });
 
   }
 
-  disabled(){
-    if(this.questionnaireSelected==null){
+  disabled() {
+    if (this.questionnaireSelected == null) {
       this.questionnaireDisabled = true;
-    }else{
+    } else {
       this.questionnaireDisabled = false;
-    } 
+    }
   }
 
-  toAssign(questionnaire: Questionnaire){
-      this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
-        header: 'Asignar cuestionario: ' + questionnaire.description,
-        data: {
-          questionnaire: questionnaire, 
-          loading: this.loading,
-          patient:this.patientObj
-        },
-        closable: false
-      });
+  toAssign(questionnaire: Questionnaire) {
+    this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
+      header: 'Asignar cuestionario: ' + questionnaire.description,
+      data: {
+        questionnaire: questionnaire,
+        loading: this.loading,
+        patient: this.patientObj
+      },
+      closable: false
+    });
   }
 
   deleteAssign(questionnairePatient: QuestionnairePatient){
-    this.questionnairePatientService.deleteQuestionnairePatient(questionnairePatient.id).subscribe({
-      next: () => {
-        window.location.reload();
-        this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: "Cuestionario eliminado", detail: "Cuestionario eliminado"});
+    this.ref = this.dialogService.open(DialogConfirmationComponent, {
+      header: 'Eliminar cuestionario: ' + questionnairePatient.questionnaire.description,
+      data: {
+        questionnairePatient: questionnairePatient,
+        loading: this.loading,
+        patient: this.patientObj,
       },
-      error: () => {
+      closable: false,
+    });
+
+    this.ref.onClose.subscribe(res =>{
+      if(res==true){
+          this.questionnairePatientService.deleteQuestionnairePatient(questionnairePatient.id).subscribe({
+          next: () => {
+            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: "Cuestionario eliminado", detail: "Cuestionario eliminado"});
+            this.ngOnInit();
+          },
+          error: () => {
+            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: "Cuestionario no eliminado", detail: "Cuestionario no eliminado"});
+          }
+        }); 
+      }else{
         this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: "Cuestionario no eliminado", detail: "Cuestionario no eliminado"});
       }
-    }); 
-  }
-
-  filterQuestionnaires(questionnairesAvailables: Questionnaire[], questionnairesAssigned: QuestionnairePatient[]): (Questionnaire | QuestionnairePatient)[] {
-    const questionnairesAssignedIDs = new Set(questionnairesAssigned.map(({ questionnaire }) => questionnaire.id));
-    this.filteredQuestionnaires = [
-      ...questionnairesAssigned.filter(({ questionnaire }) => !questionnairesAssignedIDs.has(questionnaire.id)),
-      ...questionnairesAvailables.filter(({ id }) => !questionnairesAssignedIDs.has(id))
-    ];
-    return this.filteredQuestionnaires;
+    });
   }
 }
 
