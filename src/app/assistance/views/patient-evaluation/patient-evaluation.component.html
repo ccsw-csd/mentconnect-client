@@ -20,8 +20,9 @@
 <div class="col-12">
     <div class="field col">
         <span class="p-float-label">
-            <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false" [checkbox]="true" [multiple]="true"
-                [showToggleAll]="false" optionLabel="roles" [listStyle]="{'height':'200px', 'font-size':'12px'}">
+            <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false"
+                [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles"
+                [listStyle]="{'height':'350px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.roleList" | translate }}</p-header>
                 <ng-template let-roles pTemplate="item">
                     <div class="role-item">
@@ -32,57 +33,71 @@
                 </ng-template>
             </p-listbox>
         </span>
-        
+
         <div class="flex flex-row-reverse mt-5">
             <div class="px-2">
-                <button type="button" pButton  mat-raised-button class="w-7rem p-button-primary "  (click)="changeRoles(rolesSelected)" label="Aceptar"></button>
+                <button type="button" pButton mat-raised-button class="w-7rem p-button-primary "
+                    (click)="changeRoles(rolesSelected)" label="Aceptar"></button>
             </div>
         </div>
     </div>
 
 </div>
 
-<label for="cuestionarios">Cuestionarios:</label> <br />
-<div class="flex">
 
-    <div  class="flex-1 flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
-        <span class="p-float-label">
-            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
-                [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient" [listStyle]="{'width':'500px','height':'220px', 'font-size':'12px'}">
+<div class="grid">
+    <div class="col-12 md:col-5 lg:col-5">
+        <div class="field col">
+            <label for="cuestionarios">Cuestionarios:</label> <br />
+            <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()"
+                [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true"
+                [multiple]="false" [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient"
+                styleClass="w-full" [listStyle]="{'height':'600px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
                 <ng-template let-questionnairesAvailablesPatient pTemplate="item">
                     <div class="questionnairesAvailablesPatient-item">
-                        <div [pTooltip]=questionnairesAvailablesPatient.description><span class="text-base">{{questionnairesAvailablesPatient.description}}</span></div>
-                        <div [pTooltip]=questionnairesAvailablesPatient.user_id>Preguntas: {{questionnairesAvailablesPatient.questionsNumber}} | Usuario responsable: {{questionnairesAvailablesPatient.user.name}} {{questionnairesAvailablesPatient.user.surnames}}</div>
+                        <div [pTooltip]=questionnairesAvailablesPatient.description><span
+                                class="text-base">{{questionnairesAvailablesPatient.description}}</span></div>
+                        <div [pTooltip]=questionnairesAvailablesPatient.user_id>Preguntas:
+                            {{questionnairesAvailablesPatient.questionsNumber}} | Usuario responsable:
+                            {{questionnairesAvailablesPatient.user.name}}
+                            {{questionnairesAvailablesPatient.user.surnames}}</div>
                     </div>
                 </ng-template>
             </p-listbox>
-        </span>
-
-    </div>
-    <div class="flex-none flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round">
-        <button pButton type="button" (click)="toAssign(questionnaireSelected)" icon="pi pi-angle-double-right" class="p-button-lg p-button-text " [disabled]="questionnaireDisabled" ></button>
+        </div>
     </div>
 
-    <div class="flex-1 flex align-items-center justify-content-center font-bold  m-2 px-5 py-3 border-round">
-        <span class="p-float-label">
-            <p-listbox readonly [options]="questionnairesPatient"   [metaKeySelection]="false"  styleClass="w-full"
-                [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'width':'500px', 'height':'220px', 'font-size':'12px'}">
+    <div class="col-12 md:col-2 lg:col-2 flex justify-content-center align-items-center">
+        <div class="field col ">
+            <button pButton type="button" (click)="toAssign(questionnaireSelected)" icon="pi pi-angle-double-right"
+                class="p-button-lg p-button-text w-full " [disabled]="questionnaireDisabled"></button>
+        </div>
+    </div>
+    <div class="col-12 md:col-5 lg:col-5">
+        <div class="field col">
+            <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full"
+                [showToggleAll]="false" optionLabel="questionnairesPatient"
+                [listStyle]="{'height':'600px', 'font-size':'12px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
                 <ng-template let-questionnairesPatient pTemplate="item">
-                    <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash" class="p-button-lg p-button-text " ></button>
+                    <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
+                        class="p-button-lg p-button-text "></button>
                     <div class="questionnairePatient-item">
-                        <div [pTooltip]=questionnairesPatient.description><span class="text-base">{{questionnairesPatient.questionnaire.description}}</span></div>
-                        <div [pTooltip]=questionnairesPatient.user_id>Asignación: {{questionnairesPatient.startDate}} - {{questionnairesPatient.endDate}}</div>
+                        <div [pTooltip]=questionnairesPatient.description><span
+                                class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
+                        </div>
+                        <div [pTooltip]=questionnairesPatient.user_id>Asignación:
+                            {{questionnairesPatient.startDate}} - {{questionnairesPatient.endDate}}</div>
                     </div>
                 </ng-template>
             </p-listbox>
-        </span>
-    </div>
-</div>
-<div class="flex flex-row-reverse  mt-5">
-    <div class="px-2">
-        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
-            label="{{ 'patientEdit.form.close' | translate}}"></button>
+            <div class="flex flex-row-reverse mt-5">
+                <div class="px-2">
+                    <button type="button" pButton mat-raised-button (click)="onCancel($event)"
+                        class="w-7rem p-button-secondary" label="{{ 'patientEdit.form.close' | translate}}"></button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -45,9 +45,6 @@ export class PatientQuestionnaireComponent implements OnInit {
     this.questionnaireObj = Object.assign({questionnaire: Questionnaire}, this.config.data.questionnaire);
     this.patientObj = Object.assign({patient: Patient}, this.config.data.patient);
     this.questionnairePatientObj = new QuestionnairePatient(new Questionnaire(),new Patient(), null, null);
-    this.route.params.subscribe(params => {
-      this.getPatientFull(params['id']);
-    });
   }
 
   displayToAssign(rangeDates:Date[]){ 
@@ -85,30 +82,20 @@ checkRangeDates(startDate: Date, endDate: Date){
       }
     })
   });
-
 }
 
 showRange(event, mc){
   this.rangeDatesSelected = mc.inputFieldValue;
 }
 
-  getPatientFull(id: number){
-    this.patientService.patientFull(id).subscribe({
-      next: (res) => {
-        this.patientObj = res
-        this.patientObj.dateBirth = new Date(this.patientObj.dateBirth)
-      }
-    });
-  }
+onClose(){
+  this.ref.close();
+}
 
-  onClose(){
-    this.ref.close();
-  }
-
-  parsetoIsoDate(date) : Date {
-    let tDate = new Date(date);
-    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
-    return tDate;
-  }
+parsetoIsoDate(date) : Date {
+  let tDate = new Date(date);
+  tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
+  return tDate;
+}
 
 }
