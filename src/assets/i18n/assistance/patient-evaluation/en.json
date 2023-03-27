@@ -8,8 +8,8 @@
         "questionnaireAsign": "Assigned",
         "saveRoles":"Save Roles",
         "questionnaires":"Cuestionarios",
-        "responsibleUser":"Usuario Responsable",
-        "questionsNumber":"Preguntas",
+        "responsibleUser":"Responsible User",
+        "questionsNumber":"Questionns",
         "asignation": "Asignación",
         "dialogAsignation":{
             "header":"Asignar cuestionario",
