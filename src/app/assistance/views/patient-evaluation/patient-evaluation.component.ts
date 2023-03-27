@@ -37,6 +37,7 @@ export class PatientEvaluationComponent implements OnInit {
   questionnaireDisabled: Boolean;
   rolesSelected: Role[] = [];
   questionnairesAvailablesPatient: Questionnaire[] = [];
+  questionsNumber = 0;
   constructor(
     private patientService: PatientService,
     private translateService: TranslateService,
@@ -67,7 +68,6 @@ export class PatientEvaluationComponent implements OnInit {
         this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray
       );
     });
-
   }
 
   getPatientFull(id: number) {
@@ -107,14 +107,15 @@ export class PatientEvaluationComponent implements OnInit {
     return roleFormated;
   }
 
+
   changeRoles(rolesSelected) {
     this.patientObj.user.roles = rolesSelected;
     this.patientService.modifyPatient(this.patientObj.id, this.patientObj.nif, this.patientObj.user, this.patientObj.gender, this.patientObj.phone, this.patientObj.sip, this.patientObj.medicalHistory, this.patientObj.dateBirth).subscribe({
       next: () => {
-        this.messageService.add({ key: 'rolesEdited', severity: 'success', summary: "Roles editados", detail: "Roles editados" });
+        this.messageService.add({ key: 'rolesEdited', severity: 'success', summary: this.translateService.instant('patientEvaluation.roleEditMessage.success.title'), detail: this.translateService.instant('patientEvaluation.roleEditMessage.success.detail')});
       },
       error: () => {
-        this.messageService.add({ key: 'rolesEdited', severity: 'error', summary: "Roles no editados", detail: "Roles no editados" });
+        this.messageService.add({ key: 'rolesEdited', severity: 'error', summary: this.translateService.instant('patientEvaluation.roleEditMessage.error.title'), detail: this.translateService.instant('patientEvaluation.roleEditMessage.error.detail')});
       }
     });
 
@@ -129,8 +130,9 @@ export class PatientEvaluationComponent implements OnInit {
   }
 
   toAssign(questionnaire: Questionnaire) {
+    const header = this.translateService.instant('patientEvaluation.dialogAsignation.header');
     this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
-      header: 'Asignar cuestionario: ' + questionnaire.description,
+      header: header + ": " +  questionnaire.description,
       data: {
         questionnaire: questionnaire,
         loading: this.loading,
@@ -141,8 +143,9 @@ export class PatientEvaluationComponent implements OnInit {
   }
 
   deleteAssign(questionnairePatient: QuestionnairePatient){
+    const header = this.translateService.instant('patientEvaluation.dialogDelete.header');
     this.ref = this.dialogService.open(DialogConfirmationComponent, {
-      header: 'Eliminar cuestionario: ' + questionnairePatient.questionnaire.description,
+      header: header + ': ' + questionnairePatient.questionnaire.description,
       data: {
         questionnairePatient: questionnairePatient,
         loading: this.loading,
@@ -155,17 +158,19 @@ export class PatientEvaluationComponent implements OnInit {
       if(res==true){
           this.questionnairePatientService.deleteQuestionnairePatient(questionnairePatient.id).subscribe({
           next: () => {
-            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: "Cuestionario eliminado", detail: "Cuestionario eliminado"});
+            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.success.title'), detail: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.success.detail')});
             this.ngOnInit();
           },
           error: () => {
-            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: "Cuestionario no eliminado", detail: "Cuestionario no eliminado"});
+            this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.title'), detail: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.detail')});
           }
         }); 
       }else{
-        this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: "Cuestionario no eliminado", detail: "Cuestionario no eliminado"});
+        this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.title'), detail: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.detail')});
       }
     });
   }
+
+
 }
 

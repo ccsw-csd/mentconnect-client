@@ -57,7 +57,7 @@ export class PatientQuestionnaireComponent implements OnInit {
         this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
           next: (res:QuestionnairePatient) => {
             this.isloading = false;
-            this.messageService.add({key: 'patientAssignMessage', severity:'success', summary: "Cuestionario asignado", detail: "Cuestionario asignado"});
+            this.messageService.add({ key: 'patientAssignMessage', severity: 'success', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.detail')});
             this.route.params.subscribe(params => {
               this.router.navigate(['patient-evaluation/'+params['id']])
             });
@@ -65,11 +65,11 @@ export class PatientQuestionnaireComponent implements OnInit {
           },
           error: (err:any) => {
             this.isloading = false;
-            this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "Cuestionario no asignado"});
+            this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.detail')});
           }
         });
       }else{
-        this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: "Cuestionario no asignado", detail: "Las fechas introducidas no deben solaparse con ningún otro cuestionario asignado"});
+        this.messageService.add({key: 'patientAssignMessage', severity:'error', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.range')});
       }
     })
   }

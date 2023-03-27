@@ -6,6 +6,54 @@
         "roleList":"Permissions",
         "questionnaireAvailable": "Availables",
         "questionnaireAsign": "Assigned",
+        "saveRoles":"Guardar Roles",
+        "questionnaires":"Cuestionarios",
+        "responsibleUser":"Usuario Responsable",
+        "questionsNumber":"Preguntas",
+        "asignation": "Asignación",
+        "dialogAsignation":{
+            "header":"Asignar cuestionario",
+            "range":"Rango de asignación",
+            "save":"Guardar",
+            "close":"Cerrar"
+        },
+        "dialogDelete":{
+            "header":"Eliminar cuestionario",
+            "save":"Eliminar",
+            "close":"Cancelar"
+        },
+        "deleteQuestionnaire":"Eliminar cuestionario",
+        "roleEditMessage": {
+            "success": {
+                "title" : "Roles editados",
+                "detail" : "Los roles han sido editados con éxito"
+            },
+            "error": {
+                "title" : "Roles no editados",
+                "detail" : "No se han podido editar los roles"
+            }
+        },
+        "questionnaireAssignedMessage": {
+            "success": {
+                "title" : "Cuestionario asignado",
+                "detail" : "El cuestionario se ha asignado con éxito"
+            },
+            "error": {
+                "title" : "Cuestionario no asignado",
+                "detail" : "No se ha podido asignar el cuestionario seleccionado",
+                "range" : "Las fechas introducidas no pueden solaparse con las de otros cuestionarios"
+            }
+        },
+        "questionnaireDeleteMessage": {
+            "success": {
+                "title" : "Cuestionario eliminado",
+                "detail" : "El cuestionario se ha eliminado con éxito"
+            },
+            "error": {
+                "title" : "Cuestionario no eliminado",
+                "detail" : "No se ha podido eliminar el cuestionario seleccionado"
+            }
+        },
         "role": {
             "code":{
                 "PAT_INFO" : {

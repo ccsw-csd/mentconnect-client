@@ -1,5 +1,5 @@
 <p-toast key="patientAssignMessage" position="top-center"></p-toast>
-<span class="ml-1">Rango de asignación: {{rangeDatesSelected}} </span>
+<span class="ml-1">{{ 'patientEvaluation.dialogAsignation.range' | translate}}: {{rangeDatesSelected}} </span>
 <form class="formgrid w-full grid mt-2" #form="ngForm">
     
     <div class="col-12  flex align-items-center justify-content-center ml-2">
@@ -12,10 +12,10 @@
 <div class="flex flex-row-reverse w-auto mt-5 mr-3">
     <div>
     <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " (click) = "displayToAssign(rangeDates)"
-            pButton label="{{ 'users.form.save' | translate}}"></button>
+            pButton label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
     </div>
     <div class="px-2">
         <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton
-            label="{{ 'users.form.close' | translate}}"></button>
+            label="{{ 'patientEvaluation.dialogAsignation.close' | translate}}"></button>
     </div>
 </div>
