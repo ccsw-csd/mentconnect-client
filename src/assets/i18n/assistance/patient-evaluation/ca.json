@@ -6,52 +6,52 @@
         "roleList":"Permisos",
         "questionnaireAvailable": "Disponibles",
         "questionnaireAsign": "Assignats",
-        "saveRoles":"Guardar Roles",
-        "questionnaires":"Cuestionarios",
-        "responsibleUser":"Usuario Responsable",
-        "questionsNumber":"Preguntas",
-        "asignation": "Asignación",
+        "saveRoles":"Guardar Rols",
+        "questionnaires":"Qüestionaris",
+        "responsibleUser":"Usuari Responsable",
+        "questionsNumber":"Preguntes",
+        "asignation": "Assignació",
         "dialogAsignation":{
-            "header":"Asignar cuestionario",
-            "range":"Rango de asignación",
+            "header":"Assignar qüestionari",
+            "range":"Rango d'assignació",
             "save":"Guardar",
             "close":"Cerrar"
         },
         "dialogDelete":{
-            "header":"Eliminar cuestionario",
+            "header":"Eliminar qüestionari",
             "save":"Eliminar",
             "close":"Cancelar"
         },
-        "deleteQuestionnaire":"Eliminar cuestionario",
+        "deleteQuestionnaire":"Eliminar qüestionari",
         "roleEditMessage": {
             "success": {
-                "title" : "Roles editados",
-                "detail" : "Los roles han sido editados con éxito"
+                "title" : "Rols editats",
+                "detail" : "Els rols han estat editats amb èxit"
             },
             "error": {
-                "title" : "Roles no editados",
-                "detail" : "No se han podido editar los roles"
+                "title" : "Rols no editats",
+                "detail" : "No s'han pogut editar els rols"
             }
         },
         "questionnaireAssignedMessage": {
             "success": {
-                "title" : "Cuestionario asignado",
-                "detail" : "El cuestionario se ha asignado con éxito"
+                "title" : "Qüestionari assignat",
+                "detail" : "El qüestionari s'ha assignat amb èxit"
             },
             "error": {
-                "title" : "Cuestionario no asignado",
-                "detail" : "No se ha podido asignar el cuestionario seleccionado",
-                "range" : "Las fechas introducidas no pueden solaparse con las de otros cuestionarios"
+                "title" : "Qüestionari no assignat",
+                "detail" : "No s'ha pogut assignar el qüestionari seleccionat",
+                "range" : "Les dates introduïdes no es poden solapar amb les d'altres qüestionariss"
             }
         },
         "questionnaireDeleteMessage": {
             "success": {
-                "title" : "Cuestionario eliminado",
-                "detail" : "El cuestionario se ha eliminado con éxito"
+                "title" : "Qüestionari eliminat",
+                "detail" : "El qüestionari s'ha eliminat amb èxit"
             },
             "error": {
-                "title" : "Cuestionario no eliminado",
-                "detail" : "No se ha podido eliminar el cuestionario seleccionado"
+                "title" : "Qüestionari no eliminat",
+                "detail" : "No s'ha pogut eliminar el qüestionari seleccionat"
             }
         },
         "role": {
