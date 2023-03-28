@@ -7,51 +7,51 @@
         "questionnaireAvailable": "Availables",
         "questionnaireAsign": "Assigned",
         "saveRoles":"Save Roles",
-        "questionnaires":"Cuestionarios",
+        "questionnaires":"Questionnaires",
         "responsibleUser":"Responsible User",
         "questionsNumber":"Questionns",
-        "asignation": "Asignación",
+        "asignation": "Asignation",
         "dialogAsignation":{
-            "header":"Asignar cuestionario",
-            "range":"Rango de asignación",
-            "save":"Guardar",
-            "close":"Cerrar"
+            "header":"Assign Questionnaire",
+            "range":"Assign Range",
+            "save":"Save",
+            "close":"Close"
         },
         "dialogDelete":{
-            "header":"Eliminar cuestionario",
-            "save":"Eliminar",
-            "close":"Cancelar"
+            "header":"Delete Questionnaire",
+            "save":"Delete",
+            "close":"Close"
         },
-        "deleteQuestionnaire":"Eliminar cuestionario",
+        "deleteQuestionnaire":"Delete Questionnaire",
         "roleEditMessage": {
             "success": {
-                "title" : "Roles editados",
-                "detail" : "Los roles han sido editados con éxito"
+                "title" : "Edited roles",
+                "detail" : "The roles have been successfully edited"
             },
             "error": {
-                "title" : "Roles no editados",
-                "detail" : "No se han podido editar los roles"
+                "title" : "Unedited roles",
+                "detail" : "Could not edit roles"
             }
         },
         "questionnaireAssignedMessage": {
             "success": {
-                "title" : "Cuestionario asignado",
-                "detail" : "El cuestionario se ha asignado con éxito"
+                "title" : "Assigned Questionnaire",
+                "detail" : "The questionnaire has been successfully assigned"
             },
             "error": {
-                "title" : "Cuestionario no asignado",
-                "detail" : "No se ha podido asignar el cuestionario seleccionado",
-                "range" : "Las fechas introducidas no pueden solaparse con las de otros cuestionarios"
+                "title" : "Unassigned Questionnaire",
+                "detail" : "The selected questionnaire could not be assigned",
+                "range" : "The dates entered cannot overlap with those of other questionnaires"
             }
         },
         "questionnaireDeleteMessage": {
             "success": {
-                "title" : "Cuestionario eliminado",
-                "detail" : "El cuestionario se ha eliminado con éxito"
+                "title" : "Questionnaire deleted",
+                "detail" : "The questionnaire has been successfully deleted"
             },
             "error": {
-                "title" : "Cuestionario no eliminado",
-                "detail" : "No se ha podido eliminar el cuestionario seleccionado"
+                "title" : "Questionnaire not deleted",
+                "detail" : "The selected questionnaire could not be deleted"
             }
         },
         "role": {
