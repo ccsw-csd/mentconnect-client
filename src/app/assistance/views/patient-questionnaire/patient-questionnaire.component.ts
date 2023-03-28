@@ -57,11 +57,13 @@ export class PatientQuestionnaireComponent implements OnInit {
         this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
           next: (res:QuestionnairePatient) => {
             this.isloading = false;
-            this.messageService.add({ key: 'patientAssignMessage', severity: 'success', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.detail')});
+            window.location.reload();
+            
             this.route.params.subscribe(params => {
               this.router.navigate(['patient-evaluation/'+params['id']])
             });
-            window.location.reload();
+            
+            this.messageService.add({ key: 'patientAssignOkMessage', severity: 'success', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.detail')});
           },
           error: (err:any) => {
             this.isloading = false;

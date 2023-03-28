@@ -1,28 +1,27 @@
-<div class="min-h-full mx-0 my-0 max-w-full">
 <p-toast key="questionnaireEmptyMessage" position="top-center"></p-toast>
 <p-toast key="rolesEdited" position="top-center"></p-toast>
 <p-toast key="questionnaireAssignDeleted" position="top-center"></p-toast>
+<p-toast key="patientAssignOkMessage" position="top-center"></p-toast>
 
-<div class="col-12">
-    <div class="card">
-        <div class="flex flex-row-reverse flex-wrap card-container yellow-container mr-2">
-            <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}
-            </div>
-            <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
-                {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
-            <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
-                [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
-            <div></div>
-            <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
-                    src="assets/images/user.png" class="w-2rem h-2rem" /></div>
-        </div>
+<div class="col-lg-6 col-md-8 col-sm-12">
+    <div class="flex flex-row-reverse flex-wrap card-container yellow-container mr-2">
+      <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
+      <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
+        {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
+      <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
+        [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
+      <div></div>
+      <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
+          src="assets/images/user.png" class="w-2rem h-2rem" /></div>
     </div>
-</div>
+  </div>
+  
+  
 
 <div class="col-12 ">
         <span class="p-float-label">
             <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false"
-                [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'height':'50px', 'font-size':'11px'}">
+                [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'min-height':'200px', 'height':'200px', 'font-size':'11px'}">
                 <p-header>{{ "patientEvaluation.roleList" | translate }}</p-header>
                 <ng-template let-roles pTemplate="item">
                     <div class="role-item">
@@ -49,7 +48,7 @@
             <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()"
                 [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true"
                 [multiple]="false" [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient"
-                styleClass="w-full" [listStyle]="{'height':'50px', 'font-size':'11px'}" >
+                styleClass="w-full" [listStyle]="{'min-height':'225px', 'height':'225px', 'font-size':'11px'}" >
                 <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
                 <ng-template let-questionnairesAvailablesPatient pTemplate="item">
                     <div class="questionnairesAvailablesPatient-item">
@@ -74,7 +73,7 @@
     <div class="col-12 md:col-5 lg:col-5">
         <div class="field col">
             <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full"
-                [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'height':'50px', 'font-size':'11px'}">
+                [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'min-height':'225px', 'height':'225px', 'font-size':'11px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
                 <ng-template let-questionnairesPatient pTemplate="item">
                     <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
@@ -83,7 +82,7 @@
                         <div [pTooltip]=questionnairesPatient.description><span
                                 class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
                         </div>
-                        <div [pTooltip]=questionnairesPatient.user_id>{{ "patientEvaluation.asignation" | translate }}:
+                        <div>{{ "patientEvaluation.asignation" | translate }}:
                             {{questionnairesPatient.startDate}} - {{questionnairesPatient.endDate}}</div>
                     </div>
                 </ng-template>
@@ -96,5 +95,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

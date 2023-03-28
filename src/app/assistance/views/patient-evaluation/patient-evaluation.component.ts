@@ -80,7 +80,6 @@ export class PatientEvaluationComponent implements OnInit {
     });
   }
 
-
   onCancel(event) {
     this.router.navigate(["patient-list"]);
   }
