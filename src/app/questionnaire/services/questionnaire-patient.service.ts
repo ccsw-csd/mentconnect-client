@@ -20,8 +20,8 @@ export class QuestionnairePatientService {
     return this.http.get<QuestionnairePatient[]>(environment.server + '/questionnaire-patient/findAll');
   }
 
-  findQuestionnairesPatientById(id: number) : Observable<QuestionnairePatient[]> {
-    return this.http.get<QuestionnairePatient[]>(environment.server + '/questionnaire-patient/'+id);
+  findQuestionnairesPatientById(patientId: number) : Observable<QuestionnairePatient[]> {
+    return this.http.get<QuestionnairePatient[]>(environment.server + '/questionnaire-patient/'+patientId);
   }
 
   assignQuestionnairePatient(questionnairePatient: QuestionnairePatient) : Observable<QuestionnairePatient>{
