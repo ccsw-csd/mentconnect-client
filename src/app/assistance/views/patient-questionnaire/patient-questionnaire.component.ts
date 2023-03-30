@@ -52,8 +52,8 @@ export class PatientQuestionnaireComponent implements OnInit {
     let endDate = rangeDates[1];
     this.questionnairePatientObj = new QuestionnairePatient(this.questionnaireObj, this.patientObj, this.parsetoIsoDate(startDate), this.parsetoIsoDate(endDate));
     this.isloading = true; 
-    this.questionnairePatientService.questionnaireAssigned(this.patientObj.id, startDate, endDate).subscribe(result=>{
-      if(result.length==0){
+    this.questionnairePatientService.questionnaireAssigned(this.questionnairePatientObj).subscribe(result=>{
+      if(!result){
         this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
           next: (res:QuestionnairePatient) => {
             this.isloading = false;
@@ -76,15 +76,15 @@ export class PatientQuestionnaireComponent implements OnInit {
     })
   }
 
-checkRangeDates(startDate: Date, endDate: Date){
-  this.route.params.subscribe(params => {
-    this.questionnairePatientService.questionnaireAssigned(params['id'], startDate, endDate).subscribe(result=>{
-      if(result.length>0){
-        result
-      }
-    })
-  });
-}
+// checkRangeDates(startDate: Date, endDate: Date){
+//   this.route.params.subscribe(params => {
+//     this.questionnairePatientService.questionnaireAssigned(params['id'], startDate, endDate).subscribe(result=>{
+//       if(result.length>0){
+//         result
+//       }
+//     })
+//   });
+// }
 
 showRange(event, mc){
   this.rangeDatesSelected = mc.inputFieldValue;
