@@ -20,7 +20,6 @@ import { TableModule } from 'primeng/table'
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PatientEditComponent } from './views/patient-edit/patient-edit.component';
 import { DatePipe } from '@angular/common';
-import { PatientStatsComponent } from './views/patient-stats/patient-stats.component';
 import { TabViewModule } from 'primeng/tabview';
 import {ToolbarModule} from 'primeng/toolbar';
 import { PatientEvaluationComponent } from './views/patient-evaluation/patient-evaluation.component';
@@ -32,9 +31,9 @@ import { PatientQuestionnaireComponent } from './views/patient-questionnaire/pat
     PatientDischargeComponent,
     PatientListComponent,
     PatientEditComponent,
-    PatientStatsComponent,
+    PatientQuestionnaireComponent,
     PatientEvaluationComponent,
-    PatientQuestionnaireComponent
+    
   ],
   imports: [
     CommonModule,

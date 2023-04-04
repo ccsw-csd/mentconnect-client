@@ -18,6 +18,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PatientQuestionnaireComponent } from '../patient-questionnaire/patient-questionnaire.component';
 import { DialogConfirmationComponent } from 'src/app/core/views/dialog-confirmation/dialog-confirmation.component';
 
+
 @Component({
   selector: 'app-patient-evaluation',
   templateUrl: './patient-evaluation.component.html',
