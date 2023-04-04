@@ -54,18 +54,25 @@ export class PatientEvaluationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isloading = true;
     this.questionnaireDisabled = true;
     this.patientObj = new PatientFull(new UserFull(), null, null, null, null, null, null);
-    this.roleService.findByType("EXT").subscribe(rolesArray =>
-      this.roles = rolesArray
+    this.roleService.findByType("EXT").subscribe(rolesArray => {
+      this.roles = rolesArray; 
+      this.isloading = false;
+    }
     );
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
-      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>
-        this.questionnairesPatient = questionnairesPatientArray
+      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>{
+        this.questionnairesPatient = questionnairesPatientArray; 
+        this.isloading = false;
+      }
       );
-      this.questionnairePatientService.questionnaireAvailable(params['id']).subscribe(questionnairesPatientAvailableArray =>
-        this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray
+      this.questionnairePatientService.questionnaireAvailable(params['id']).subscribe(questionnairesPatientAvailableArray =>{
+        this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray;
+         this.isloading = false;
+      }
       );
     });
   }
@@ -129,6 +136,7 @@ export class PatientEvaluationComponent implements OnInit {
   }
 
   toAssign(questionnaire: Questionnaire) {
+    
     const header = this.translateService.instant('patientEvaluation.dialogAsignation.header');
     this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
       header: header + ": " +  questionnaire.description,
