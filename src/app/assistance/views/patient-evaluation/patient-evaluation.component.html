@@ -22,7 +22,7 @@
         </div>
         <span class="p-float-label">
             <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false" *ngIf="!isloading"
-                [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'min-height':'175px', 'height':'175px', 'font-size':'11px'}">
+                [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'max-height':'225px', 'font-size':'11px'}">
                 <p-header>{{ "patientEvaluation.roleList" | translate }}</p-header>
                 <ng-template let-roles pTemplate="item">
                     <div class="role-item">
@@ -43,7 +43,7 @@
 </div>
 
 <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-2">{{ 'patientEvaluation.questionnaires' | translate}}:</label> 
-<div class="grid max-h-full">
+<div class="grid">
 
     <div class="col-12 md:col-5 lg:col-5">
         <div class="field col h-full">
@@ -53,7 +53,7 @@
             <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" *ngIf="!isloading"
                 [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true"
                 [multiple]="false" [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient"
-                styleClass="w-full h-full" [listStyle]="{'font-size':'11px'}" >
+                styleClass="w-full h-full" [listStyle]="{'max-height':'420px','font-size':'11px'}" >
                 <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
                 <ng-template let-questionnairesAvailablesPatient pTemplate="item">
                     <div class="questionnairesAvailablesPatient-item">
@@ -70,9 +70,9 @@
     </div>
 
     <div class="col-12 md:col-2 lg:col-2 flex justify-content-center align-items-center">
-        <div class="field col h-full ">
+        <div class="field col  ">
             <button pButton type="button" (click)="toAssign(questionnaireSelected)" icon="pi pi-angle-double-right"
-                class="p-button-lg p-button-text w-full h-full" [disabled]="questionnaireDisabled"></button>
+                class="p-button-lg p-button-text w-full " [disabled]="questionnaireDisabled"></button>
         </div>
     </div>
     <div class="col-12 md:col-5 lg:col-5">
@@ -81,7 +81,7 @@
                 <p-progressSpinner></p-progressSpinner>
               </div>
             <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full h-full" *ngIf="!isloading"
-                [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'font-size':'11px'}">
+                [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'max-height':'400px','font-size':'11px'}">
                 <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
                 <ng-template let-questionnairesPatient pTemplate="item">
                     <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
@@ -99,8 +99,8 @@
 
         </div>
     </div>
-</div>
-<div class="flex flex-row-reverse mt-5">
+</div><br/>
+<div class="flex align-content-end flex-row-reverse">
     <div class="px-2">
         <button type="button" pButton mat-raised-button (click)="onCancel($event)"
             class="w-7rem p-button-secondary" label="{{ 'patientEdit.form.close' | translate}}"></button> 
