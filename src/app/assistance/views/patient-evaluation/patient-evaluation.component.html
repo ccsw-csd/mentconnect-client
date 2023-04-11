@@ -87,7 +87,7 @@
                             class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
                     </div>
                     <div>{{ "patientEvaluation.asignation" | translate }}:
-                        {{questionnairesPatient.startDate}} - {{questionnairesPatient.endDate}}</div>
+                        {{questionnairesPatient.startDate | date: 'dd/MM/yyyy'}} - {{questionnairesPatient.endDate| date: 'dd/MM/yyyy'}}</div>
                 </div>
             </ng-template>
             
