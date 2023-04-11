@@ -15,9 +15,9 @@
           src="assets/images/user.png" class="w-2rem h-2rem" /></div>
     </div>
   </div> 
-    <div style="height: calc(25vh - 1rem)" class="justify-content-center align-items-center col-12 overflow-auto flex-grow-1 flex-shrink-1">
+    <div  class="justify-content-center align-items-center col-12 overflow-auto flex-grow-1 flex-shrink-1">
         <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false" *ngIf="!isloading"
-        [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'min-height':'140px','font-size':'11px'}">
+        [checkbox]="true" [multiple]="true" [showToggleAll]="false" optionLabel="roles" [listStyle]="{'height': 'calc(20vh - 1rem)','font-size':'11px'}">
         <p-header>{{ "patientEvaluation.roleList" | translate }}</p-header>
         <ng-template let-roles pTemplate="item">
             <div class="role-item">
@@ -38,12 +38,12 @@
         <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1">{{ 'patientEvaluation.questionnaires' | translate}}:</label>  
     </div>
     
-    <div style="height: calc(25vh - 1rem)" class="grid flex justify-content-center align-items-center flex-grow-1 flex-shrink-1">
-        <div style="height: calc(25vh - 1rem);" class="col-12 md:col-5 lg:col-5 overflow-y-auto">
+    <div class="grid flex justify-content-center align-items-center">
+        <div  class="col-12 md:col-5 lg:col-5">
             <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" *ngIf="!isloading"
             [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true"
             [multiple]="false" [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient"
-            styleClass="w-full h-full" [listStyle]="{'min-height':'140px','font-size':'11px'}" >
+            styleClass="w-full h-full" [listStyle]="{'height': 'calc(20vh - 1rem)','font-size':'11px'}" >
             <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
             <ng-template let-questionnairesAvailablesPatient pTemplate="item">
                 <div class="questionnairesAvailablesPatient-item">
@@ -63,9 +63,9 @@
                     class="p-button-lg p-button-text w-full " [disabled]="questionnaireDisabled"></button>
             </div>
         </div>
-            <div style="height: calc(25vh - 1rem)" class="col-12 md:col-5 lg:col-5 overflow-y-auto">
+            <div class="col-12 md:col-5 lg:col-5">
             <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full h-full" *ngIf="!isloading"
-            [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'min-height':'140px','font-size':'11px'}">
+            [showToggleAll]="false" optionLabel="questionnairesPatient" [listStyle]="{'height': 'calc(20vh - 1rem)','font-size':'11px'}">
             <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
             <ng-template let-questionnairesPatient pTemplate="item">
                 <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
@@ -83,7 +83,7 @@
         </div>
     </div>
     
-    <div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-8 ml-8 mb-8">
+    <div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-8 ml-8 ">
         <div class="px-2 ">
             <button type="button" pButton mat-raised-button (click)="onCancel($event)"
                 class="w-7rem p-button-secondary" label="{{ 'patientEdit.form.close' | translate}}"></button> 
