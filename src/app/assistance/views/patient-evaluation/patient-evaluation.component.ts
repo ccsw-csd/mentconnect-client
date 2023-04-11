@@ -63,19 +63,7 @@ export class PatientEvaluationComponent implements OnInit {
       this.isloading = false;
     }
     );
-    this.route.params.subscribe(params => {
-      this.getPatientFull(params['id']);
-      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>{
-        this.questionnairesPatient = questionnairesPatientArray; 
-        this.isloading = false;
-      }
-      );
-      this.questionnairePatientService.questionnaireAvailable(params['id']).subscribe(questionnairesPatientAvailableArray =>{
-        this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray;
-         this.isloading = false;
-      }
-      );
-    });
+    this.chargeQuestionnaires();
   }
 
   getPatientFull(id: number) {
@@ -137,7 +125,6 @@ export class PatientEvaluationComponent implements OnInit {
   }
 
   toAssign(questionnaire: Questionnaire) {
-    
     const header = this.translateService.instant('patientEvaluation.dialogAsignation.header');
     this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
       header: header + ": " +  questionnaire.description,
@@ -147,6 +134,10 @@ export class PatientEvaluationComponent implements OnInit {
         patient: this.patientObj
       },
       closable: false
+    });
+
+    this.ref.onClose.subscribe(res =>{
+      this.chargeQuestionnaires();
     });
   }
 
@@ -167,7 +158,7 @@ export class PatientEvaluationComponent implements OnInit {
           this.questionnairePatientService.deleteQuestionnairePatient(questionnairePatient.id).subscribe({
           next: () => {
             this.messageService.add({key: 'questionnaireAssignDeleted', severity:'success', summary: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.success.title'), detail: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.success.detail')});
-            this.ngOnInit();
+            this.chargeQuestionnaires();
           },
           error: () => {
             this.messageService.add({key: 'questionnaireAssignDeleted', severity:'error', summary: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.title'), detail: this.translateService.instant('patientEvaluation.questionnaireDeleteMessage.error.detail')});
@@ -179,6 +170,21 @@ export class PatientEvaluationComponent implements OnInit {
     });
   }
 
+  chargeQuestionnaires(){
+    this.route.params.subscribe(params => {
+      this.getPatientFull(params['id']);
+      this.questionnairePatientService.findQuestionnairesPatientById(params['id']).subscribe(questionnairesPatientArray =>{
+        this.questionnairesPatient = questionnairesPatientArray; 
+        this.isloading = false;
+      }
+      );
+      this.questionnairePatientService.questionnaireAvailable(params['id']).subscribe(questionnairesPatientAvailableArray =>{
+        this.questionnairesAvailablesPatient = questionnairesPatientAvailableArray;
+         this.isloading = false;
+      }
+      );
+    });
+  }
 
 }
 

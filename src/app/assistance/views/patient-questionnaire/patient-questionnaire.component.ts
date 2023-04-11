@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { UserFull } from '../../../management/models/UserFull';
 import { PatientFull } from '../../models/PatientFull';
 import { PatientService } from '../../services/patient/patient.service';
 import { MessageService } from 'primeng/api';
@@ -13,6 +12,7 @@ import { Questionnaire } from 'src/app/questionnaire/model/Questionnaire';
 import { QuestionnairePatient } from 'src/app/questionnaire/model/QuestionnairePatient';
 import { Patient } from '../../models/Patient';
 import { QuestionnairePatientService } from 'src/app/questionnaire/services/questionnaire-patient.service';
+import { PatientEvaluationComponent } from '../patient-evaluation/patient-evaluation.component';
 
 @Component({
   selector: 'app-patient-questionnaire',
@@ -27,6 +27,7 @@ export class PatientQuestionnaireComponent implements OnInit {
   questionnaireAssigned: boolean;
   rangeDates: Date[];
   rangeDatesSelected: Date[];
+  patientEvaluation: PatientEvaluationComponent;
   constructor(
     public ref: DynamicDialogRef,
     private questionnairePatientService: QuestionnairePatientService,
@@ -57,8 +58,7 @@ export class PatientQuestionnaireComponent implements OnInit {
         this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
           next: (res:QuestionnairePatient) => {
             this.isloading = false;
-            window.location.reload();
-            
+            this.onClose();
             this.route.params.subscribe(params => {
               this.router.navigate(['patient-evaluation/'+params['id']])
             });
@@ -75,16 +75,6 @@ export class PatientQuestionnaireComponent implements OnInit {
       }
     })
   }
-
-// checkRangeDates(startDate: Date, endDate: Date){
-//   this.route.params.subscribe(params => {
-//     this.questionnairePatientService.questionnaireAssigned(params['id'], startDate, endDate).subscribe(result=>{
-//       if(result.length>0){
-//         result
-//       }
-//     })
-//   });
-// }
 
 showRange(event, mc){
   this.rangeDatesSelected = mc.inputFieldValue;
