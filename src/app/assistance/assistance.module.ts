@@ -20,11 +20,20 @@ import { TableModule } from 'primeng/table'
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PatientEditComponent } from './views/patient-edit/patient-edit.component';
 import { DatePipe } from '@angular/common';
+import { TabViewModule } from 'primeng/tabview';
+import {ToolbarModule} from 'primeng/toolbar';
+import { PatientEvaluationComponent } from './views/patient-evaluation/patient-evaluation.component';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import { ListboxModule } from 'primeng/listbox';
+import { PatientQuestionnaireComponent } from './views/patient-questionnaire/patient-questionnaire.component';
 @NgModule({
   declarations: [
     PatientDischargeComponent,
     PatientListComponent,
-    PatientEditComponent
+    PatientEditComponent,
+    PatientQuestionnaireComponent,
+    PatientEvaluationComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -45,6 +54,10 @@ import { DatePipe } from '@angular/common';
     BlockUIModule,
     TableModule,
     MultiSelectModule,
+    TabViewModule,
+    ToolbarModule,
+    VirtualScrollerModule,
+    ListboxModule,
   ],
   providers:[
     DatePipe,

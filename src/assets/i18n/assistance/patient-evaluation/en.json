@@ -1,0 +1,87 @@
+{
+    "patientEvaluation": {
+        "patientCard": {
+            "patient": "Patient"
+        },
+        "roleList":"Permissions",
+        "questionnaireAvailable": "Availables",
+        "questionnaireAsign": "Assigned",
+        "saveRoles":"Save Roles",
+        "questionnaires":"Questionnaires",
+        "responsibleUser":"Responsible User",
+        "questionsNumber":"Questionns",
+        "asignation": "Asignation",
+        "dialogAsignation":{
+            "header":"Assign Questionnaire",
+            "range":"Assign Range",
+            "save":"Save",
+            "close":"Close"
+        },
+        "dialogDelete":{
+            "header":"Delete Questionnaire",
+            "save":"Delete",
+            "close":"Close"
+        },
+        "deleteQuestionnaire":"Delete Questionnaire",
+        "roleEditMessage": {
+            "success": {
+                "title" : "Edited roles",
+                "detail" : "The roles have been successfully edited"
+            },
+            "error": {
+                "title" : "Unedited roles",
+                "detail" : "Could not edit roles"
+            }
+        },
+        "questionnaireAssignedMessage": {
+            "success": {
+                "title" : "Assigned Questionnaire",
+                "detail" : "The questionnaire has been successfully assigned"
+            },
+            "error": {
+                "title" : "Unassigned Questionnaire",
+                "detail" : "The selected questionnaire could not be assigned",
+                "range" : "The dates entered cannot overlap with those of other questionnaires"
+            }
+        },
+        "questionnaireDeleteMessage": {
+            "success": {
+                "title" : "Questionnaire deleted",
+                "detail" : "The questionnaire has been successfully deleted"
+            },
+            "error": {
+                "title" : "Questionnaire not deleted",
+                "detail" : "The selected questionnaire could not be deleted"
+            }
+        },
+        "role": {
+            "code":{
+                "PAT_INFO" : {
+                    "title" : "Edit profile information",
+                    "detail" : "Allows the patient to edit user information"
+                },
+                "PAT_PHOTO" : {
+                    "title" : "Edit profile photo",
+                    "detail" : "Allows the patient to edit their profile photo"
+                },
+                "PAT_FORUM_REED" : {
+                    "title" : "Forum access",
+                    "detail" : "Allows the patient to access the forum"
+                },
+                "PAT_FORUM_WRITE" : {
+                    "title" : "Create forum announcements",
+                    "detail" : "Allows the patient to create forum announcements"
+                },
+                "PAT_FORUM_ANSWER" : {
+                    "title" : "Reply in the forum",
+                    "detail" : "Allows the patient to reply to forum announcements"
+                },
+                "PAT_DAILY" : {
+                    "title" : "Generate journal notification",
+                    "detail" : "Create the necessary notification so that the patient can record journal entries"
+                }
+            }
+            
+        }
+    }
+}

@@ -8,6 +8,8 @@ import { Role } from 'src/app/management/models/Role';
     providedIn: 'root'
   })
   export class RoleService {
+
+
   
     constructor(
       private http: HttpClient,
@@ -15,5 +17,9 @@ import { Role } from 'src/app/management/models/Role';
   
     findRoles() : Observable<Role[]> {
       return this.http.get<Role[]>(environment.server+ '/role/findAll');
+    }
+
+    findByType(type:string) : Observable<Role[]> {
+      return this.http.get<Role[]>(environment.server+ '/role/findByType/'+ type);
     }
 }

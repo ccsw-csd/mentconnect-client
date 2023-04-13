@@ -1,0 +1,87 @@
+{
+    "patientEvaluation": {
+        "patientCard": {
+            "patient": "Paciente"
+        },
+        "roleList":"Permisos",
+        "questionnaireAvailable": "Disponibles",
+        "questionnaireAsign": "Asignados",
+        "saveRoles":"Guardar Roles",
+        "questionnaires":"Cuestionarios",
+        "responsibleUser":"Usuario Responsable",
+        "questionsNumber":"Preguntas",
+        "asignation": "Asignación",
+        "dialogAsignation":{
+            "header":"Asignar cuestionario",
+            "range":"Rango de asignación",
+            "save":"Guardar",
+            "close":"Cerrar"
+        },
+        "dialogDelete":{
+            "header":"Eliminar cuestionario",
+            "save":"Eliminar",
+            "close":"Cancelar"
+        },
+        "deleteQuestionnaire":"Eliminar cuestionario",
+        "roleEditMessage": {
+            "success": {
+                "title" : "Roles editados",
+                "detail" : "Los roles han sido editados con éxito"
+            },
+            "error": {
+                "title" : "Roles no editados",
+                "detail" : "No se han podido editar los roles"
+            }
+        },
+        "questionnaireAssignedMessage": {
+            "success": {
+                "title" : "Cuestionario asignado",
+                "detail" : "El cuestionario se ha asignado con éxito"
+            },
+            "error": {
+                "title" : "Cuestionario no asignado",
+                "detail" : "No se ha podido asignar el cuestionario seleccionado",
+                "range" : "Las fechas introducidas no pueden solaparse con las de otros cuestionarios"
+            }
+        },
+        "questionnaireDeleteMessage": {
+            "success": {
+                "title" : "Cuestionario eliminado",
+                "detail" : "El cuestionario se ha eliminado con éxito"
+            },
+            "error": {
+                "title" : "Cuestionario no eliminado",
+                "detail" : "No se ha podido eliminar el cuestionario seleccionado"
+            }
+        },
+        "role": {
+            "code":{
+                "PAT_INFO" : {
+                    "title" : "Editar información de perfil",
+                    "detail" : "Permite al/la paciente editar la información de usuario"
+                },
+                "PAT_PHOTO" : {
+                    "title" : "Editar foto de perfil",
+                    "detail" : "Permite al/la paciente editar su foto de perfil"
+                },
+                "PAT_FORUM_REED" : {
+                    "title" : "Acceso al foro",
+                    "detail" : "Permite al/la paciente acceder al foro"
+                },
+                "PAT_FORUM_WRITE" : {
+                    "title" : "Crear anuncios en el foro",
+                    "detail" : "Permite al/la paciente crear anuncios en el foro"
+                },
+                "PAT_FORUM_ANSWER" : {
+                    "title" : "Contestar en el foro",
+                    "detail" : "Permite al/la paciente contestar a los anuncios del foro"
+                },
+                "PAT_DAILY" : {
+                    "title" : "Generar notificación de diario",
+                    "detail" : "Crea la notificación necesaria para que el/la paciente pueda registrar entradas de diario"
+                }
+            }
+            
+        }
+    }
+}

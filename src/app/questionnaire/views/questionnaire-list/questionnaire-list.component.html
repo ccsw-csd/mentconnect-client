@@ -38,7 +38,7 @@
     <tr>
       <td>{{questionnaire.description}}</td>
       <td> <b [pTooltip]="showQuestions(questionnaire,questionnaire.questions.length)" tooltipStyleClass="min-w-min md:min-w-max">{{questionnaire.questions.length}}</b></td>
-      <td> <b [pTooltip]="showPatients(questionnaire,questionnaire.patients.length)" tooltipStyleClass="min-w-min md:min-w-max">{{questionnaire.patients.length}}</b></td>
+      <td> <b [pTooltip]="showPatients(questionnaire)" tooltipStyleClass="min-w-min md:min-w-max">{{questionnaire.patients.length}}</b></td>
       <td>{{questionnaire.user.name}} {{questionnaire.user.surnames}}</td>
       <td>{{questionnaire.createDate | date:'dd/MM/yyyy' }}</td>  <!-- TODO fromato de locale --> 
       <td>{{questionnaire.lastEditDate | date:'dd/MM/yyyy' }}</td> <!-- TODO fromato de locale -->

@@ -18,14 +18,16 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BadgeModule } from 'primeng/badge';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { DividerModule } from 'primeng/divider';
-
+import { DialogConfirmationComponent } from './views/dialog-confirmation/dialog-confirmation.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     WelcomeComponent,
     HeaderComponent,
-    NavComponent
+    NavComponent,
+    DialogConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { DividerModule } from 'primeng/divider';
     DropdownModule,
     BadgeModule,
     SlideMenuModule,
-    DividerModule
+    DividerModule,
+    DialogModule
   ],
   providers: [
     HttpClientModule,

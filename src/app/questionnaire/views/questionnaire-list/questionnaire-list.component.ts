@@ -81,9 +81,11 @@ export class QuestionnaireListComponent implements OnInit {
   }
 
   showPatients(questionnaire:Questionnaire){
-    let patients: string = ""
-    questionnaire.patients.map(patient =>patients = patient.user.name + " " + patient.user.surnames + "\n");
-    return patients
+    let patients: string[] = 
+    questionnaire.patients.map(patient =>
+      patient.user.name + " " + patient.user.surnames
+    );
+    return patients.join("\n");
   }
 
 }
