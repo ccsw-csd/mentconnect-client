@@ -26,6 +26,8 @@ import { PatientEvaluationComponent } from './views/patient-evaluation/patient-e
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import { ListboxModule } from 'primeng/listbox';
 import { PatientQuestionnaireComponent } from './views/patient-questionnaire/patient-questionnaire.component';
+import { PatientDiaryComponent } from './views/patient-diary/patient-diary.component';
+import {DividerModule} from 'primeng/divider';
 @NgModule({
   declarations: [
     PatientDischargeComponent,
@@ -33,6 +35,7 @@ import { PatientQuestionnaireComponent } from './views/patient-questionnaire/pat
     PatientEditComponent,
     PatientQuestionnaireComponent,
     PatientEvaluationComponent,
+    PatientDiaryComponent,
     
   ],
   imports: [
@@ -58,6 +61,7 @@ import { PatientQuestionnaireComponent } from './views/patient-questionnaire/pat
     ToolbarModule,
     VirtualScrollerModule,
     ListboxModule,
+    DividerModule
   ],
   providers:[
     DatePipe,

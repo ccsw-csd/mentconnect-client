@@ -11,6 +11,7 @@ import { UsersListComponent } from './management/views/users-list/users-list.com
 import { PatientListComponent } from './assistance/views/patient-list/patient-list.component';
 import { PatientEditComponent } from './assistance/views/patient-edit/patient-edit.component';
 import { PatientEvaluationComponent } from './assistance/views/patient-evaluation/patient-evaluation.component';
+import { PatientDiaryComponent } from './assistance/views/patient-diary/patient-diary.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-list', component: PatientListComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-edit/:id', component: PatientEditComponent },
-      //{ path: 'patient-stats/:id', component: PatientStatsComponent },
+      { path: 'patient-diary/:id', component: PatientDiaryComponent },
       { path: 'patient-evaluation/:id', component: PatientEvaluationComponent },
       { path: 'users', component: UsersListComponent, canActivate: [AuthGuardService], data: { roles:[] }},
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
