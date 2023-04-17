@@ -10,20 +10,20 @@
                 src="assets/images/user.png" class="w-2rem h-2rem" /></div>
     </div>
 </div>
-<div style="height: calc(10vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
+<div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
     <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <button type="button" pButton mat-raised-button  class="p-button-outlined w-9rem h-3rem" icon="pi pi-trash" label="Limpiar"></button>
+            <button type="button" pButton mat-raised-button  class="p-button-outlined w-9rem h-3rem" (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
         </div>
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"> 
-            <button type="button" pButton class="p-button-primary w-9rem h-3rem"  icon="pi pi-search" label="Buscar"></button>
+            <button type="button" pButton class="p-button-primary w-9rem h-3rem" (click)="filterDiary(startDate,endDate)" icon="pi pi-search" label="Buscar"></button>
         </div>
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <p-calendar class="form-control"  optionValue="code"  styleClass="w-full" showIcon="true" placeholder="Fecha fin" styleClass="h-3rem w-24rem"
+            <p-calendar class="form-control"  optionValue="code" [(ngModel)]="endDate"  styleClass="w-full" showIcon="true" placeholder="Fecha fin" 
             dateFormat="dd-mm-yy" name="endDate"></p-calendar>
         </div>
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <p-calendar class="form-control" optionValue="code"  styleClass="w-full" showIcon="true" placeholder="Fecha inicio" styleClass="h-3rem w-24rem"
+            <p-calendar class="form-control" [(ngModel)]="startDate" optionValue="code"  styleClass="w-full" showIcon="true" placeholder="Fecha inicio"
             dateFormat="dd-mm-yy" name="startDate"></p-calendar>
         </div>
     </div>
@@ -31,13 +31,32 @@
 
 <div style="height: calc(65vh - 1rem)" class="grid overflow-auto">
     <div class="col-12">
-        <div class="container">
-            <div class="item">
-              <h2>{{diarys[0].createDate}}</h2>
-              <p>{{diarys[0].description}}</p>
+        <div *ngIf="showAll" class="containerAll">
+            <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
+            style="height: calc(28.1vh);">
+            <p-progressSpinner></p-progressSpinner>
             </div>
-            <p-divider></p-divider>
-            
+            <div *ngIf="diarys.length > 0 && !isloading">
+                <div *ngFor="let diary of diarys">
+                  <div class="item">
+                    <h2>{{diary.createDate}}</h2>
+                    <p>{{diary.description}}</p>
+                  </div>
+                  <p-divider></p-divider>
+                </div>
+              </div>
+              <div *ngIf="diarys.length == 0 && !isloading">
+                <p>No hay resultados.</p>
+              </div>
+          </div>
+          <div *ngIf="showFilter" class="containerFilter">
+                <div *ngFor="let diaryFilter of diaryFilters">
+                  <div class="item">
+                    <h2>{{diaryFilter.createDate}}</h2>
+                    <p>{{diaryFilter.description}}</p>
+                  </div>
+                  <p-divider></p-divider>
+                </div>
           </div>
     </div>
 </div>
@@ -45,6 +64,6 @@
 <div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8 ">
     <div>
         <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
-            label="{{ 'patientEdit.form.close' | translate}}"></button>
+            label="Volver"></button>
     </div>
 </div>

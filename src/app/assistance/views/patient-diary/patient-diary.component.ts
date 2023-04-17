@@ -17,7 +17,12 @@ export class PatientDiaryComponent implements OnInit {
   patientObj: PatientFull;
   diaryObj: Diary;
   diarys: Diary[] = [];
-
+  isloading: boolean = false;
+  startDate: Date;
+  endDate: Date;
+  diaryFilters: Diary[];
+  showAll = true;
+  showFilter = true;
   constructor(
     private patientService: PatientService,
     private route: ActivatedRoute,
@@ -26,6 +31,7 @@ export class PatientDiaryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isloading = true;
     this.patientObj = new PatientFull(new UserFull(), null, null, null, null, null, null);
     this.diaryObj = new DiaryFull(null,null,new Patient());
     this.chargeDiarys();
@@ -46,13 +52,27 @@ export class PatientDiaryComponent implements OnInit {
   }
 
   chargeDiarys() {
+    this.startDate = null;
+    this.endDate = null;
+    this.showAll = true;
+    this.showFilter = false;
     this.route.params.subscribe(params => {
       this.getPatientFull(params['id']);
       this.diaryService.findDiaryPatientById(params['id']).subscribe(diaryPatientArray =>{
         this.diarys = diaryPatientArray; 
+        this.isloading = false;
       }
       );
     });
+  }
+
+  filterDiary(startDate: Date, endDate: Date){
+    this.showAll = false;
+    this.showFilter = true;
+    this.diaryService.filterDiary(startDate,endDate).subscribe(diaryFilterArray=>{
+      this.diaryFilters = diaryFilterArray;
+    })
+    return this.diaryFilters;
   }
 
 }
