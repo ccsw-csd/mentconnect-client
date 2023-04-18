@@ -7,27 +7,31 @@ import { Diary } from '../../models/Diary';
 import { PatientDiaryService } from '../../services/patient/patient-diary.service';
 import { Patient } from '../../models/Patient';
 import { DiaryFull } from '../../models/DiaryFull';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-patient-diary',
   templateUrl: './patient-diary.component.html',
-  styleUrls: ['./patient-diary.component.scss']
+  styleUrls: ['./patient-diary.component.scss'],
+  providers: [MessageService]
 })
 export class PatientDiaryComponent implements OnInit {
   patientObj: PatientFull;
   diaryObj: Diary;
   diarys: Diary[] = [];
   isloading: boolean = false;
-  startDate: Date;
-  endDate: Date;
-  diaryFilters: Diary[];
+  rangeDates: Date[];
+  diaryFilters: Diary[] = [];
   showAll = true;
   showFilter = true;
   constructor(
     private patientService: PatientService,
     private route: ActivatedRoute,
     private router: Router,
-    private diaryService: PatientDiaryService
+    private diaryService: PatientDiaryService,
+    private translate: TranslateService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -52,8 +56,7 @@ export class PatientDiaryComponent implements OnInit {
   }
 
   chargeDiarys() {
-    this.startDate = null;
-    this.endDate = null;
+    this.rangeDates = null;
     this.showAll = true;
     this.showFilter = false;
     this.route.params.subscribe(params => {
@@ -66,13 +69,29 @@ export class PatientDiaryComponent implements OnInit {
     });
   }
 
-  filterDiary(startDate: Date, endDate: Date){
-    this.showAll = false;
-    this.showFilter = true;
-    this.diaryService.filterDiary(startDate,endDate).subscribe(diaryFilterArray=>{
-      this.diaryFilters = diaryFilterArray;
-    })
-    return this.diaryFilters;
+  filterDiary(rangeDates: Date[]){
+
+    if(rangeDates != null){
+      let startDate = rangeDates[0];
+      let endDate = rangeDates[1];
+      if(startDate == null || endDate == null){
+        this.messageService.add({ key: 'datesWarning', severity: 'error', summary: this.translate.instant('Rango de fechas incorrecto'), detail: this.translate.instant('El rango de fechas debe contener una fecha inicial y otra final') });
+      }else{
+        this.isloading = true;
+        let startDate = rangeDates[0];
+        let endDate = rangeDates[1];
+        this.showAll = false;
+        this.showFilter = true;
+        this.diaryService.filterDiary(startDate,endDate).subscribe(diaryFilterArray=>{
+          this.diaryFilters = diaryFilterArray;
+          this.isloading = false;
+        })
+        return this.diaryFilters;
+      }
+    }else{
+      this.messageService.add({ key: 'emptyDates', severity: 'error', summary: this.translate.instant('Rango de fechas vacío'), detail: this.translate.instant('Debes insertar un rango de fechas') });
+    }
+
   }
 
 }

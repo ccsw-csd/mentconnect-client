@@ -1,3 +1,5 @@
+<p-toast key="datesWarning" position="top-center"></p-toast>
+<p-toast key="emptyDates" position="top-center"></p-toast>
 <div style="height: calc(10vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
     <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
         <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
@@ -13,18 +15,17 @@
 <div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
     <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <button type="button" pButton mat-raised-button  class="p-button-outlined w-9rem h-3rem" (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
-        </div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"> 
-            <button type="button" pButton class="p-button-primary w-9rem h-3rem" (click)="filterDiary(startDate,endDate)" icon="pi pi-search" label="Buscar"></button>
+            <button type="button" pButton mat-raised-button class="p-button-outlined w-9rem h-3rem"
+                (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
         </div>
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <p-calendar class="form-control"  optionValue="code" [(ngModel)]="endDate"  styleClass="w-full" showIcon="true" placeholder="Fecha fin" 
-            dateFormat="dd-mm-yy" name="endDate"></p-calendar>
+            <button type="button" pButton class="p-button-primary w-9rem h-3rem" (click)="filterDiary(rangeDates)"
+                icon="pi pi-search" label="Buscar"></button>
         </div>
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <p-calendar class="form-control" [(ngModel)]="startDate" optionValue="code"  styleClass="w-full" showIcon="true" placeholder="Fecha inicio"
-            dateFormat="dd-mm-yy" name="startDate"></p-calendar>
+            <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full" placeholder="Fecha inicio - Fecha fin"
+                showIcon="true" name="rangeDates" selectionMode="range" [showWeek]="true" [(ngModel)]="rangeDates"
+                [readonlyInput]="true" inputId="range"></p-calendar>
         </div>
     </div>
 </div>
@@ -33,31 +34,40 @@
     <div class="col-12">
         <div *ngIf="showAll" class="containerAll">
             <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
-            style="height: calc(28.1vh);">
-            <p-progressSpinner></p-progressSpinner>
+                style="height: calc(28.1vh);">
+                <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="diarys.length > 0 && !isloading">
                 <div *ngFor="let diary of diarys">
-                  <div class="item">
-                    <h2>{{diary.createDate}}</h2>
-                    <p>{{diary.description}}</p>
-                  </div>
-                  <p-divider></p-divider>
+                    <div class="item">
+                        <h2>{{diary.createDate | date: 'dd-MM-yyyy'}}</h2>
+                        <p [innerHTML]="diary.description"></p>
+                    </div>
+                    <p-divider></p-divider>
                 </div>
-              </div>
-              <div *ngIf="diarys.length == 0 && !isloading">
-                <p>No hay resultados.</p>
-              </div>
-          </div>
-          <div *ngIf="showFilter" class="containerFilter">
+            </div>
+            <div *ngIf="diarys.length == 0 && !isloading">
+                <p>No se han encontrado entradas de diario.</p>
+            </div>
+        </div>
+        <div *ngIf="showFilter" class="containerFilter">
+            <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
+                style="height: calc(28.1vh);">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <div *ngIf="diaryFilters.length > 0 && !isloading">
                 <div *ngFor="let diaryFilter of diaryFilters">
-                  <div class="item">
-                    <h2>{{diaryFilter.createDate}}</h2>
-                    <p>{{diaryFilter.description}}</p>
-                  </div>
-                  <p-divider></p-divider>
+                    <div class="item">
+                        <h2>{{diaryFilter.createDate | date: 'dd-MM-yyyy'}}</h2>
+                        <p [innerHTML]="diaryFilter.description"></p>
+                    </div>
+                    <p-divider></p-divider>
                 </div>
-          </div>
+            </div>
+            <div *ngIf="diaryFilters.length == 0  && !isloading">
+                <p>No se han encontrado entradas de diario en el rango de fechas indicado.</p>
+            </div>
+        </div>
     </div>
 </div>
 
