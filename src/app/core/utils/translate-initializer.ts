@@ -15,6 +15,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         "assistance/patient-list",
         "assistance/patient-edit",
         "assistance/patient-evaluation",
+        "assistance/patient-diary",
         "management/users",
         "questionnaire/questionnaire-list"
     ]);

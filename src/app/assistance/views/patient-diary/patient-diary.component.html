@@ -5,7 +5,7 @@
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
                 src="assets/images/user.png" class="w-2rem h-2rem" /></div>
                 <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
-                [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
+                [innerHTML]="'patientDiary.patientCard.patient' | translate"> </div>
                 <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
                     {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
                 <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
@@ -16,17 +16,17 @@
 <div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12 mb-3">
     <div class="flex flex-wrap justify-content-end">
         <div class="flex">
-            <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full h-3rem" placeholder="Fecha inicio - Fecha fin" class="sm:mr-2"
-                showIcon="true" name="rangeDates" selectionMode="range" [showWeek]="true" [(ngModel)]="rangeDates"
+            <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full h-3rem" placeholder='{{"patientDiary.filters.inputDates.startDate" | translate}} - {{"patientDiary.filters.inputDates.endDate" | translate}}' class="sm:mr-2"
+                showIcon="true" name="rangeDates" selectionMode="range" [showWeek]="true" [(ngModel)]="rangeDates" 
                 [readonlyInput]="true" inputId="range" (onSelect)="closePopup(myCalender)"></p-calendar>
         </div>
         <div class="flex">
-            <button type="button" pButton class="p-button-primary w-9rem h-3rem mr-2" (click)="filterDiary(rangeDates)"
-                icon="pi pi-search" label="Buscar"></button>
+            <button type="button" pButton class="p-button-primary w-9rem h-3rem mr-2" (click)="chargeDiarys(rangeDates)"
+                icon="pi pi-search"  label="{{ 'patientDiary.filters.search' | translate}}"></button>
         </div>
         <div class="flex ">
             <button type="button" pButton mat-raised-button class="p-button-outlined w-9rem h-3rem"
-                (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
+                (click)="chargeDiarys()" icon="pi pi-trash" label="{{ 'patientDiary.filters.clear' | translate}}"></button>
         </div>
     </div>
 </div> 
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div *ngIf="diarys.length == 0 && !isloading">
-                <p>No se han encontrado entradas de diario.</p>
+                <p>{{"patientDiary.warnings.diarysNotFound" | translate}}</p>
             </div>
         </div>
         <div *ngIf="showFilter" class="containerFilter">
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div *ngIf="diaryFilters.length == 0  && !isloading">
-                <p>No se han encontrado entradas de diario en el rango de fechas indicado.</p>
+                <p>{{"patientDiary.warnings.diarysFilteredNotFound" | translate}}</p>
             </div>
         </div>
     </div>
@@ -75,6 +75,6 @@
 <div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-3 " >
     <div>
         <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-9rem p-button-secondary"
-            label="Volver"></button>
+         label="{{ 'patientDiary.back' | translate}}"></button>
     </div>
 </div>

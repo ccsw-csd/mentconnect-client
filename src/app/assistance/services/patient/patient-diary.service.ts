@@ -15,13 +15,9 @@ export class PatientDiaryService {
     public datepipe: DatePipe
   ) { }
 
-  findDiaryPatientById(patientId: number): Observable<Diary[]> {
-    return this.http.get<Diary[]>(environment.server + '/diary/' + patientId);
-  }
-
-
-  filterDiary(startDate? : Date, endDate?: Date) : Observable<Diary[]> {
+  filterDiary(patientId: number, startDate? : Date, endDate?: Date) : Observable<Diary[]> {
     let data = {
+      patientId: patientId != null ? patientId : null, 
       startDate: startDate != null ? startDate : null, 
       endDate: endDate != null ? endDate : null
     };

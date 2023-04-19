@@ -1,0 +1,28 @@
+{
+    "patientDiary": {
+        "patientCard": {
+            "patient": "Patient"
+        },
+        "filters": {
+            "inputDates": {
+                "startDate": "Start date",
+                "endDate": "End date"
+            },
+            "search": "Search",
+            "clear": "Clear"
+        },
+        "warnings":{
+            "diarysNotFound": "No diary entries found.",
+            "diarysFilteredNotFound": "No diary entries found in the indicated date range.",
+            "dateRangeIsEmpty":{
+                "title":"Empty date range",
+                "detail":"You must insert a date range"
+            },
+            "dateExpectedRange":{
+                "title":"Wrong date range",
+                "detail":"The date range must contain a start date and an end date"
+            }
+        },
+        "back":"Back"
+    }
+}

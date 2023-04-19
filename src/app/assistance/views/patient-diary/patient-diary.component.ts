@@ -38,7 +38,7 @@ export class PatientDiaryComponent implements OnInit {
   ngOnInit(): void {
     this.isloading = true;
     this.patientObj = new PatientFull(new UserFull(), null, null, null, null, null, null);
-    this.diaryObj = new DiaryFull(null,null,new Patient());
+    this.diaryObj = new DiaryFull(null, null, new Patient());
     this.chargeDiarys();
   }
 
@@ -56,44 +56,49 @@ export class PatientDiaryComponent implements OnInit {
     this.router.navigate(["patient-list"]);
   }
 
-  chargeDiarys() {
-    this.rangeDates = null;
-    this.showAll = true;
-    this.showFilter = false;
-    this.route.params.subscribe(params => {
-      this.getPatientFull(params['id']);
-      this.diaryService.findDiaryPatientById(params['id']).subscribe(diaryPatientArray =>{
-        this.diarys = diaryPatientArray; 
-        this.isloading = false;
+  chargeDiarys(rangeDatesParam?: Date[]) {
+    if (rangeDatesParam === undefined) {
+      this.rangeDates = null;
+      this.showAll = true;
+      this.showFilter = false;
+      this.route.params.subscribe(params => {
+        this.getPatientFull(params['id']);
+        this.route.params.subscribe(params => {
+          this.diaryService.filterDiary(params['id'], null, null).subscribe(diaryArray => {
+            this.diarys = diaryArray;
+            this.isloading = false;
+          })
+        });
+      });
+    } else {
+      if (rangeDatesParam != null) {
+        let startDate = rangeDatesParam[0];
+        let endDate = rangeDatesParam[1];
+        if (startDate == null || endDate == null) {
+          this.messageService.add({ key: 'datesWarning', severity: 'error', summary: this.translate.instant('patientDiary.warnings.dateExpectedRange.title'), detail: this.translate.instant('patientDiary.warnings.dateExpectedRange.detail') });
+        } else {
+          this.isloading = true;
+          let startDate = rangeDatesParam[0];
+          let endDate = rangeDatesParam[1];
+          this.showAll = false;
+          this.showFilter = true;
+          this.route.params.subscribe(params => {
+            this.diaryService.filterDiary(params['id'], startDate, endDate).subscribe(diaryFilterArray => {
+              this.diaryFilters = diaryFilterArray;
+              this.isloading = false;
+            })
+          });
+          return this.diaryFilters;
+        }
+      } else {
+        this.messageService.add({ key: 'emptyDates', severity: 'error', summary: this.translate.instant('patientDiary.warnings.dateRangeIsEmpty.title'), detail: this.translate.instant('patientDiary.warnings.dateRangeIsEmpty.detail') });
       }
-      );
-    });
-  }
-
-  filterDiary(rangeDates: Date[]){
-    if(rangeDates != null){
-      let startDate = rangeDates[0];
-      let endDate = rangeDates[1];
-      if(startDate == null || endDate == null){
-        this.messageService.add({ key: 'datesWarning', severity: 'error', summary: this.translate.instant('Rango de fechas incorrecto'), detail: this.translate.instant('El rango de fechas debe contener una fecha inicial y otra final') });
-      }else{
-        this.isloading = true;
-        let startDate = rangeDates[0];
-        let endDate = rangeDates[1];
-        this.showAll = false;
-        this.showFilter = true;
-        this.diaryService.filterDiary(startDate,endDate).subscribe(diaryFilterArray=>{
-          this.diaryFilters = diaryFilterArray;
-          this.isloading = false;
-        })
-        return this.diaryFilters;
-      }
-    }else{
-      this.messageService.add({ key: 'emptyDates', severity: 'error', summary: this.translate.instant('Rango de fechas vacío'), detail: this.translate.instant('Debes insertar un rango de fechas') });
     }
+
   }
 
-  closePopup(calendar: Calendar){
+
+  closePopup(calendar: Calendar) {
     if (calendar.inputfieldViewChild.nativeElement.value !== '') {
       calendar.overlayVisible = false;
     }

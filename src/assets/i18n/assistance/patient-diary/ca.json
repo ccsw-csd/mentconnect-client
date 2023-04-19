@@ -1,0 +1,28 @@
+{
+    "patientDiary": {
+        "patientCard": {
+            "patient": "Pacient"
+        },
+        "filters": {
+            "inputDates": {
+                "startDate": "Data d'inici",
+                "endDate": "Data de fi"
+            },
+            "search": "Cerca",
+            "clear": "Netejar"
+        },
+        "warnings":{
+            "diarysNotFound": "No s'han trobat entrades de diari.",
+            "diarysFilteredNotFound": "No s'han trobat entrades de diari al rang de dates indicat.",
+            "dateRangeIsEmpty":{
+                "title":"Rang de dates buit",
+                "detail":"Has d'inserir un rang de dates"
+            },
+            "dateExpectedRange":{
+                "title":"Rang de dates incorrecte",
+                "detail":"El rang de dates ha de contenir una data inicial i una altra final"
+            }
+        },
+        "back":"Tornar"
+    }
+}
