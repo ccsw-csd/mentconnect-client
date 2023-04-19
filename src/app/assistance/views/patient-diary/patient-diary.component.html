@@ -1,40 +1,41 @@
 <p-toast key="datesWarning" position="top-center"></p-toast>
 <p-toast key="emptyDates" position="top-center"></p-toast>
 <div style="height: calc(10vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
-    <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
-            {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
-            [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
-        <div></div>
+    <div class="flex flex-wrap justify-content-end">
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
                 src="assets/images/user.png" class="w-2rem h-2rem" /></div>
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
+                [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
+                    {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
+                <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
+
+
     </div>
 </div>
-<div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
-    <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <button type="button" pButton mat-raised-button class="p-button-outlined w-9rem h-3rem"
-                (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
-        </div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <button type="button" pButton class="p-button-primary w-9rem h-3rem" (click)="filterDiary(rangeDates)"
-                icon="pi pi-search" label="Buscar"></button>
-        </div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
-            <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full" placeholder="Fecha inicio - Fecha fin"
+<div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12 mb-3">
+    <div class="flex flex-wrap justify-content-end">
+        <div class="flex">
+            <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full h-3rem" placeholder="Fecha inicio - Fecha fin" class="sm:mr-2"
                 showIcon="true" name="rangeDates" selectionMode="range" [showWeek]="true" [(ngModel)]="rangeDates"
                 [readonlyInput]="true" inputId="range" (onSelect)="closePopup(myCalender)"></p-calendar>
         </div>
+        <div class="flex">
+            <button type="button" pButton class="p-button-primary w-9rem h-3rem mr-2" (click)="filterDiary(rangeDates)"
+                icon="pi pi-search" label="Buscar"></button>
+        </div>
+        <div class="flex ">
+            <button type="button" pButton mat-raised-button class="p-button-outlined w-9rem h-3rem"
+                (click)="chargeDiarys()" icon="pi pi-trash" label="Limpiar"></button>
+        </div>
     </div>
-</div>
+</div> 
 
-<div style="height: calc(65vh - 1rem)" class="grid overflow-auto">
-    <div class="col-12">
+<div style="height: calc(61vh - 1rem)" class="overflow-auto">
+    <div class="container">
         <div *ngIf="showAll" class="containerAll">
             <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
-                style="height: calc(28.1vh);">
+                style="height: calc(45vh);">
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="diarys.length > 0 && !isloading">
@@ -52,7 +53,7 @@
         </div>
         <div *ngIf="showFilter" class="containerFilter">
             <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
-                style="height: calc(28.1vh);">
+                style="height: calc(45vh);">
                 <p-progressSpinner></p-progressSpinner>
             </div>
             <div *ngIf="diaryFilters.length > 0 && !isloading">
@@ -71,9 +72,9 @@
     </div>
 </div>
 
-<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8 ">
+<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-3 " >
     <div>
-        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
+        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-9rem p-button-secondary"
             label="Volver"></button>
     </div>
 </div>
