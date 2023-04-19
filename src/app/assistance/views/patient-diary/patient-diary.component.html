@@ -25,7 +25,7 @@
         <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
             <p-calendar #myCalender dateFormat="dd-mm-yy" styleClass="w-full" placeholder="Fecha inicio - Fecha fin"
                 showIcon="true" name="rangeDates" selectionMode="range" [showWeek]="true" [(ngModel)]="rangeDates"
-                [readonlyInput]="true" inputId="range"></p-calendar>
+                [readonlyInput]="true" inputId="range" (onSelect)="closePopup(myCalender)"></p-calendar>
         </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { Patient } from '../../models/Patient';
 import { DiaryFull } from '../../models/DiaryFull';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
+import { Calendar } from 'primeng/calendar';
 
 @Component({
   selector: 'app-patient-diary',
@@ -70,7 +71,6 @@ export class PatientDiaryComponent implements OnInit {
   }
 
   filterDiary(rangeDates: Date[]){
-
     if(rangeDates != null){
       let startDate = rangeDates[0];
       let endDate = rangeDates[1];
@@ -91,7 +91,12 @@ export class PatientDiaryComponent implements OnInit {
     }else{
       this.messageService.add({ key: 'emptyDates', severity: 'error', summary: this.translate.instant('Rango de fechas vacío'), detail: this.translate.instant('Debes insertar un rango de fechas') });
     }
+  }
 
+  closePopup(calendar: Calendar){
+    if (calendar.inputfieldViewChild.nativeElement.value !== '') {
+      calendar.overlayVisible = false;
+    }
   }
 
 }
