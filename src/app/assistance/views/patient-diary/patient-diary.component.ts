@@ -52,6 +52,12 @@ export class PatientDiaryComponent implements OnInit {
     });
   }
 
+  parsetoIsoDate(date): Date {
+    let tDate = new Date(date);
+    tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
+    return tDate;
+  }
+
   onCancel(event) {
     this.router.navigate(["patient-list"]);
   }
@@ -83,7 +89,7 @@ export class PatientDiaryComponent implements OnInit {
           this.showAll = false;
           this.showFilter = true;
           this.route.params.subscribe(params => {
-            this.diaryService.filterDiary(params['id'], startDate, endDate).subscribe(diaryFilterArray => {
+            this.diaryService.filterDiary(params['id'], this.parsetoIsoDate(startDate), this.parsetoIsoDate(endDate)).subscribe(diaryFilterArray => {
               this.diaryFilters = diaryFilterArray;
               this.isloading = false;
             })
