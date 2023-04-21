@@ -106,8 +106,8 @@ export class PatientListComponent implements OnInit {
     this.router.navigate(["patient-evaluation", patient.id]);
   }
 
-  statsPatient(patient: Patient){
-    this.router.navigate(["patient-stats", patient.id]);
+  diaryPatient(patient: Patient){
+    this.router.navigate(["patient-diary", patient.id]);
   }
 
   parsetoIsoDate(date) : Date {

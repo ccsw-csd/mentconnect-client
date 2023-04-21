@@ -1,0 +1,28 @@
+{
+    "patientDiary": {
+        "patientCard": {
+            "patient": "Paciente"
+        },
+        "filters": {
+            "inputDates": {
+                "startDate": "Fecha inicio",
+                "endDate": "Fecha fin"
+            },
+            "search": "Buscar",
+            "clear": "Limpiar"
+        },
+        "warnings":{
+            "diarysNotFound": "No se han encontrado entradas de diario.",
+            "diarysFilteredNotFound": "No se han encontrado entradas de diario en el rango de fechas indicado.",
+            "dateRangeIsEmpty":{
+                "title":"Rango de fechas vacío",
+                "detail":"Debes insertar un rango de fechas"
+            },
+            "dateExpectedRange":{
+                "title":"Rango de fechas incorrecto",
+                "detail":"El rango de fechas debe contener una fecha inicial y otra final"
+            }
+        },
+        "back":"Volver"
+    }
+}
