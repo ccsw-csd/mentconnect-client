@@ -6,6 +6,7 @@ import { User } from 'src/app/management/models/User';
 import { Questionnaire } from '../../model/Questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionnaire-list',
@@ -29,7 +30,8 @@ export class QuestionnaireListComponent implements OnInit {
   constructor(
     private questionnaireService: QuestionnaireService,
     private userService: UserService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -86,6 +88,10 @@ export class QuestionnaireListComponent implements OnInit {
       patient.user.name + " " + patient.user.surnames
     );
     return patients.join("\n");
+  }
+
+  newQuestionnaire(){
+    this.router.navigate(["questionnaire-new"]);
   }
 
 }

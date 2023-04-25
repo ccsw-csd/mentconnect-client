@@ -12,6 +12,7 @@ import { PatientListComponent } from './assistance/views/patient-list/patient-li
 import { PatientEditComponent } from './assistance/views/patient-edit/patient-edit.component';
 import { PatientEvaluationComponent } from './assistance/views/patient-evaluation/patient-evaluation.component';
 import { PatientDiaryComponent } from './assistance/views/patient-diary/patient-diary.component';
+import { QuestionnaireNewComponent } from './questionnaire/views/questionnaire-new/questionnaire-new.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     children: [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'questionnaire', component: QuestionnaireListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
+      { path: 'questionnaire-new', component: QuestionnaireNewComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-list', component: PatientListComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-edit/:id', component: PatientEditComponent },
