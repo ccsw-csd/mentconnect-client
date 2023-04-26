@@ -7,6 +7,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Location } from '@angular/common';
 import { Question } from '../../model/Question';
 import { QuestionService } from '../../services/question.service';
+import { QuestionQuestionnaireComponent } from '../question-questionnaire/question-questionnaire.component';
 
 @Component({
   selector: 'app-questionnaire-new',
@@ -21,8 +22,8 @@ export class QuestionnaireNewComponent implements OnInit {
   // questionnairesPatient: QuestionnairePatient[] = [];
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
-  //questionnaireSelected: Questionnaire;
-  questionnaireDisabled: Boolean;
+  questionSelected: Question;
+  questionDisabled: Boolean;
   //questionnairesAvailablesPatient: Questionnaire[] = [];
   questionsNumber = 0;
   constructor(    
@@ -40,6 +41,7 @@ export class QuestionnaireNewComponent implements OnInit {
     private ref: DynamicDialogRef) { }
 
   ngOnInit(): void {
+    this.questionDisabled = true;
     this.chargeQuestionnaires();
   }
 
@@ -50,21 +52,28 @@ export class QuestionnaireNewComponent implements OnInit {
       );
   }
 
-  toAssign() {
-    // const header = this.translateService.instant('patientEvaluation.dialogAsignation.header');
-    // this.ref = this.dialogService.open(PatientQuestionnaireComponent, {
-    //   header: header + ": " +  questionnaire.description,
-    //   data: {
-    //     questionnaire: questionnaire,
-    //     loading: this.loading,
-    //     patient: this.patientObj
-    //   },
-    //   closable: false
-    // });
+  disabled() {
+    if (this.questionSelected == null) {
+      this.questionDisabled = true;
+    } else {
+      this.questionDisabled = false;
+    }
+  }
 
-    // this.ref.onClose.subscribe(res =>{
-    //   this.chargeQuestionnaires();
-    // });
+  toSelect(question:Question) {
+    const header = "Asignar pregunta";
+    this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
+      header: header,
+      data: {
+        question: question,
+        loading: this.loading
+      },
+      closable: false
+    });
+
+    this.ref.onClose.subscribe(res =>{
+      this.chargeQuestionnaires();
+    });
   }
 
   onCancel(event) {

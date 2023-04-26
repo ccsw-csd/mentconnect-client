@@ -1,0 +1,76 @@
+<p-toast key="patientAssignMessage" position="top-center"></p-toast>
+<span class="ml-1 font-bold">Pregunta: </span>{{questionObj.question | translate}} | <span class="font-bold">Tipo: </span>{{questionObj.answerType.description | translate}}<br /><br />
+<span class="ml-1 font-bold">Días de la semana:</span>
+<form id="dates" class="formgrid w-full grid mt-2" #form="ngForm">
+    <div class="col-12  flex align-items-center justify-content-center ml-2">
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Lunes" inputId="lu"></p-checkbox>
+            <label for="lu">Lunes</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Martes" inputId="ma"></p-checkbox>
+            <label for="ma">Martes</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Miércoles" inputId="mi"></p-checkbox>
+            <label for="mi">Miércoles</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Jueves" inputId="ju"></p-checkbox>
+            <label for="ju">Jueves</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Viernes" inputId="vi"></p-checkbox>
+            <label for="vi">Viernes</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Sábado" inputId="sa"></p-checkbox>
+            <label for="sa">Sábado</label>
+        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4">
+            <p-checkbox name="group1" value="Domingo" inputId="do"></p-checkbox>
+            <label for="do">Domingo</label>
+        </div>
+
+    </div>
+</form>
+<br />
+<span class="ml-1 font-bold">Franja horaria:</span>
+<form id="timezone" class="formgrid w-full grid mt-2" #form="ngForm">
+    <div class="col-12  flex ml-3">
+
+        <div class="flex flex-wrap gap-3">
+            <div class="flex align-items-center">
+                <p-radioButton name="time" value="Mañana" inputId="time1" [(ngModel)] = "selectedValue"></p-radioButton>
+                <label for="time1" class="ml-2">Mañana</label>
+            </div>
+            <div class="flex align-items-center">
+                <p-radioButton name="time" value="Tarde" inputId="time2" [(ngModel)] = "selectedValue"></p-radioButton>
+                <label for="time2" class="ml-2">Tarde</label>
+            </div>
+            <div class="flex align-items-center">
+                <p-radioButton name="time" value="Noche" inputId="time3" [(ngModel)] = "selectedValue"></p-radioButton>
+                <label for="time3" class="ml-2">Noche</label>
+            </div>
+
+        </div>
+
+    </div>
+</form><br/>
+<span class="ml-1 font-bold">Alerta:</span>
+<div class="col-12  flex ml-2">
+    <p-dropdown class="form-control w-full"  styleClass="w-full" placeholder="Valor de alerta" optionValue="code" optionLabel="value" ></p-dropdown>
+    <!--si no es numérica......-->
+    <input type="text" class="form-control w-full ml-4" pInputText  pKeyFilter="alphanum"  placeholder="Respuestas consecutivas para alerta" name="nif" required />
+    <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>
+</div>
+<div class="flex flex-row-reverse w-auto mt-5 mr-3">
+    <div>
+        <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " pButton
+            label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
+    </div>
+    <div class="px-2">
+        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton
+            label="{{ 'patientEvaluation.dialogAsignation.close' | translate}}"></button>
+    </div>
+</div>
