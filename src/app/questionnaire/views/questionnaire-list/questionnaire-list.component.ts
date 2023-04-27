@@ -25,7 +25,9 @@ export class QuestionnaireListComponent implements OnInit {
   users: User[];
   
   loading: boolean = true;
-  totalRecords: number;
+  totalRecords: number;z
+
+  checkAlert: Boolean = false;
 
   constructor(
     private questionnaireService: QuestionnaireService,
@@ -87,6 +89,9 @@ export class QuestionnaireListComponent implements OnInit {
     questionnaire.patients.map(patient =>
       patient.user.name + " " + patient.user.surnames
     );
+    if(questionnaire.patients.length>0){
+      this.checkAlert = true;
+    }
     return patients.join("\n");
   }
 

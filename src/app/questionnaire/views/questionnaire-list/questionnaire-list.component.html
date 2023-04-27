@@ -48,9 +48,9 @@
       <td>{{questionnaire.createDate | date:'dd/MM/yyyy' }}</td>  <!-- TODO fromato de locale --> 
       <td>{{questionnaire.lastEditDate | date:'dd/MM/yyyy' }}</td> <!-- TODO fromato de locale -->
       <td style='flex: 0 0 150px;'>
-        <div>
+        <div >
           <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon"></button>
-          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon" *ngIf="questionnaire.patients.length === 0"></button>
         </div>
       </td>
     </tr>

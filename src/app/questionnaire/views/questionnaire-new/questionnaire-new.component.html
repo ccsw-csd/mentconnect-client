@@ -94,9 +94,11 @@
     </div>
 </div> 
 
-<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8 ">
+<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8  ">
     <div>
         <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
             label="{{ 'patientEdit.form.close' | translate}}"></button>
+        <button type="button" class="p-button-primary w-7rem ml-2" pButton
+            label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
     </div>
 </div>

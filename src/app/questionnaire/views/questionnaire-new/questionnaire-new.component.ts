@@ -64,6 +64,7 @@ export class QuestionnaireNewComponent implements OnInit {
     const header = "Asignar pregunta";
     this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
       header: header,
+      height: '580px',
       data: {
         question: question,
         loading: this.loading

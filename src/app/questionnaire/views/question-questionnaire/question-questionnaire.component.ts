@@ -11,6 +11,13 @@ import { QuestionnairePatient } from 'src/app/questionnaire/model/QuestionnaireP
 import { QuestionnairePatientService } from 'src/app/questionnaire/services/questionnaire-patient.service';
 import { QuestionnaireNewComponent } from '../questionnaire-new/questionnaire-new.component';
 import { Question } from '../../model/Question';
+import { QuestionnaireService } from '../../services/questionnaire.service';
+import { AnswerTypeValue } from '../../model/AnswerTypeValue';
+
+interface TimeSlot {
+  value: string,
+  code: string
+}
 
 @Component({
   selector: 'app-question-questionnaire',
@@ -19,16 +26,20 @@ import { Question } from '../../model/Question';
 })
 export class QuestionQuestionnaireComponent implements OnInit {
   isloading: boolean = false;
+  slots: TimeSlot[];
   questionnairePatientObj: QuestionnairePatient;
   questionObj: Question;
   questionnaireAssigned: boolean;
   rangeDates: Date[];
   rangeDatesSelected: Date[];
   question: QuestionnaireNewComponent;
-  selectedValue: string = 'value1';
+  selectedSlot: string = '';
+  checkAlert: boolean = false;
+  selectedDays: string[] = [];
+  answersByType: AnswerTypeValue[] = [];
   constructor(
     public ref: DynamicDialogRef,
-    private questionnairePatientService: QuestionnairePatientService,
+    private questionnaireService: QuestionnaireService,
     private translate: TranslateService,
     private messageService: MessageService,
     private location: Location,
@@ -37,12 +48,54 @@ export class QuestionQuestionnaireComponent implements OnInit {
     private router: Router,
     public config: DynamicDialogConfig,
   ) {
+    this.slots = [
+      {value: 'Morning', code: 'M'},
+      {value: 'Afternoon', code: 'A'},
+      {value: 'Evening', code: 'E'},
+    ];
   }
 
   ngOnInit(): void {
     this.questionObj = Object.assign({ question: Question }, this.config.data.question);
-    //this.questionnairePatientObj = new QuestionnairePatient(new Questionnaire(), new Patient(), null, null);
+    this.showAlert();
+    this.chargeListOfAnswersTypeValue();
   }
+  chargeListOfAnswersTypeValue() {
+    this.questionnaireService.getAnswersByDescription(this.questionObj.answerType.description).subscribe(answersTypeArray=>{
+      this.answersByType = answersTypeArray;
+      this.translateAnswers();
+    })
+    
+  }
+  translateAnswers() {
+    const translatedAnswers = [];
+    for (let i = 0; i < this.answersByType.length; i++) {
+      const answer = this.answersByType[i].value;
+      this.translate.get(answer).subscribe(translated => {
+        translatedAnswers.push({label: translated, value: answer});
+      });
+    }
+    this.answersByType = translatedAnswers;
+  }
+
+  showAlert() {
+    let answerType = this.questionObj.answerType.description;
+    const wordsAnswerType = answerType.split('.');
+    const type = wordsAnswerType[1];
+    if(type != "numeric"){
+      this.checkAlert = true;
+    }
+  }
+
+  // getSelectedDays(): string[] {
+  //   return this.selectedDays.filter(day => day !== null && day !== undefined && day !== '');
+  // }
+
+  // guardarSlotSeleccionado() {
+  //   if (this.slots.indexOf(this.selectedSlot) === -1) {
+  //     this.slots.push(this.selectedSlot);
+  //   }
+  // }
 
   // displayToAssign(rangeDates: Date[]) {
   //   let startDate = rangeDates[0];
