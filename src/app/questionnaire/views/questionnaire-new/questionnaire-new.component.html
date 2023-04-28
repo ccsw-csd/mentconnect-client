@@ -73,20 +73,20 @@
             style="height: calc(28.3vh);">
             <p-progressSpinner></p-progressSpinner>
         </div>
-        <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full"
-            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesPatient"
+        <p-listbox readonly [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
+            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected"
             [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}">
             <p-header>Seleccionadas</p-header>
-            <ng-template let-questionnairesPatient pTemplate="item">
-                <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
-                    class="p-button-lg p-button-text "></button>
-                <div class="questionnairePatient-item">
-                    <div [pTooltip]=questionnairesPatient.description><span
-                            class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
+            <ng-template let-questionnairesQuestion pTemplate="item">
+                <div class="questionnairesQuestion-item">
+                    <div class="questionnairesQuestion-item">
+                        <div>
+                            <span class="text-base">{{questionnairesQuestion.timeSlot}}</span>
+                            <div>
+                                {{questionnairesQuestion.timeSlot}}
+                            </div>
+                        </div>
                     </div>
-                    <div>{{ "patientEvaluation.asignation" | translate }}:
-                        {{questionnairesPatient.startDate | date: 'dd/MM/yyyy'}} - {{questionnairesPatient.endDate|
-                        date: 'dd/MM/yyyy'}}</div>
                 </div>
             </ng-template>
 

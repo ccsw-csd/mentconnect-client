@@ -1,64 +1,53 @@
 <p-toast key="patientAssignMessage" position="top-center"></p-toast>
-<span class="ml-1 font-bold">Pregunta: </span>{{questionObj.question | translate}} | <span class="font-bold">Tipo: </span>{{questionObj.answerType.description | translate}}<br /><br />
+<span class="ml-1 font-bold">Pregunta: </span>{{questionObj.question | translate}} | <span class="font-bold">Tipo:
+</span>{{questionObj.answerType.description | translate}}<br /><br />
 <span class="ml-1 font-bold">Días de la semana:</span>
-<form id="dates" class="formgrid w-full grid mt-2" #form="ngForm">
+<form id="formQuestionsToQuestionnaire" name="questionnaireQuestionForm" #questionnaireQuestionObj="ngForm" (ngSubmit)="displayToSelect(questionnaireQuestionObj)">
+<div id="dates" class="formgrid w-full grid mt-2">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Lunes" inputId="lu" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="lu">Lunes</label>
+        <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of daysWeeks">
+            <p-checkbox required name="group1" [value]="day.value" [inputId]="day.code" [(ngModel)]="questionnaireQuestionObj.dayWeeks"></p-checkbox>
+            <label [for]="day.code">{{ day.value }}</label>
         </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Martes" inputId="ma" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="ma">Martes</label>
-        </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Miércoles" inputId="mi" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="mi">Miércoles</label>
-        </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Jueves" inputId="ju" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="ju">Jueves</label>
-        </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Viernes" inputId="vi" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="vi">Viernes</label>
-        </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Sábado" inputId="sa" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="sa">Sábado</label>
-        </div>
-        <div class="flex align-items-center gap-1 ml-3 mr-4">
-            <p-checkbox name="group1" value="Domingo" inputId="do" [(ngModel)]="selectedDays"></p-checkbox>
-            <label for="do">Domingo</label>
-        </div>
+        
 
     </div>
-</form>
+</div>
 <br />
 <span class="ml-1 font-bold">Franja horaria:</span>
-<form id="timezone" class="formgrid w-full grid mt-2" #form="ngForm">
+<div id="timezone" class="formgrid w-full grid mt-2">
     <div class="col-12  flex ml-3">
-      <div class="flex flex-wrap gap-3">
-        <div class="flex align-items-center" *ngFor="let slot of slots">
-          <p-radioButton name="time" [value]="slot.value" [inputId]="'time' + slot.code" [(ngModel)]="selectedSlot"></p-radioButton>
-          <label [for]="'time' + slot.code" class="ml-2">{{ slot.value }}</label>
+        <div class="flex flex-wrap gap-3">
+            <div class="flex align-items-center" *ngFor="let slot of slots">
+                <p-radioButton required name="time" [value]="slot.value" [inputId]="'time' + slot.code"
+                    [(ngModel)]="questionnaireQuestionObj.timeSlot"></p-radioButton>
+                <label [for]="'time' + slot.code" class="ml-2">{{ slot.value }}</label>
+            </div>
         </div>
-      </div>
     </div>
-  </form>
-  <br/><br/>
+</div><br />
 <div *ngIf="checkAlert">
-    <span class="ml-1 font-bold">Alerta:</span>
-    <div class="col-12  flex ml-2">
-        <p-dropdown class="form-control w-full" [options]="answersByType"  [optionLabel]="translateOptionLabel" styleClass="w-full" placeholder="Valor de alerta" optionValue="code" optionLabel="value" ></p-dropdown>
-        <!--si no es numérica......-->
-        <input type="text" class="form-control w-full ml-4" pInputText  pKeyFilter="alphanum"  placeholder="Respuestas consecutivas para alerta" name="nif" required />
-        <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>
+    <a class="text-xl font-bold cursor-pointer" (click)="showDiv = !showDiv">
+        {{ showDiv ? 'No insertar alerta' : 'Insertar alerta' }}
+    </a>
+
+    <br />
+    <div *ngIf="showDiv">
+        <span class="ml-1 font-bold">Alerta:</span>
+        <div class="col-12  flex ml-2">
+            <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel"
+                styleClass="w-full" placeholder="Valor de alerta" optionValue="code" optionLabel="value"></p-dropdown>
+            <!--si no es numérica......-->
+            <input type="text" class="form-control w-full ml-4" pInputText pKeyFilter="alphanum"
+                placeholder="Respuestas consecutivas para alerta" name="nif" required />
+            <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>
+        </div>
     </div>
-</div><br/><br/><br/><br/><br/>
+</div><br /><br /><br /><br /><br />
+
 <div class="flex flex-row-reverse w-auto mt-8 mr-3">
     <div>
-        <button type="button" class="p-button-primary w-6rem" [disabled]="form.invalid " pButton
+        <button type="submit" class="p-button-primary w-6rem"   [disabled]="questionnaireQuestionObj.form.invalid " pButton
             label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
     </div>
     <div class="px-2">
@@ -66,3 +55,4 @@
             label="{{ 'patientEvaluation.dialogAsignation.close' | translate}}"></button>
     </div>
 </div>
+</form>

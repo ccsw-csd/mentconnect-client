@@ -13,8 +13,14 @@ import { QuestionnaireNewComponent } from '../questionnaire-new/questionnaire-ne
 import { Question } from '../../model/Question';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { AnswerTypeValue } from '../../model/AnswerTypeValue';
+import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
 
 interface TimeSlot {
+  value: string,
+  code: string
+}
+
+interface DayWeek {
   value: string,
   code: string
 }
@@ -27,6 +33,7 @@ interface TimeSlot {
 export class QuestionQuestionnaireComponent implements OnInit {
   isloading: boolean = false;
   slots: TimeSlot[];
+  daysWeeks: DayWeek[];
   questionnairePatientObj: QuestionnairePatient;
   questionObj: Question;
   questionnaireAssigned: boolean;
@@ -34,9 +41,12 @@ export class QuestionQuestionnaireComponent implements OnInit {
   rangeDatesSelected: Date[];
   question: QuestionnaireNewComponent;
   selectedSlot: string = '';
+  showDivAlert: boolean = false;
   checkAlert: boolean = false;
   selectedDays: string[] = [];
   answersByType: AnswerTypeValue[] = [];
+  questionnaireQuestionObj : QuestionnaireQuestion;
+  public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
   constructor(
     public ref: DynamicDialogRef,
     private questionnaireService: QuestionnaireService,
@@ -52,6 +62,15 @@ export class QuestionQuestionnaireComponent implements OnInit {
       {value: 'Morning', code: 'M'},
       {value: 'Afternoon', code: 'A'},
       {value: 'Evening', code: 'E'},
+    ];
+    this.daysWeeks = [
+      {value: 'Lunes', code: '1'},
+      {value: 'Martes', code: '2'},
+      {value: 'Miércoles', code: '3'},
+      {value: 'Jueves', code: '4'},
+      {value: 'Viernes', code: '5'},
+      {value: 'Sábado', code: '6'},
+      {value: 'Domingo', code: '0'},
     ];
   }
 
@@ -87,56 +106,26 @@ export class QuestionQuestionnaireComponent implements OnInit {
     }
   }
 
-  // getSelectedDays(): string[] {
-  //   return this.selectedDays.filter(day => day !== null && day !== undefined && day !== '');
-  // }
+  displayToSelect(questionnaireQuestionObj: QuestionnaireQuestion) {
+    const newQuestionnaireQuestion = new QuestionnaireQuestion(
+      questionnaireQuestionObj.questionnaire, 
+      this.questionObj, 
+      questionnaireQuestionObj.timeSlot, 
+      questionnaireQuestionObj.dayWeeks
+    );
+    this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
+    this.ref.close(this.allQuestionnairesSelected);
+    //console.log(this.allQuestionnairesSelected);
+  }
+  
 
-  // guardarSlotSeleccionado() {
-  //   if (this.slots.indexOf(this.selectedSlot) === -1) {
-  //     this.slots.push(this.selectedSlot);
-  //   }
-  // }
-
-  // displayToAssign(rangeDates: Date[]) {
-  //   let startDate = rangeDates[0];
-  //   let endDate = rangeDates[1];
-  //   this.questionnairePatientObj = new QuestionnairePatient(this.questionnaireObj, this.patientObj, this.parsetoIsoDate(startDate), this.parsetoIsoDate(endDate));
-  //   this.isloading = true;
-  //   this.questionnairePatientService.questionnaireAssigned(this.questionnairePatientObj).subscribe(result => {
-  //     if (!result) {
-  //       this.questionnairePatientService.assignQuestionnairePatient(this.questionnairePatientObj).subscribe({
-  //         next: (res: QuestionnairePatient) => {
-  //           this.isloading = false;
-  //           this.onClose();
-  //           this.route.params.subscribe(params => {
-  //             this.router.navigate(['patient-evaluation/' + params['id']])
-  //           });
-
-  //           this.messageService.add({ key: 'patientAssignOkMessage', severity: 'success', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.success.detail') });
-  //         },
-  //         error: (err: any) => {
-  //           this.isloading = false;
-  //           this.messageService.add({ key: 'patientAssignMessage', severity: 'error', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.detail') });
-  //         }
-  //       });
-  //     } else {
-  //       this.messageService.add({ key: 'patientAssignMessage', severity: 'error', summary: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.title'), detail: this.translate.instant('patientEvaluation.questionnaireAssignedMessage.error.range') });
-  //     }
-  //   })
-  // }
-
-  // showRange(event, mc) {
-  //   this.rangeDatesSelected = mc.inputFieldValue;
-  // }
+  getAllQuestionnairesSelected(){
+    //console.log(this.allQuestionnairesSelected);
+    return this.allQuestionnairesSelected;
+  }
 
   onClose() {
     this.ref.close();
   }
-
-  // parsetoIsoDate(date): Date {
-  //   let tDate = new Date(date);
-  //   tDate.setMinutes(tDate.getMinutes() - tDate.getTimezoneOffset());
-  //   return tDate;
-  // }
 
 }

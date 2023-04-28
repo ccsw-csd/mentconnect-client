@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { Question } from '../../model/Question';
 import { QuestionService } from '../../services/question.service';
 import { QuestionQuestionnaireComponent } from '../question-questionnaire/question-questionnaire.component';
+import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
 
 @Component({
   selector: 'app-questionnaire-new',
@@ -18,6 +19,7 @@ import { QuestionQuestionnaireComponent } from '../question-questionnaire/questi
 export class QuestionnaireNewComponent implements OnInit {
   isloading: boolean = false;
   questions: Question[] = [];
+  questionnairesQuestion: QuestionnaireQuestion[] = [];
   // questionnaires: Questionnaire[] = [];
   // questionnairesPatient: QuestionnairePatient[] = [];
   loading: boolean = true;
@@ -26,6 +28,8 @@ export class QuestionnaireNewComponent implements OnInit {
   questionDisabled: Boolean;
   //questionnairesAvailablesPatient: Questionnaire[] = [];
   questionsNumber = 0;
+  public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
+
   constructor(    
     //private patientService: PatientService,
     private translateService: TranslateService,
@@ -36,7 +40,6 @@ export class QuestionnaireNewComponent implements OnInit {
     private router: Router,
     // private roleService: RoleService,
     private questionService: QuestionService,
-    // private questionnairePatientService: QuestionnairePatientService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef) { }
 
@@ -48,8 +51,9 @@ export class QuestionnaireNewComponent implements OnInit {
   chargeQuestionnaires(){
       this.questionService.findAllQuestions().subscribe(questionsArray =>{
         this.questions = questionsArray; 
-      }
-      );
+      });
+      //this.questionnairesQuestion.push(new QuestionnaireQuestion(null,null,null,null));
+      console.log(this.questionnairesQuestion);
   }
 
   disabled() {
@@ -73,8 +77,12 @@ export class QuestionnaireNewComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe(res =>{
+      //this.questionnairesQuestion.push(res);
+      //this.questionnairesQuestion = res;
+      this.questionnairesQuestion = this.questionnairesQuestion.concat(res);
       this.chargeQuestionnaires();
     });
+    
   }
 
   onCancel(event) {
