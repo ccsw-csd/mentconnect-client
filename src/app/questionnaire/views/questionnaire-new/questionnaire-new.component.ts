@@ -29,6 +29,7 @@ export class QuestionnaireNewComponent implements OnInit {
   //questionnairesAvailablesPatient: Questionnaire[] = [];
   questionsNumber = 0;
   public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
+  filteredQuestions: Question[];
 
   constructor(    
     //private patientService: PatientService,
@@ -46,14 +47,20 @@ export class QuestionnaireNewComponent implements OnInit {
   ngOnInit(): void {
     this.questionDisabled = true;
     this.chargeQuestionnaires();
+    // this.questionService.findAllQuestions().subscribe(questionsArray =>{
+    //   this.questions = questionsArray; 
+    // });
+    // this.filterQuestionnaires(this.questionnairesQuestion);
   }
 
   chargeQuestionnaires(){
       this.questionService.findAllQuestions().subscribe(questionsArray =>{
         this.questions = questionsArray; 
+        this.filteredQuestions = this.filterQuestionnaires(this.questions,this.questionnairesQuestion);
       });
       //this.questionnairesQuestion.push(new QuestionnaireQuestion(null,null,null,null));
-      console.log(this.questionnairesQuestion);
+      //console.log(this.questionnairesQuestion);
+      
   }
 
   disabled() {
@@ -83,6 +90,18 @@ export class QuestionnaireNewComponent implements OnInit {
       this.chargeQuestionnaires();
     });
     
+  }
+
+
+
+  filterQuestionnaires(questions,questionsSelected):Question[] {
+    const questionsSelectedIDs = new Set(questionsSelected.map(({ question }) => question.id));
+    this.filteredQuestions = [
+      ...questionsSelected.filter(({ question }) => !questionsSelectedIDs.has(question.id)),
+      ...questions.filter(({ id }) => !questionsSelectedIDs.has(id))
+    ];
+    console.log(this.filteredQuestions);
+    return this.filteredQuestions;
   }
 
   onCancel(event) {

@@ -125,7 +125,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
   }
 
   onClose() {
-    this.ref.close();
+    this.ref.close(this.allQuestionnairesSelected);
   }
 
 }
