@@ -1,7 +1,4 @@
-<p-toast key="questionnaireEmptyMessage" position="top-center"></p-toast>
-<p-toast key="rolesEdited" position="top-center"></p-toast>
-<p-toast key="questionnaireAssignDeleted" position="top-center"></p-toast>
-<p-toast key="patientAssignOkMessage" position="top-center"></p-toast>
+<p-toast key="questionnaireNew" position="top-center"></p-toast>
 <p-blockUI [blocked]="isloading"></p-blockUI>
 <div class=" grid justify-content-center align-items-center overflow-auto">
 
@@ -13,7 +10,7 @@
 
     </div>
 </div>
-
+<form id="formCreateQuestionnaire" name="newQuestionnaire" #questionnaireObj="ngForm" (ngSubmit)="saveQuestionnaire(questionnaireObj)">
 <div style="height: calc(5vh - 1rem)">
     <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1 font-bold">Información general:</label>
 </div><br />
@@ -21,7 +18,7 @@
 <div class="card">
     <div class="formgrid grid">
         <div class="field col-12 md:col-3">
-            <input id="city" type="text" placeholder="Descripción" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <input id="city" name="description" type="text" placeholder="Descripción" [(ngModel)]="questionnaireObj.description" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <div class="field col-12 md:col-3">
             <input id="city" type="text" placeholder="Usuario" disabled class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
@@ -104,7 +101,8 @@
     <div>
         <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
             label="{{ 'patientEdit.form.close' | translate}}"></button>
-        <button type="button" class="p-button-primary w-7rem ml-2" pButton
+        <button type="submit" class="p-button-primary w-7rem ml-2" pButton 
             label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
     </div>
 </div>
+</form>

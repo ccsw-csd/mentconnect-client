@@ -115,12 +115,10 @@ export class QuestionQuestionnaireComponent implements OnInit {
     );
     this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
     this.ref.close(this.allQuestionnairesSelected);
-    //console.log(this.allQuestionnairesSelected);
   }
   
 
   getAllQuestionnairesSelected(){
-    //console.log(this.allQuestionnairesSelected);
     return this.allQuestionnairesSelected;
   }
 

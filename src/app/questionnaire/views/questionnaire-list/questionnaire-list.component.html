@@ -1,6 +1,6 @@
 <p-table #ql [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" [loading]="loading"
   [scrollable]="true" scrollHeight="calc(100vh - 190px)" responsiveLayout="scroll" 
-  [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+  [paginator]="true" [rows]="25" [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
   currentPageReportTemplate="{first} - {last} / {totalRecords}" paginatorPosition="bottom"   >
   <ng-template pTemplate="paginatorleft">
     <button pButton type="button" label="Nuevo Cuestionario" icon="pi pi-plus" (click)="newQuestionnaire()"></button>

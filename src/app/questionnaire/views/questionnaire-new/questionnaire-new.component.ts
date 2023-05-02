@@ -9,6 +9,9 @@ import { Question } from '../../model/Question';
 import { QuestionService } from '../../services/question.service';
 import { QuestionQuestionnaireComponent } from '../question-questionnaire/question-questionnaire.component';
 import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
+import { Questionnaire } from '../../model/Questionnaire';
+import { QuestionnaireService } from '../../services/questionnaire.service';
+import { QuestionnaireQuestionService } from '../../services/questionnaire-question.service';
 
 @Component({
   selector: 'app-questionnaire-new',
@@ -20,20 +23,19 @@ export class QuestionnaireNewComponent implements OnInit {
   isloading: boolean = false;
   questions: Question[] = [];
   questionnairesQuestion: QuestionnaireQuestion[] = [];
-  // questionnaires: Questionnaire[] = [];
-  // questionnairesPatient: QuestionnairePatient[] = [];
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionSelected: Question;
   questionDisabled: Boolean;
-  //questionnairesAvailablesPatient: Questionnaire[] = [];
   questionsNumber = 0;
-  public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
   filteredQuestions: Question[];
+  questionnaireObj: Questionnaire;
 
   constructor(    
     //private patientService: PatientService,
     private translateService: TranslateService,
+    private questionnaireService: QuestionnaireService,
+    private questionnaireQuestionService: QuestionnaireQuestionService,
     private messageService: MessageService,
     private location: Location,
     private route: ActivatedRoute,
@@ -47,10 +49,6 @@ export class QuestionnaireNewComponent implements OnInit {
   ngOnInit(): void {
     this.questionDisabled = true;
     this.chargeQuestionnaires();
-    // this.questionService.findAllQuestions().subscribe(questionsArray =>{
-    //   this.questions = questionsArray; 
-    // });
-    // this.filterQuestionnaires(this.questionnairesQuestion);
   }
 
   chargeQuestionnaires(){
@@ -58,9 +56,6 @@ export class QuestionnaireNewComponent implements OnInit {
         this.questions = questionsArray; 
         this.filteredQuestions = this.filterQuestionnaires(this.questions,this.questionnairesQuestion);
       });
-      //this.questionnairesQuestion.push(new QuestionnaireQuestion(null,null,null,null));
-      //console.log(this.questionnairesQuestion);
-      
   }
 
   disabled() {
@@ -84,8 +79,6 @@ export class QuestionnaireNewComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe(res =>{
-      //this.questionnairesQuestion.push(res);
-      //this.questionnairesQuestion = res;
       this.questionnairesQuestion = this.questionnairesQuestion.concat(res);
       this.chargeQuestionnaires();
     });
@@ -100,8 +93,44 @@ export class QuestionnaireNewComponent implements OnInit {
       ...questionsSelected.filter(({ question }) => !questionsSelectedIDs.has(question.id)),
       ...questions.filter(({ id }) => !questionsSelectedIDs.has(id))
     ];
-    console.log(this.filteredQuestions);
+    this.questionDisabled = true;
     return this.filteredQuestions;
+  }
+
+  saveQuestionnaire(questionnaire){
+    if(this.questionnairesQuestion.length>0){
+      const newQuestionnaire = new Questionnaire(
+        questionnaire.description
+      );
+
+      this.questionnaireService.saveQuestionnaire(newQuestionnaire).subscribe({
+        
+        next: (res:Questionnaire) => {
+          // const newQuestionnaireQuestion = new QuestionnaireQuestion(
+            
+          // );
+          // this.questionnaireQuestionService.saveQuestionnaireQuestion(this.questionnairesQuestion).subscribe({
+          //   next:(res:QuestionnaireQuestion) => {
+          //     console.log("sii");
+          //   },error:(err:any) => {
+          //     console.log("noo")
+          //   }
+          //});
+          // this.isloading = false;
+          questionnaire.resetForm();
+          this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
+          this.router.navigate(["questionnaire"]);
+        },
+        error: (err:any) => {
+          // this.isloading = false;
+          questionnaire.resetForm();
+          this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Cuestionario NO añadido con éxito'});
+        }
+      });
+      
+    }else{
+      console.log("Debe haber al menos una pregunta en el cuestionario");
+    }
   }
 
   onCancel(event) {
