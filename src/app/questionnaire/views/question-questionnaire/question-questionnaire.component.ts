@@ -22,7 +22,7 @@ interface TimeSlot {
 
 interface DayWeek {
   value: string,
-  code: string
+  code: number
 }
 
 @Component({
@@ -33,7 +33,7 @@ interface DayWeek {
 export class QuestionQuestionnaireComponent implements OnInit {
   isloading: boolean = false;
   slots: TimeSlot[];
-  daysWeeks: DayWeek[];
+  weekDays: DayWeek[];
   questionnairePatientObj: QuestionnairePatient;
   questionObj: Question;
   questionnaireAssigned: boolean;
@@ -63,14 +63,14 @@ export class QuestionQuestionnaireComponent implements OnInit {
       {value: 'Afternoon', code: 'A'},
       {value: 'Evening', code: 'E'},
     ];
-    this.daysWeeks = [
-      {value: 'Lunes', code: '1'},
-      {value: 'Martes', code: '2'},
-      {value: 'Miércoles', code: '3'},
-      {value: 'Jueves', code: '4'},
-      {value: 'Viernes', code: '5'},
-      {value: 'Sábado', code: '6'},
-      {value: 'Domingo', code: '0'},
+    this.weekDays = [
+      {value: 'Lunes', code: 1},
+      {value: 'Martes', code: 2},
+      {value: 'Miércoles', code: 3},
+      {value: 'Jueves', code: 4},
+      {value: 'Viernes', code: 5},
+      {value: 'Sábado', code: 6},
+      {value: 'Domingo', code: 0},
     ];
   }
 
@@ -110,8 +110,8 @@ export class QuestionQuestionnaireComponent implements OnInit {
     const newQuestionnaireQuestion = new QuestionnaireQuestion(
       questionnaireQuestionObj.questionnaire, 
       this.questionObj, 
-      questionnaireQuestionObj.timeSlot, 
-      questionnaireQuestionObj.dayWeeks
+      questionnaireQuestionObj.timeslot, 
+      questionnaireQuestionObj.weekDays
     );
     this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
     this.ref.close(this.allQuestionnairesSelected);

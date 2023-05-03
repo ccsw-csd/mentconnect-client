@@ -5,14 +5,14 @@ export class QuestionnaireQuestion {
     id: number;
     questionnaire: Questionnaire;
     question: Question;
-    timeSlot: string;
-    dayWeeks: number[];  
+    timeslot: string;
+    weekDays: number[];  
 
-    constructor(questionnaire, question, timeSlot, dayWeeks){
+    constructor(questionnaire, question, timeslot, weekDays){
         this.questionnaire = questionnaire;
         this.question = question;
-        this.timeSlot = timeSlot;
-        this.dayWeeks = dayWeeks;
+        this.timeslot = timeslot;
+        this.weekDays = weekDays;
     }
 
 }

@@ -17,8 +17,8 @@ export class QuestionnaireQuestionService {
     public datepipe: DatePipe
   ) { }
 
-  saveQuestionnaireQuestion(questionnaireQuestion: QuestionnaireQuestion[]): Observable<QuestionnaireQuestion> {
-    return this.http.post<QuestionnaireQuestion>(environment.server + '/questionnaire-question/', questionnaireQuestion);
+  saveQuestionnaireQuestions(questionnaireQuestions: QuestionnaireQuestion[]): Observable<QuestionnaireQuestion[]> {
+    return this.http.post<QuestionnaireQuestion[]>(environment.server + '/questionnaire-question/', questionnaireQuestions);
   }
 
 }

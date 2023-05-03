@@ -44,11 +44,13 @@ export class QuestionnaireNewComponent implements OnInit {
     // private roleService: RoleService,
     private questionService: QuestionService,
     private dialogService: DialogService,
-    private ref: DynamicDialogRef) { }
+    private ref: DynamicDialogRef,
+    ) { }
 
   ngOnInit(): void {
     this.questionDisabled = true;
     this.chargeQuestionnaires();
+
   }
 
   chargeQuestionnaires(){
@@ -84,8 +86,7 @@ export class QuestionnaireNewComponent implements OnInit {
     });
     
   }
-
-
+  
 
   filterQuestionnaires(questions,questionsSelected):Question[] {
     const questionsSelectedIDs = new Set(questionsSelected.map(({ question }) => question.id));
@@ -100,26 +101,27 @@ export class QuestionnaireNewComponent implements OnInit {
   saveQuestionnaire(questionnaire){
     if(this.questionnairesQuestion.length>0){
       const newQuestionnaire = new Questionnaire(
-        questionnaire.description
+        questionnaire.description,
+        questionnaire.questions = this.questionnairesQuestion
       );
 
       this.questionnaireService.saveQuestionnaire(newQuestionnaire).subscribe({
         
         next: (res:Questionnaire) => {
-          // const newQuestionnaireQuestion = new QuestionnaireQuestion(
-            
-          // );
-          // this.questionnaireQuestionService.saveQuestionnaireQuestion(this.questionnairesQuestion).subscribe({
-          //   next:(res:QuestionnaireQuestion) => {
-          //     console.log("sii");
+          // this.questionnairesQuestion.forEach((questionnaireQuestion) => {
+          //   questionnaireQuestion.questionnaire = res;
+          // });
+          // this.questionnaireQuestionService.saveQuestionnaireQuestions(this.questionnairesQuestion).subscribe({
+          //   next:(res:QuestionnaireQuestion[]) => {
+          //     this.router.navigate(["questionnaire"]);
           //   },error:(err:any) => {
-          //     console.log("noo")
+          //     console.log("error")
           //   }
-          //});
+          // });
           // this.isloading = false;
           questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
-          this.router.navigate(["questionnaire"]);
+          
         },
         error: (err:any) => {
           // this.isloading = false;

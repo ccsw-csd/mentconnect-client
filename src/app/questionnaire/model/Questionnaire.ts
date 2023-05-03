@@ -11,14 +11,10 @@ export class Questionnaire {
     createDate: Date;
     lastEditDate: Date;  
 
-    constructor(description: string);
-    constructor(init?:Partial<Questionnaire>);
-    constructor(descriptionOrInit?: string | Partial<Questionnaire>) {
-        if (typeof descriptionOrInit === 'string') {
-            this.description = descriptionOrInit;
-        } else {
-            Object.assign(this, descriptionOrInit);
-        }
+    constructor(description?, questions?){
+        this.description = description;
+        this.questions = questions;
     }
+
 }
 

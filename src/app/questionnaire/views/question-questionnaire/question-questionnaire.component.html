@@ -5,10 +5,11 @@
 <form id="formQuestionsToQuestionnaire" name="questionnaireQuestionForm" #questionnaireQuestionObj="ngForm" (ngSubmit)="displayToSelect(questionnaireQuestionObj)">
 <div id="dates" class="formgrid w-full grid mt-2">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
-        <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of daysWeeks">
-            <p-checkbox required name="group1" [value]="day.value" [inputId]="day.code" [(ngModel)]="questionnaireQuestionObj.dayWeeks"></p-checkbox>
-            <label [for]="day.code">{{ day.value }}</label>
-        </div>
+        <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of weekDays">
+            <p-checkbox required name="group1" [value]="day.code" [inputId]="day.value" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
+            <label [for]="day.value">{{ day.value }}</label>
+          </div>
+          
         
 
     </div>
@@ -20,7 +21,7 @@
         <div class="flex flex-wrap gap-3">
             <div class="flex align-items-center" *ngFor="let slot of slots">
                 <p-radioButton required name="time" [value]="slot.value" [inputId]="'time' + slot.code"
-                    [(ngModel)]="questionnaireQuestionObj.timeSlot"></p-radioButton>
+                    [(ngModel)]="questionnaireQuestionObj.timeslot"></p-radioButton>
                 <label [for]="'time' + slot.code" class="ml-2">{{ slot.value }}</label>
             </div>
         </div>
