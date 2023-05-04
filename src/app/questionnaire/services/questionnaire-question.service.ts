@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Questionnaire } from '../model/Questionnaire';
 import { QuestionnairePatient } from '../model/QuestionnairePatient';
 import { QuestionnaireQuestion } from '../model/QuestionnaireQuestion';
+import { WeekDay } from '../model/WeekDay';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,8 @@ export class QuestionnaireQuestionService {
     return this.http.post<QuestionnaireQuestion[]>(environment.server + '/questionnaire-question/', questionnaireQuestions);
   }
 
+  getWeekDays(): Observable<WeekDay[]> {
+    return this.http.get<WeekDay[]>(environment.server + '/weekday/findAll');
+  }
+  
 }

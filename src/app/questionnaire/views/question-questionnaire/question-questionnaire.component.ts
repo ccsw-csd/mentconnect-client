@@ -14,15 +14,12 @@ import { Question } from '../../model/Question';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { AnswerTypeValue } from '../../model/AnswerTypeValue';
 import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
+import { QuestionnaireQuestionService } from '../../services/questionnaire-question.service';
+import { WeekDay } from '../../model/WeekDay';
 
 interface TimeSlot {
   value: string,
   code: string
-}
-
-interface DayWeek {
-  value: string,
-  code: number
 }
 
 @Component({
@@ -33,7 +30,7 @@ interface DayWeek {
 export class QuestionQuestionnaireComponent implements OnInit {
   isloading: boolean = false;
   slots: TimeSlot[];
-  weekDays: DayWeek[];
+  weekDays: WeekDay[];
   questionnairePatientObj: QuestionnairePatient;
   questionObj: Question;
   questionnaireAssigned: boolean;
@@ -47,9 +44,20 @@ export class QuestionQuestionnaireComponent implements OnInit {
   answersByType: AnswerTypeValue[] = [];
   questionnaireQuestionObj : QuestionnaireQuestion;
   public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
+  weekDayNames = {
+    0: 'Lunes',
+    1: 'Martes',
+    2: 'Miércoles',
+    3: 'Jueves',
+    4: 'Viernes',
+    5: 'Sábado',
+    6: 'Domingo'
+  };
+  
   constructor(
     public ref: DynamicDialogRef,
     private questionnaireService: QuestionnaireService,
+    private questionnaireQuestionService: QuestionnaireQuestionService,
     private translate: TranslateService,
     private messageService: MessageService,
     private location: Location,
@@ -63,21 +71,13 @@ export class QuestionQuestionnaireComponent implements OnInit {
       {value: 'Afternoon', code: 'A'},
       {value: 'Evening', code: 'E'},
     ];
-    this.weekDays = [
-      {value: 'Lunes', code: 1},
-      {value: 'Martes', code: 2},
-      {value: 'Miércoles', code: 3},
-      {value: 'Jueves', code: 4},
-      {value: 'Viernes', code: 5},
-      {value: 'Sábado', code: 6},
-      {value: 'Domingo', code: 0},
-    ];
   }
 
   ngOnInit(): void {
     this.questionObj = Object.assign({ question: Question }, this.config.data.question);
     this.showAlert();
     this.chargeListOfAnswersTypeValue();
+    this.getWeekDays();
   }
   chargeListOfAnswersTypeValue() {
     this.questionnaireService.getAnswersByDescription(this.questionObj.answerType.description).subscribe(answersTypeArray=>{
@@ -107,11 +107,15 @@ export class QuestionQuestionnaireComponent implements OnInit {
   }
 
   displayToSelect(questionnaireQuestionObj: QuestionnaireQuestion) {
+    // const newWeekDay = new WeekDay(
+    //   2
+    // );
+    // this.weekDays.push(newWeekDay)
     const newQuestionnaireQuestion = new QuestionnaireQuestion(
       questionnaireQuestionObj.questionnaire, 
       this.questionObj, 
       questionnaireQuestionObj.timeslot, 
-      questionnaireQuestionObj.weekDays
+      this.weekDays
     );
     this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
     this.ref.close(this.allQuestionnairesSelected);
@@ -120,6 +124,14 @@ export class QuestionQuestionnaireComponent implements OnInit {
 
   getAllQuestionnairesSelected(){
     return this.allQuestionnairesSelected;
+  }
+
+  getWeekDays(){
+    this.questionnaireQuestionService.getWeekDays().subscribe({
+      next: (res) => {
+        this.weekDays = res
+      }
+    });
   }
 
   onClose() {

@@ -6,13 +6,13 @@
 <div id="dates" class="formgrid w-full grid mt-2">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
         <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of weekDays">
-            <p-checkbox required name="group1" [value]="day.code" [inputId]="day.value" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
-            <label [for]="day.value">{{ day.value }}</label>
-          </div>
-          
-        
-
-    </div>
+          <p-checkbox required name="group1" [value]="day.value" [inputId]="day.id" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
+          <label [for]="day.id">{{ weekDayNames[day.value] }}</label>
+        </div>
+      </div>
+      
+      
+    
 </div>
 <br />
 <span class="ml-1 font-bold">Franja horaria:</span>
