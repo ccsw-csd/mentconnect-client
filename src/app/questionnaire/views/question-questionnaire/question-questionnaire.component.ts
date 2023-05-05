@@ -31,6 +31,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
   isloading: boolean = false;
   slots: TimeSlot[];
   weekDays: WeekDay[];
+  newwD: WeekDay[] = [];
   questionnairePatientObj: QuestionnairePatient;
   questionObj: Question;
   questionnaireAssigned: boolean;
@@ -44,15 +45,6 @@ export class QuestionQuestionnaireComponent implements OnInit {
   answersByType: AnswerTypeValue[] = [];
   questionnaireQuestionObj : QuestionnaireQuestion;
   public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
-  weekDayNames = {
-    0: 'Lunes',
-    1: 'Martes',
-    2: 'Miércoles',
-    3: 'Jueves',
-    4: 'Viernes',
-    5: 'Sábado',
-    6: 'Domingo'
-  };
   
   constructor(
     public ref: DynamicDialogRef,
@@ -86,6 +78,9 @@ export class QuestionQuestionnaireComponent implements OnInit {
     })
     
   }
+
+
+
   translateAnswers() {
     const translatedAnswers = [];
     for (let i = 0; i < this.answersByType.length; i++) {
@@ -107,19 +102,27 @@ export class QuestionQuestionnaireComponent implements OnInit {
   }
 
   displayToSelect(questionnaireQuestionObj: QuestionnaireQuestion) {
-    // const newWeekDay = new WeekDay(
-    //   2
-    // );
-    // this.weekDays.push(newWeekDay)
+    // const newWeekDay = new WeekDay();
+    // newWeekDay.id = 5;
+    // this.newwD.push(newWeekDay)
+    for (const weekDayE of questionnaireQuestionObj.weekDays) {
+      let weekDay = new WeekDay();
+      weekDay.id = weekDayE.id;
+      weekDay.code = weekDayE.code;
+      this.newwD.push(weekDay);
+    }
+    
+    
     const newQuestionnaireQuestion = new QuestionnaireQuestion(
       questionnaireQuestionObj.questionnaire, 
       this.questionObj, 
       questionnaireQuestionObj.timeslot, 
-      this.weekDays
+      this.newwD
     );
     this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
     this.ref.close(this.allQuestionnairesSelected);
   }
+  
   
 
   getAllQuestionnairesSelected(){
@@ -129,9 +132,21 @@ export class QuestionQuestionnaireComponent implements OnInit {
   getWeekDays(){
     this.questionnaireQuestionService.getWeekDays().subscribe({
       next: (res) => {
+        console.log(res);
         this.weekDays = res
       }
     });
+  }
+
+  translateWeekDays() {
+    const translatedWeekDays = [];
+    for (let i = 0; i < this.weekDays.length; i++) {
+      const dayWeek = this.weekDays[i].code;
+      this.translate.get(dayWeek).subscribe(translated => {
+        translatedWeekDays.push({label: translated, value: dayWeek});
+      });
+    }
+   this.weekDays = translatedWeekDays;
   }
 
   onClose() {

@@ -83,7 +83,12 @@
                                 Tipo: {{questionnairesQuestion.question.answerType.description | translate}}
                             </div>
                             <div>
-                                Días:   <li *ngFor="let day of questionnairesQuestion.weekDays">{{ day.value }}</li>
+                                Días:  
+                                <ng-container *ngFor="let day of questionnairesQuestion.weekDays; let isLast = last">
+                                    <span>{{ day.code | translate }}</span>
+                                    <ng-container *ngIf="!isLast">, </ng-container>
+                                  </ng-container>
+                                  
                             </div>
                             <div>
                                 Franja horaria: {{questionnairesQuestion.timeslot}}

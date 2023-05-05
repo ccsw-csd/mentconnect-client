@@ -17,7 +17,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         "assistance/patient-evaluation",
         "assistance/patient-diary",
         "management/users",
-        "questionnaire/questionnaire-list"
+        "questionnaire/questionnaire-list",
+        "questionnaire/questionnaire-question"
     ]);
   };
 

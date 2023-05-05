@@ -1,0 +1,9 @@
+{
+    "MON" : "Lunes",
+    "TUE" : "Martes",
+    "WEN" : "Miércoles",
+    "THU" : "Jueves",
+    "FRI" : "Viernes",
+    "SAT" : "Sábado",
+    "SUN" : "Domingo"
+}

@@ -99,39 +99,26 @@ export class QuestionnaireNewComponent implements OnInit {
   }
 
   saveQuestionnaire(questionnaire){
-    if(this.questionnairesQuestion.length>0){
+    if(this.questionnairesQuestion.length>0 && questionnaire.description!=null){
       const newQuestionnaire = new Questionnaire(
         questionnaire.description,
         questionnaire.questions = this.questionnairesQuestion
       );
 
       this.questionnaireService.saveQuestionnaire(newQuestionnaire).subscribe({
-        
         next: (res:Questionnaire) => {
-          // this.questionnairesQuestion.forEach((questionnaireQuestion) => {
-          //   questionnaireQuestion.questionnaire = res;
-          // });
-          // this.questionnaireQuestionService.saveQuestionnaireQuestions(this.questionnairesQuestion).subscribe({
-          //   next:(res:QuestionnaireQuestion[]) => {
-          //     this.router.navigate(["questionnaire"]);
-          //   },error:(err:any) => {
-          //     console.log("error")
-          //   }
-          // });
-          // this.isloading = false;
           questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
           
         },
         error: (err:any) => {
-          // this.isloading = false;
           questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Cuestionario NO añadido con éxito'});
         }
       });
       
     }else{
-      console.log("Debe haber al menos una pregunta en el cuestionario");
+      this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Debes insertar una descripción y al menos una pregunta al cuestionario'});
     }
   }
 

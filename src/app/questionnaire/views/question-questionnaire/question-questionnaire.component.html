@@ -6,8 +6,8 @@
 <div id="dates" class="formgrid w-full grid mt-2">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
         <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of weekDays">
-          <p-checkbox required name="group1" [value]="day.value" [inputId]="day.id" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
-          <label [for]="day.id">{{ weekDayNames[day.value] }}</label>
+          <p-checkbox required name="group1" [value]="day" [inputId]="day.id" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
+          <label [for]="day.id"> {{ day.code | translate}} </label>
         </div>
       </div>
       
