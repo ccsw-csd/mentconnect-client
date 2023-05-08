@@ -20,7 +20,7 @@
     <div class="col-12  flex ml-3">
         <div class="flex flex-wrap gap-3">
             <div class="flex align-items-center" *ngFor="let slot of slots">
-                <p-radioButton required name="time" [value]="slot.value" [inputId]="'time' + slot.code"
+                <p-radioButton required name="time" [value]="slot.code" [inputId]="'time' + slot.code"
                     [(ngModel)]="questionnaireQuestionObj.timeslot"></p-radioButton>
                 <label [for]="'time' + slot.code" class="ml-2">{{ slot.value }}</label>
             </div>
@@ -36,11 +36,12 @@
     <div *ngIf="showDiv">
         <span class="ml-1 font-bold">Alerta:</span>
         <div class="col-12  flex ml-2">
-            <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel"
-                styleClass="w-full" placeholder="Valor de alerta" optionValue="code" optionLabel="value"></p-dropdown>
+            <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel" [(ngModel)]="questionnaireQuestionObj.alertConfigAnswerType"
+                styleClass="w-full" placeholder="Valor de alerta" name="alertConfigAnswerType"></p-dropdown>
+
             <!--si no es numérica......-->
-            <input type="text" class="form-control w-full ml-4" pInputText pKeyFilter="alphanum"
-                placeholder="Respuestas consecutivas para alerta" name="nif" required />
+            <input type="text" class="form-control w-full ml-4" pInputText pKeyFilter="alphanum" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"
+                placeholder="Respuestas consecutivas para alerta" name="alertConfigConsecutiveAnswers" required />
             <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>
         </div>
     </div>

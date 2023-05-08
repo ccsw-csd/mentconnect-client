@@ -26,7 +26,9 @@ export class QuestionnaireNewComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionSelected: Question;
+  questionDeselected: Question;
   questionDisabled: Boolean;
+  questionDeselectedDisabled: Boolean;
   questionsNumber = 0;
   filteredQuestions: Question[];
   questionnaireObj: Questionnaire;
@@ -49,6 +51,7 @@ export class QuestionnaireNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionDisabled = true;
+    this.questionDeselectedDisabled = true;
     this.chargeQuestionnaires();
 
   }
@@ -86,6 +89,20 @@ export class QuestionnaireNewComponent implements OnInit {
     });
     
   }
+
+  disabledDeselected() {
+    if (this.questionDeselected == null) {
+      this.questionDeselectedDisabled = true;
+    } else {
+      this.questionDeselectedDisabled = false;
+    }
+  }
+
+  toDeselect(question:Question) {
+    this.questionnairesQuestion = this.questionnairesQuestion.filter((element) => element.id !== question.id);
+    this.questionDeselectedDisabled = true;
+  }
+
   
 
   filterQuestionnaires(questions,questionsSelected):Question[] {

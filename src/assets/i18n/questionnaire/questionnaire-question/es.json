@@ -5,5 +5,8 @@
     "THU" : "Jueves",
     "FRI" : "Viernes",
     "SAT" : "Sábado",
-    "SUN" : "Domingo"
+    "SUN" : "Domingo",
+    "MOR": "Mañana",
+    "AFT": "Tarde",
+    "EVE": "Noche"
 }

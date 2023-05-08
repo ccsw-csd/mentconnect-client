@@ -45,7 +45,10 @@ export class QuestionQuestionnaireComponent implements OnInit {
   answersByType: AnswerTypeValue[] = [];
   questionnaireQuestionObj : QuestionnaireQuestion;
   public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
+  answerTypeValue: string;
+  consecutiveAnswers: number;
   
+
   constructor(
     public ref: DynamicDialogRef,
     private questionnaireService: QuestionnaireService,
@@ -59,9 +62,9 @@ export class QuestionQuestionnaireComponent implements OnInit {
     public config: DynamicDialogConfig,
   ) {
     this.slots = [
-      {value: 'Morning', code: 'M'},
-      {value: 'Afternoon', code: 'A'},
-      {value: 'Evening', code: 'E'},
+      {value: this.translate.instant('MOR'), code: 'MOR'},
+      {value: this.translate.instant('AFT'), code: 'AFT'},
+      {value: this.translate.instant('EVE'), code: 'EVE'},
     ];
   }
 
@@ -70,6 +73,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
     this.showAlert();
     this.chargeListOfAnswersTypeValue();
     this.getWeekDays();
+    
   }
   chargeListOfAnswersTypeValue() {
     this.questionnaireService.getAnswersByDescription(this.questionObj.answerType.description).subscribe(answersTypeArray=>{
@@ -78,8 +82,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
     })
     
   }
-
-
+  
 
   translateAnswers() {
     const translatedAnswers = [];
@@ -102,24 +105,34 @@ export class QuestionQuestionnaireComponent implements OnInit {
   }
 
   displayToSelect(questionnaireQuestionObj: QuestionnaireQuestion) {
-    // const newWeekDay = new WeekDay();
-    // newWeekDay.id = 5;
-    // this.newwD.push(newWeekDay)
     for (const weekDayE of questionnaireQuestionObj.weekDays) {
       let weekDay = new WeekDay();
       weekDay.id = weekDayE.id;
       weekDay.code = weekDayE.code;
       this.newwD.push(weekDay);
     }
-    
-    
-    const newQuestionnaireQuestion = new QuestionnaireQuestion(
-      questionnaireQuestionObj.questionnaire, 
-      this.questionObj, 
-      questionnaireQuestionObj.timeslot, 
-      this.newwD
-    );
-    this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
+    if(!questionnaireQuestionObj.alertConfigConsecutiveAnswers){
+      const newQuestionnaireQuestion = new QuestionnaireQuestion(
+        questionnaireQuestionObj.questionnaire, 
+        this.questionObj, 
+        questionnaireQuestionObj.timeslot, 
+        this.newwD,
+      );
+      this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
+      
+    }else{
+
+      const newQuestionnaireQuestion = new QuestionnaireQuestion(
+        questionnaireQuestionObj.questionnaire, 
+        this.questionObj, 
+        questionnaireQuestionObj.timeslot, 
+        this.newwD,
+        new AnswerTypeValue(questionnaireQuestionObj.alertConfigAnswerType), //EL FALLO ES QUE LE TENGO QUE PASAR UN ANSWERTYPEVALUE Y NO EL VALUE COMO TAL. ASI TAMBIEN DA ERROR PORQUE AL BACK LLEGA EL ID NULO.
+        questionnaireQuestionObj.alertConfigConsecutiveAnswers
+      );
+      this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
+    }
+
     this.ref.close(this.allQuestionnairesSelected);
   }
   
@@ -132,7 +145,6 @@ export class QuestionQuestionnaireComponent implements OnInit {
   getWeekDays(){
     this.questionnaireQuestionService.getWeekDays().subscribe({
       next: (res) => {
-        console.log(res);
         this.weekDays = res
       }
     });

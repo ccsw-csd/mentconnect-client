@@ -61,8 +61,8 @@
         <div class="field col"><br /><br />
             <button pButton type="button" (click)="toSelect(questionSelected)" icon="pi pi-angle-double-right"
                 class="p-button-lg p-button-text w-full " [disabled]="questionDisabled"></button>
-                <button pButton type="button" icon="pi pi-angle-double-left"
-                class="p-button-lg p-button-text w-full " disabled></button>
+                <button pButton type="button" (click)="toDeselect(questionDeselected)" icon="pi pi-angle-double-left"
+                class="p-button-lg p-button-text w-full " [disabled]="questionDeselectedDisabled"></button>
         </div>
     </div>
     <div class="col-12 md:col-5 lg:col-5">
@@ -70,8 +70,8 @@
             style="height: calc(28.3vh);">
             <p-progressSpinner></p-progressSpinner>
         </div>
-        <p-listbox readonly [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
-            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected"
+        <p-listbox [(ngModel)]="questionDeselected" name="filteredQuestionsDeselected"  [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
+            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected" (onChange)="disabledDeselected()" 
             [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}">
             <p-header>Seleccionadas</p-header>
             <ng-template let-questionnairesQuestion pTemplate="item">
@@ -91,7 +91,10 @@
                                   
                             </div>
                             <div>
-                                Franja horaria: {{questionnairesQuestion.timeslot}}
+                                Franja horaria: {{questionnairesQuestion.timeslot | translate}}
+                            </div>
+                            <div *ngIf="questionnairesQuestion.alertConfigConsecutiveAnswers">
+                                Alerta: "{{questionnairesQuestion.alertConfigAnswerType | translate}}" durante {{questionnairesQuestion.alertConfigConsecutiveAnswers}} días consecutivos
                             </div>
                         </div>
                     </div>
