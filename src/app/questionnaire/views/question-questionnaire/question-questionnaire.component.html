@@ -28,7 +28,7 @@
     </div>
 </div><br />
 <div *ngIf="checkAlert">
-    <a class="text-xl font-bold cursor-pointer" (click)="showDiv = !showDiv">
+    <a class="text-xl font-bold cursor-pointer" (click)="toggleShowDiv()">
         {{ showDiv ? 'No insertar alerta' : 'Insertar alerta' }}
     </a>
 
@@ -38,8 +38,6 @@
         <div class="col-12  flex ml-2">
             <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel" [(ngModel)]="questionnaireQuestionObj.alertConfigAnswerType"
                 styleClass="w-full" placeholder="Valor de alerta" name="alertConfigAnswerType"></p-dropdown>
-
-            <!--si no es numérica......-->
             <input type="text" class="form-control w-full ml-4" pInputText pKeyFilter="alphanum" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"
                 placeholder="Respuestas consecutivas para alerta" name="alertConfigConsecutiveAnswers" required />
             <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>

@@ -77,7 +77,7 @@ export class QuestionnaireListComponent implements OnInit {
   showQuestions(questionnaire: Questionnaire, questionsNumber:number){
     let questions: string = ""
     questionnaire.questions.map(question => 
-      this.translateService.get(question.question).subscribe((text:string) =>{
+      this.translateService.get(question.question.question).subscribe((text:string) =>{
         questions+=text+"\n"
       })
     )

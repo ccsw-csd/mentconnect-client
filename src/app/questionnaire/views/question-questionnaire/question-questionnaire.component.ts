@@ -39,7 +39,6 @@ export class QuestionQuestionnaireComponent implements OnInit {
   rangeDatesSelected: Date[];
   question: QuestionnaireNewComponent;
   selectedSlot: string = '';
-  showDivAlert: boolean = false;
   checkAlert: boolean = false;
   selectedDays: string[] = [];
   answersByType: AnswerTypeValue[] = [];
@@ -47,6 +46,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
   public allQuestionnairesSelected: QuestionnaireQuestion[] = [];
   answerTypeValue: string;
   consecutiveAnswers: number;
+  showDiv: boolean;
   
 
   constructor(
@@ -87,13 +87,19 @@ export class QuestionQuestionnaireComponent implements OnInit {
   translateAnswers() {
     const translatedAnswers = [];
     for (let i = 0; i < this.answersByType.length; i++) {
-      const answer = this.answersByType[i].value;
-      this.translate.get(answer).subscribe(translated => {
+      const answer = this.answersByType[i];
+      this.translate.get(answer.value).subscribe(translated => {
         translatedAnswers.push({label: translated, value: answer});
       });
     }
     this.answersByType = translatedAnswers;
+    
   }
+  
+  toggleShowDiv(): void {
+    this.showDiv = !this.showDiv;
+  }
+  
 
   showAlert() {
     let answerType = this.questionObj.answerType.description;
@@ -105,6 +111,10 @@ export class QuestionQuestionnaireComponent implements OnInit {
   }
 
   displayToSelect(questionnaireQuestionObj: QuestionnaireQuestion) {
+    if(this.showDiv == false){
+      questionnaireQuestionObj.alertConfigAnswerType = null;
+      questionnaireQuestionObj.alertConfigConsecutiveAnswers = null;
+    }
     for (const weekDayE of questionnaireQuestionObj.weekDays) {
       let weekDay = new WeekDay();
       weekDay.id = weekDayE.id;
@@ -121,18 +131,16 @@ export class QuestionQuestionnaireComponent implements OnInit {
       this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
       
     }else{
-
       const newQuestionnaireQuestion = new QuestionnaireQuestion(
         questionnaireQuestionObj.questionnaire, 
         this.questionObj, 
         questionnaireQuestionObj.timeslot, 
         this.newwD,
-        new AnswerTypeValue(questionnaireQuestionObj.alertConfigAnswerType), //EL FALLO ES QUE LE TENGO QUE PASAR UN ANSWERTYPEVALUE Y NO EL VALUE COMO TAL. ASI TAMBIEN DA ERROR PORQUE AL BACK LLEGA EL ID NULO.
+        questionnaireQuestionObj.alertConfigAnswerType, 
         questionnaireQuestionObj.alertConfigConsecutiveAnswers
       );
       this.allQuestionnairesSelected.push(newQuestionnaireQuestion);
     }
-
     this.ref.close(this.allQuestionnairesSelected);
   }
   

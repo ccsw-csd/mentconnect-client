@@ -17,17 +17,21 @@
 
 <div class="card">
     <div class="formgrid grid">
-        <div class="field col-12 md:col-3">
-            <input id="city" name="description" type="text" placeholder="Descripción" [(ngModel)]="questionnaireObj.description" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="p-float-label mb-4 col-12 md:col-3">
+            <input type="text" pInputText pKeyFilter="alphanum"  name="description"  [(ngModel)]="questionnaireObj.description" class="form-control w-full" required>
+            <label for="inputtext">Descripción *</label>
         </div>
-        <div class="field col-12 md:col-3">
-            <input id="city" type="text" placeholder="Usuario" disabled class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="p-float-label mb-4 col-12 md:col-3">
+            <input type="text" pInputText pKeyFilter="alphanum" disabled class="form-control w-full">
+            <label for="inputtext">Usuario</label>
         </div>
-        <div class="field col-12 md:col-3">
-            <input  type="text" placeholder="Fecha creación" disabled  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="p-float-label mb-4 col-12 md:col-3">
+            <input  type="text" pInputText pKeyFilter="alphanum" disabled class="form-control w-full">
+            <label for="inputtext">Fecha creación</label>
         </div>
-        <div class="field col-12 md:col-3">
-            <input id="text" type="text" placeholder="Última edición" disabled class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="p-float-label mb-4 col-12 md:col-3">
+            <input type="text" pInputText pKeyFilter="alphanum" disabled class="form-control w-full" required>
+            <label for="inputtext">Última edición</label>
         </div>
     </div>
 </div><br />
@@ -94,7 +98,7 @@
                                 Franja horaria: {{questionnairesQuestion.timeslot | translate}}
                             </div>
                             <div *ngIf="questionnairesQuestion.alertConfigConsecutiveAnswers">
-                                Alerta: "{{questionnairesQuestion.alertConfigAnswerType | translate}}" durante {{questionnairesQuestion.alertConfigConsecutiveAnswers}} días consecutivos
+                                Alerta: "{{questionnairesQuestion.alertConfigAnswerType.value | translate}}" durante {{questionnairesQuestion.alertConfigConsecutiveAnswers}} días consecutivos
                             </div>
                         </div>
                     </div>

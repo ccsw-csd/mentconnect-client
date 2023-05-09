@@ -26,7 +26,7 @@ export class QuestionnaireNewComponent implements OnInit {
   loading: boolean = true;
   lastTableLazyLoadEvent: LazyLoadEvent;
   questionSelected: Question;
-  questionDeselected: Question;
+  questionDeselected: QuestionnaireQuestion;
   questionDisabled: Boolean;
   questionDeselectedDisabled: Boolean;
   questionsNumber = 0;
@@ -34,7 +34,6 @@ export class QuestionnaireNewComponent implements OnInit {
   questionnaireObj: Questionnaire;
 
   constructor(    
-    //private patientService: PatientService,
     private translateService: TranslateService,
     private questionnaireService: QuestionnaireService,
     private questionnaireQuestionService: QuestionnaireQuestionService,
@@ -43,7 +42,6 @@ export class QuestionnaireNewComponent implements OnInit {
     private route: ActivatedRoute,
     public datepipe: DatePipe,
     private router: Router,
-    // private roleService: RoleService,
     private questionService: QuestionService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
@@ -98,10 +96,17 @@ export class QuestionnaireNewComponent implements OnInit {
     }
   }
 
-  toDeselect(question:Question) {
-    this.questionnairesQuestion = this.questionnairesQuestion.filter((element) => element.id !== question.id);
+  toDeselect(question: QuestionnaireQuestion) {
+    this.questionnairesQuestion = this.questionnairesQuestion.filter((element) => {
+      if (element === question) {
+        return false; 
+      }
+      return true; 
+    });
     this.questionDeselectedDisabled = true;
+    this.filterQuestionnaires(this.questions, this.questionnairesQuestion);
   }
+  
 
   
 
@@ -137,6 +142,7 @@ export class QuestionnaireNewComponent implements OnInit {
     }else{
       this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Debes insertar una descripción y al menos una pregunta al cuestionario'});
     }
+    this.router.navigate(["questionnaire"]);
   }
 
   onCancel(event) {
