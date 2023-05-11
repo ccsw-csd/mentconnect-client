@@ -28,23 +28,15 @@
     </div>
 </div><br />
 <div *ngIf="checkAlert">
-    <a class="text-xl font-bold cursor-pointer" (click)="toggleShowDiv()">
-        {{ showDiv ? 'No insertar alerta' : 'Insertar alerta' }}
-    </a>
-
-    <br />
-    <div *ngIf="showDiv">
         <span class="ml-1 font-bold">Alerta:</span>
         <div class="col-12  flex ml-2">
             <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel" [(ngModel)]="questionnaireQuestionObj.alertConfigAnswerType"
                 styleClass="w-full" placeholder="Valor de alerta" name="alertConfigAnswerType"></p-dropdown>
-            <input type="text" class="form-control w-full ml-4" pInputText pKeyFilter="alphanum" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"
-                placeholder="Respuestas consecutivas para alerta" name="alertConfigConsecutiveAnswers" required />
-            <i class="pi pi-info-circle ml-4 mt-1" style="font-size: 2rem"></i>
+                <p-inputNumber styleClass="w-full" class="form-control w-full ml-4" placeholder="Respuestas consecutivas para alerta" name="alertConfigConsecutiveAnswers" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"> </p-inputNumber>
+            <i class="pi pi-info-circle ml-4" style="font-size: 2rem" pTooltip="Al asignar una pregunta al cuestionario puedes insertar una configuración de alerta, siempre y cuando el tipo de pregunta no sea numérica. Para configurarla debes introducir el valor de la alerta en el desplegable e introducir un nº de respuestas consecutivas para la misma."></i>
         </div>
-    </div>
-</div><br /><br /><br /><br /><br />
-
+</div>
+<br/><br/>
 <div class="flex flex-row-reverse w-auto mt-8 mr-3">
     <div>
         <button type="submit" class="p-button-primary w-6rem"   [disabled]="questionnaireQuestionObj.form.invalid " pButton

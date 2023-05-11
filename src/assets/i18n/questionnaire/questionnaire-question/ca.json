@@ -1,0 +1,12 @@
+{
+    "MON" : "Dilluns",
+    "TUE" : "Dimarts",
+    "WEN" : "Dimecres",
+    "THU":  "Dijous",
+    "FRI" : "Divendres",
+    "SAT" : "Dissabte",
+    "SUN" : "diumenge",
+    "MOR":  "Matí",
+    "AFT":  "Tarda",
+    "EVE":  "Vespre"
+}

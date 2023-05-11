@@ -9,7 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Questionnaire } from 'src/app/questionnaire/model/Questionnaire';
 import { QuestionnairePatient } from 'src/app/questionnaire/model/QuestionnairePatient';
 import { QuestionnairePatientService } from 'src/app/questionnaire/services/questionnaire-patient.service';
-import { QuestionnaireNewComponent } from '../questionnaire-new/questionnaire-new.component';
+import { QuestionnaireEditComponent } from '../questionnaire-edit/questionnaire-edit.component';
 import { Question } from '../../model/Question';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { AnswerTypeValue } from '../../model/AnswerTypeValue';
@@ -37,7 +37,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
   questionnaireAssigned: boolean;
   rangeDates: Date[];
   rangeDatesSelected: Date[];
-  question: QuestionnaireNewComponent;
+  question: QuestionnaireEditComponent;
   selectedSlot: string = '';
   checkAlert: boolean = false;
   selectedDays: string[] = [];
@@ -95,10 +95,7 @@ export class QuestionQuestionnaireComponent implements OnInit {
     this.answersByType = translatedAnswers;
     
   }
-  
-  toggleShowDiv(): void {
-    this.showDiv = !this.showDiv;
-  }
+
   
 
   showAlert() {

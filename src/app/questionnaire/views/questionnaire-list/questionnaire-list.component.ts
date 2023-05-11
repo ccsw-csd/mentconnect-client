@@ -96,7 +96,7 @@ export class QuestionnaireListComponent implements OnInit {
   }
 
   newQuestionnaire(){
-    this.router.navigate(["questionnaire-new"]);
+    this.router.navigate(["questionnaire-edit"]);
   }
 
 }

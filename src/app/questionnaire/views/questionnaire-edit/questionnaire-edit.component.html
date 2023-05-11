@@ -76,7 +76,7 @@
         </div>
         <p-listbox [(ngModel)]="questionDeselected" name="filteredQuestionsDeselected"  [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
             *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected" (onChange)="disabledDeselected()" 
-            [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}">
+            [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}" >
             <p-header>Seleccionadas</p-header>
             <ng-template let-questionnairesQuestion pTemplate="item">
                 <div class="questionnairesQuestion-item">
@@ -113,7 +113,7 @@
     <div>
         <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
             label="{{ 'patientEdit.form.close' | translate}}"></button>
-        <button type="submit" class="p-button-primary w-7rem ml-2" pButton 
+        <button type="submit" class="p-button-primary w-7rem ml-2" pButton  [disabled]="questionnaireObj.form.invalid || questionnairesQuestion.length == 0"
             label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
     </div>
 </div>

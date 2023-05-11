@@ -14,12 +14,12 @@ import { QuestionnaireService } from '../../services/questionnaire.service';
 import { QuestionnaireQuestionService } from '../../services/questionnaire-question.service';
 
 @Component({
-  selector: 'app-questionnaire-new',
-  templateUrl: './questionnaire-new.component.html',
-  styleUrls: ['./questionnaire-new.component.scss'],
+  selector: 'app-questionnaire-edit',
+  templateUrl: './questionnaire-edit.component.html',
+  styleUrls: ['./questionnaire-edit.component.scss'],
   providers: [DialogService, DynamicDialogRef, MessageService]
 })
-export class QuestionnaireNewComponent implements OnInit {
+export class QuestionnaireEditComponent implements OnInit {
   isloading: boolean = false;
   questions: Question[] = [];
   questionnairesQuestion: QuestionnaireQuestion[] = [];
@@ -73,7 +73,7 @@ export class QuestionnaireNewComponent implements OnInit {
     const header = "Asignar pregunta";
     this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
       header: header,
-      height: '580px',
+      height: '515px',
       data: {
         question: question,
         loading: this.loading
@@ -131,7 +131,7 @@ export class QuestionnaireNewComponent implements OnInit {
         next: (res:Questionnaire) => {
           questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
-          
+          this.router.navigate(["questionnaire"]);
         },
         error: (err:any) => {
           questionnaire.resetForm();
@@ -142,7 +142,6 @@ export class QuestionnaireNewComponent implements OnInit {
     }else{
       this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Debes insertar una descripción y al menos una pregunta al cuestionario'});
     }
-    this.router.navigate(["questionnaire"]);
   }
 
   onCancel(event) {

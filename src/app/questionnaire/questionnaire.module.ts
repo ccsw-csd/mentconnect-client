@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { QuestionnaireListComponent } from './views/questionnaire-list/questionnaire-list.component';
-import { QuestionnaireNewComponent } from './views/questionnaire-new/questionnaire-new.component';
+import { QuestionnaireEditComponent } from './views/questionnaire-edit/questionnaire-edit.component';
 import { ToastModule } from 'primeng/toast';
 import { BlockUIModule } from 'primeng/blockui';
 import { CalendarModule } from 'primeng/calendar';
@@ -19,7 +19,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 @NgModule({
   declarations: [
     QuestionnaireListComponent,
-    QuestionnaireNewComponent,
+    QuestionnaireEditComponent,
     QuestionQuestionnaireComponent
   ],
   imports: [

@@ -1,0 +1,12 @@
+{
+    "MON" : "Monday",
+    "TUE" : "Tuesday",
+    "WEN" : "Wednesday",
+    "THU" : "Thursday",
+    "FRI" : "Friday",
+    "SAT" : "Saturday",
+    "SUN" : "Sunday",
+    "MOR": "Morning",
+    "AFT": "Afternoon",
+    "EVE": "Evening"
+}
