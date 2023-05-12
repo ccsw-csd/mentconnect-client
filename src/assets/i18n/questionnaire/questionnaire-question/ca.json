@@ -1,12 +1,36 @@
 {
-    "MON" : "Dilluns",
-    "TUE" : "Dimarts",
-    "WEN" : "Dimecres",
-    "THU":  "Dijous",
-    "FRI" : "Divendres",
-    "SAT" : "Dissabte",
-    "SUN" : "diumenge",
-    "MOR":  "Matí",
-    "AFT":  "Tarda",
-    "EVE":  "Vespre"
+    "questionnaireQuestion": {
+        "assignQuestion": "Assignar pregunta",
+        "question": "Pregunta",
+        "type": "Tipus",
+        "weekDays": "Dies de la setmana",
+        "timezone": "Franja horària",
+        "alert": {
+            "title": "Alerta",
+            "value": "Valor d'alerta",
+            "consecutiveAnswers": "Respostes consecutives per alerta",
+            "info": "En assignar una pregunta al qüestionari podeu inserir una configuració d'alerta, sempre que el tipus de pregunta no sigui numèrica. Per configurar-la has d'introduir el valor de l'alerta al desplegable i introduir un nombre de respostes consecutives."
+        }
+    },
+    "questionnaireEdit": {
+        "generalInformation": "Informació general",
+        "description": "Descripció",
+        "user": "Usuari",
+        "createDate": "Data creació",
+        "lastEdition": "Última edició",
+        "questionnaireToQuestions": "Preguntes al qüestionari",
+        "selected": "Seleccionats",
+        "during": "durant",
+        "consecutiveDays": "dies consecutius"
+    },
+    "MON": "Dilluns",
+    "TUE": "Dimarts",
+    "WEN": "Dimecres",
+    "THU": "Dijous",
+    "FRI": "Divendres",
+    "SAT": "Dissabte",
+    "SUN": "diumenge",
+    "MOR": "Matí",
+    "AFT": "Tarda",
+    "EVE": "Vespre"
 }

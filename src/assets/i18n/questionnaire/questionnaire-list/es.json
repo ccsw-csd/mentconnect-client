@@ -1,4 +1,5 @@
 {
+    "buttonQuestionnaireNew":"Nuevo Cuestionario",
     "answer":{
         "dichotomic":{
             "description": "Dicotómica",

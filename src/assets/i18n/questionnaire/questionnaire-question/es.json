@@ -1,4 +1,28 @@
 {
+    "questionnaireQuestion":{
+        "assignQuestion": "Asignar pregunta",
+        "question":"Pregunta",
+        "type":"Tipo",
+        "weekDays":"Días de la semana",
+        "timezone": "Franja horaria",
+        "alert":{
+            "title":"Alerta",
+            "value": "Valor de alerta",
+            "consecutiveAnswers": "Respuestas consecutivas para alerta",
+            "info":"Al asignar una pregunta al cuestionario puedes insertar una configuración de alerta, siempre y cuando el tipo de pregunta no sea numérica. Para configurarla debes introducir el valor de la alerta en el desplegable e introducir un nº de respuestas consecutivas para la misma."
+        } 
+    },
+    "questionnaireEdit":{
+        "generalInformation":"Información general",
+        "description":"Descripción",
+        "user":"Usuario",
+        "createDate": "Fecha creación",
+        "lastEdition": "Última edición",
+        "questionnaireToQuestions":"Preguntas al cuestionario",
+        "selected":"Seleccionados",
+        "during":"durante",
+        "consecutiveDays": "días consecutivos"
+    },
     "MON" : "Lunes",
     "TUE" : "Martes",
     "WEN" : "Miércoles",
@@ -10,3 +34,4 @@
     "AFT": "Tarde",
     "EVE": "Noche"
 }
+

@@ -70,9 +70,9 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   toSelect(question:Question) {
-    const header = "Asignar pregunta";
+    const header = "questionnaireQuestion.assignQuestion"; //TRADUCIR
     this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
-      header: header,
+      header: this.translateService.instant(header),
       height: '515px',
       data: {
         question: question,

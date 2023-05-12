@@ -1,7 +1,7 @@
 <p-toast key="patientAssignMessage" position="top-center"></p-toast>
-<span class="ml-1 font-bold">Pregunta: </span>{{questionObj.question | translate}} | <span class="font-bold">Tipo:
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.question" | translate}}: </span>{{questionObj.question | translate}} | <span class="font-bold">{{ "questionnaireQuestion.type" | translate}}:
 </span>{{questionObj.answerType.description | translate}}<br /><br />
-<span class="ml-1 font-bold">Días de la semana:</span>
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.weekDays" | translate}}:</span>
 <form id="formQuestionsToQuestionnaire" name="questionnaireQuestionForm" #questionnaireQuestionObj="ngForm" (ngSubmit)="displayToSelect(questionnaireQuestionObj)">
 <div id="dates" class="formgrid w-full grid mt-2">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
@@ -15,7 +15,7 @@
     
 </div>
 <br />
-<span class="ml-1 font-bold">Franja horaria:</span>
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.timezone" | translate}}:</span>
 <div id="timezone" class="formgrid w-full grid mt-2">
     <div class="col-12  flex ml-3">
         <div class="flex flex-wrap gap-3">
@@ -28,12 +28,12 @@
     </div>
 </div><br />
 <div *ngIf="checkAlert">
-        <span class="ml-1 font-bold">Alerta:</span>
+        <span class="ml-1 font-bold">{{ "questionnaireQuestion.alert.title" | translate}}:</span>
         <div class="col-12  flex ml-2">
             <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel" [(ngModel)]="questionnaireQuestionObj.alertConfigAnswerType"
-                styleClass="w-full" placeholder="Valor de alerta" name="alertConfigAnswerType"></p-dropdown>
-                <p-inputNumber styleClass="w-full" class="form-control w-full ml-4" placeholder="Respuestas consecutivas para alerta" name="alertConfigConsecutiveAnswers" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"> </p-inputNumber>
-            <i class="pi pi-info-circle ml-4" style="font-size: 2rem" pTooltip="Al asignar una pregunta al cuestionario puedes insertar una configuración de alerta, siempre y cuando el tipo de pregunta no sea numérica. Para configurarla debes introducir el valor de la alerta en el desplegable e introducir un nº de respuestas consecutivas para la misma."></i>
+                styleClass="w-full" placeholder="{{ 'questionnaireQuestion.alert.value' | translate}}" name="alertConfigAnswerType"></p-dropdown>
+                <p-inputNumber styleClass="w-full" class="form-control w-full ml-4" placeholder="{{ 'questionnaireQuestion.alert.consecutiveAnswers' | translate}}" name="alertConfigConsecutiveAnswers" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"> </p-inputNumber>
+            <i class="pi pi-info-circle ml-4" style="font-size: 2rem" pTooltip="{{ 'questionnaireQuestion.alert.info' | translate}}"></i>
         </div>
 </div>
 <br/><br/>
