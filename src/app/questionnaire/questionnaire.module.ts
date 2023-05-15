@@ -16,6 +16,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { QuestionQuestionnaireComponent } from './views/question-questionnaire/question-questionnaire.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     QuestionnaireListComponent,
@@ -37,7 +38,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ReactiveFormsModule,
     ListboxModule,
     CheckboxModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ProgressSpinnerModule
   ]
 })
 export class QuestionnaireModule { }

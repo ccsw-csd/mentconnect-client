@@ -30,4 +30,7 @@ export class QuestionnaireService {
     return this.http.post<Questionnaire>(environment.server + '/questionnaire/', questionnaire);
   }
 
+  getQuestionnaire(id: number): Observable<Questionnaire>{
+    return this.http.get<Questionnaire>(environment.server + "/questionnaire/" + id);
+  }
 }

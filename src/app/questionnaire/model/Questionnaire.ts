@@ -12,9 +12,14 @@ export class Questionnaire {
     createDate: Date;
     lastEditDate: Date;  
 
-    constructor(description?, questions?){
+    constructor(id?, description?, questions?, patients?, user?, createDate?, lastEditDate?){
+        this.id = id;
         this.description = description;
         this.questions = questions;
+        this.patients = patients;
+        this.user = user;
+        this.createDate = createDate;
+        this.lastEditDate = lastEditDate;
     }
 
 }

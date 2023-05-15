@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'questionnaire', component: QuestionnaireListComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'questionnaire-edit', component: QuestionnaireEditComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
+      { path: 'questionnaire-edit/:id', component: QuestionnaireEditComponent, canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-discharge', component: PatientDischargeComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-list', component: PatientListComponent,  canActivate: [AuthGuardService], data: { roles: [Role.Staff] }},
       { path: 'patient-edit/:id', component: PatientEditComponent },

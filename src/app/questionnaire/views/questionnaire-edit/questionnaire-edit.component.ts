@@ -12,6 +12,7 @@ import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
 import { Questionnaire } from '../../model/Questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { QuestionnaireQuestionService } from '../../services/questionnaire-question.service';
+import { User } from 'src/app/management/models/User';
 
 @Component({
   selector: 'app-questionnaire-edit',
@@ -45,9 +46,20 @@ export class QuestionnaireEditComponent implements OnInit {
     private questionService: QuestionService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
-    ) { }
+    ) { 
+
+    }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.getQuestionnaire(id); //aqui coge los datos del questionario a editar pero no los muestra en los inputs
+      
+    } else {
+      this.questionnaireObj = new Questionnaire(null, null, null, null, new User(), null, null);
+    }
+    
+    this.isloading = true;
     this.questionDisabled = true;
     this.questionDeselectedDisabled = true;
     this.chargeQuestionnaires();
@@ -58,6 +70,7 @@ export class QuestionnaireEditComponent implements OnInit {
       this.questionService.findAllQuestions().subscribe(questionsArray =>{
         this.questions = questionsArray; 
         this.filteredQuestions = this.filterQuestionnaires(this.questions,this.questionnairesQuestion);
+        this.isloading = false;
       });
   }
 
@@ -107,7 +120,16 @@ export class QuestionnaireEditComponent implements OnInit {
     this.filterQuestionnaires(this.questions, this.questionnairesQuestion);
   }
   
-
+  getQuestionnaire(id: number){
+    this.questionnaireService.getQuestionnaire(id).subscribe({
+      next: (res) => {
+        this.questionnaireObj = res
+        this.questionnairesQuestion = res.questions
+        console.log(this.questionnaireObj)
+        //this.patientObj.dateBirth = new Date(this.patientObj.dateBirth)
+      }
+    });
+  }
   
 
   filterQuestionnaires(questions,questionsSelected):Question[] {
@@ -123,23 +145,28 @@ export class QuestionnaireEditComponent implements OnInit {
   saveQuestionnaire(questionnaire){
     if(this.questionnairesQuestion.length>0 && questionnaire.description!=null){
       const newQuestionnaire = new Questionnaire(
+        questionnaire.id,
         questionnaire.description,
-        questionnaire.questions = this.questionnairesQuestion
+        questionnaire.questions = this.questionnairesQuestion,
+        questionnaire.patients,
+        questionnaire.user,
+        questionnaire.createDate,
+        questionnaire.lastEditDate
       );
 
       this.questionnaireService.saveQuestionnaire(newQuestionnaire).subscribe({
         next: (res:Questionnaire) => {
-          questionnaire.resetForm();
-          this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
+          //questionnaire.resetForm();
+          //this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
           this.router.navigate(["questionnaire"]);
         },
         error: (err:any) => {
-          questionnaire.resetForm();
+          //questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Cuestionario NO añadido con éxito'});
         }
       });
       
-    }else{
+     }else{
       this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Debes insertar una descripción y al menos una pregunta al cuestionario'});
     }
   }

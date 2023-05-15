@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { Questionnaire } from '../../model/Questionnaire';
@@ -33,6 +33,7 @@ export class QuestionnaireListComponent implements OnInit {
     private questionnaireService: QuestionnaireService,
     private userService: UserService,
     private translateService: TranslateService,
+    // private messageService: MessageService,
     private router: Router
   ) { }
 
@@ -97,6 +98,10 @@ export class QuestionnaireListComponent implements OnInit {
 
   newQuestionnaire(){
     this.router.navigate(["questionnaire-edit"]);
+  }
+
+  editPatient(questionnaire: Questionnaire){
+    this.router.navigate(["questionnaire-edit", questionnaire.id]);
   }
 
 }
