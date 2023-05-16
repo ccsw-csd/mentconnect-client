@@ -52,11 +52,10 @@ export class QuestionnaireEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
+    this.questionnaireObj = new Questionnaire(null, null, null, null, new User(), null, null);
     if (id) {
-      this.getQuestionnaire(id); //aqui coge los datos del questionario a editar pero no los muestra en los inputs
+      this.getQuestionnaire(id); 
       
-    } else {
-      this.questionnaireObj = new Questionnaire(null, null, null, null, new User(), null, null);
     }
     
     this.isloading = true;
@@ -83,7 +82,7 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   toSelect(question:Question) {
-    const header = "questionnaireQuestion.assignQuestion"; //TRADUCIR
+    const header = "questionnaireQuestion.assignQuestion"; 
     this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
       header: this.translateService.instant(header),
       height: '515px',
@@ -125,8 +124,6 @@ export class QuestionnaireEditComponent implements OnInit {
       next: (res) => {
         this.questionnaireObj = res
         this.questionnairesQuestion = res.questions
-        console.log(this.questionnaireObj)
-        //this.patientObj.dateBirth = new Date(this.patientObj.dateBirth)
       }
     });
   }
@@ -156,12 +153,9 @@ export class QuestionnaireEditComponent implements OnInit {
 
       this.questionnaireService.saveQuestionnaire(newQuestionnaire).subscribe({
         next: (res:Questionnaire) => {
-          //questionnaire.resetForm();
-          //this.messageService.add({key: 'questionnaireNew', severity:'success', summary: 'Cuestionario añadido', detail: 'Cuestionario añadido con éxito'});
           this.router.navigate(["questionnaire"]);
         },
         error: (err:any) => {
-          //questionnaire.resetForm();
           this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Cuestionario NO añadido con éxito'});
         }
       });
