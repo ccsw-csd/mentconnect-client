@@ -1,110 +1,108 @@
 <p-toast key="questionnaireNew" position="top-center"></p-toast>
-<p-blockUI [blocked]="isloading"></p-blockUI>
 
 <form id="formCreateQuestionnaire" name="newQuestionnaire" #questionnaire="ngForm" (ngSubmit)="saveQuestionnaire(questionnaireObj)">
-<div style="height: calc(5vh - 1rem)">
-    <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1 font-bold">{{ "questionnaireEdit.generalInformation" | translate}}:</label>
-</div><br />
-
-<div class="card">
-    <div class="formgrid grid">
-        <div class="p-float-label mb-4 col-12 md:col-3">
-            <input type="text" pInputText pKeyFilter="alphanum"  name="description"  [(ngModel)]="questionnaireObj.description" class="form-control w-full" required>
-            <label for="inputtext">{{ "questionnaireEdit.description" | translate}} *</label>
-        </div>
-        <div class="p-float-label mb-4 col-12 md:col-3">
-            <input type="text" pInputText pKeyFilter="alphanum"  name="user" [(ngModel)]="questionnaireObj.user.username" disabled class="form-control w-full">
-            <label for="inputtext">{{ "questionnaireEdit.user" | translate}}</label>
-        </div>
-        <div class="p-float-label mb-4 col-12 md:col-3">
-            <input  type="text" pInputText pKeyFilter="alphanum" name="createDate" [(ngModel)]="questionnaireObj.createDate" disabled class="form-control w-full">
-            <label for="inputtext">{{ "questionnaireEdit.createDate" | translate}}</label>
-        </div>
-        <div class="p-float-label mb-4 col-12 md:col-3">
-            <input type="text" pInputText pKeyFilter="alphanum" name="lastEditDate" [(ngModel)]="questionnaireObj.lastEditDate" disabled class="form-control w-full">
-            <label for="inputtext">{{ "questionnaireEdit.lastEdition" | translate}}</label>
+    <div style="height: calc(5vh - 1rem)">
+        <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1 font-bold">{{ "questionnaireEdit.generalInformation" | translate}}:</label>
+    </div>
+    <br/>
+    <div class="card">
+        <div class="formgrid grid">
+            <div class="p-float-label mb-4 col-12 md:col-3">
+                <input type="text" pInputText pKeyFilter="alphanum"  name="description"  [(ngModel)]="questionnaireObj.description" class="form-control w-full" required>
+                <label for="inputtext">{{ "questionnaireEdit.description" | translate}} *</label>
+            </div>
+            <div class="p-float-label mb-4 col-12 md:col-3">
+                <input type="text" pInputText pKeyFilter="alphanum"  name="user" [(ngModel)]="questionnaireObj.user.username" disabled class="form-control w-full">
+                <label for="inputtext">{{ "questionnaireEdit.user" | translate}}</label>
+            </div>
+            <div class="p-float-label mb-4 col-12 md:col-3">
+                <input  type="text" pInputText pKeyFilter="alphanum" name="createDate" [(ngModel)]="questionnaireObj.createDate" disabled class="form-control w-full">
+                <label for="inputtext">{{ "questionnaireEdit.createDate" | translate}}</label>
+            </div>
+            <div class="p-float-label mb-4 col-12 md:col-3">
+                <input type="text" pInputText pKeyFilter="alphanum" name="lastEditDate" [(ngModel)]="questionnaireObj.lastEditDate" disabled class="form-control w-full">
+                <label for="inputtext">{{ "questionnaireEdit.lastEdition" | translate}}</label>
+            </div>
         </div>
     </div>
-</div><br />
-
-<div style="height: calc(8vh - 1rem)">
-    <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1 font-bold">{{ "questionnaireEdit.questionnaireToQuestions" | translate}}:</label>
-</div>
-<div class="grid justify-content-center align-items-center">
-    <div class="col-12 md:col-5 lg:col-5">
-        <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(58.1vh);">
-            <p-progressSpinner></p-progressSpinner>
-        </div>
-        <p-listbox [(ngModel)]="questionSelected"  name="filteredQuestions" (onChange)="disabled()" 
-            [options]="filteredQuestions" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
-            [showToggleAll]="false" optionLabel="filteredQuestions" styleClass="w-full" *ngIf="!isloading"
-            [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}">
-            <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
-            <ng-template let-filteredQuestions pTemplate="item">
-                <div class="filteredQuestions-item">
-                    <div>
-                        <span class="text-base">{{filteredQuestions.question | translate}}</span>
+    <br/>
+    <div style="height: calc(8vh - 1rem)">
+        <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1 font-bold">{{ "questionnaireEdit.questionnaireToQuestions" | translate}}:</label>
+    </div>
+    <div class="grid justify-content-center align-items-center">
+        <div class="col-12 md:col-5 lg:col-5">
+            <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(58.1vh);">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <p-listbox [(ngModel)]="questionSelected"  name="filteredQuestions" (onChange)="disabled()" 
+                [options]="filteredQuestions" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
+                [showToggleAll]="false" optionLabel="filteredQuestions" styleClass="w-full" *ngIf="!isloading"
+                [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}">
+                <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
+                <ng-template let-filteredQuestions pTemplate="item">
+                    <div class="filteredQuestions-item">
                         <div>
-                            {{filteredQuestions.answerType.description | translate}}
+                            <span class="text-base">{{filteredQuestions.question | translate}}</span>
+                            <div>{{filteredQuestions.answerType.description | translate}}</div>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-        </p-listbox> 
-    </div>
-    <div class="col-12 md:col-2 lg:col-2">
-        <div class="field col"><br /><br />
-            <button pButton type="button" (click)="toSelect(questionSelected)" icon="pi pi-angle-double-right"
-                class="p-button-lg p-button-text w-full " [disabled]="questionDisabled"></button>
+                </ng-template>
+            </p-listbox> 
+        </div>
+        <div class="col-12 md:col-2 lg:col-2">
+            <div class="field col"><br/><br/>
+                <button pButton type="button" (click)="toSelect(questionSelected)" icon="pi pi-angle-double-right"
+                    class="p-button-lg p-button-text w-full " [disabled]="questionDisabled">
+                </button>
                 <button pButton type="button" (click)="toDeselect(questionDeselected)" icon="pi pi-angle-double-left"
-                class="p-button-lg p-button-text w-full " [disabled]="questionDeselectedDisabled"></button>
+                    class="p-button-lg p-button-text w-full " [disabled]="questionDeselectedDisabled">
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="col-12 md:col-5 lg:col-5">
-        <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(58.1vh);">
-            <p-progressSpinner></p-progressSpinner>
-        </div>
-        <p-listbox [(ngModel)]="questionDeselected" name="filteredQuestionsDeselected"  [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
-            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected" (onChange)="disabledDeselected()" 
-            [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}" >
-            <p-header>{{ "questionnaireEdit.selected" | translate }}</p-header>
-            <ng-template let-questionnairesQuestion pTemplate="item">
-                <div class="questionnairesQuestion-item">
+        <div class="col-12 md:col-5 lg:col-5">
+            <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(58.1vh);">
+                <p-progressSpinner></p-progressSpinner>
+            </div>
+            <p-listbox [(ngModel)]="questionDeselected" name="filteredQuestionsDeselected"  [options]="questionnairesQuestion" [metaKeySelection]="false" styleClass="w-full"
+                *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesSelected" (onChange)="disabledDeselected()" 
+                [listStyle]="{'height': 'calc(55vh - 1rem)','font-size':'11px'}" >
+                <p-header>{{ "questionnaireEdit.selected" | translate }}</p-header>
+                <ng-template let-questionnairesQuestion pTemplate="item">
                     <div class="questionnairesQuestion-item">
-                        <div>
-                            <span class="text-base">{{questionnairesQuestion.question.question | translate}}</span>
+                        <div class="questionnairesQuestion-item">
                             <div>
-                                {{ "questionnaireQuestion.type" | translate}}: {{questionnairesQuestion.question.answerType.description | translate}}
-                            </div>
-                            <div>
-                                {{ "questionnaireQuestion.weekDays" | translate}}:
-                                <ng-container *ngFor="let day of questionnairesQuestion.weekDays; let isLast = last">
-                                    <span>{{ day.code | translate }}</span>
-                                    <ng-container *ngIf="!isLast">, </ng-container>
-                                  </ng-container>
-                                  
-                            </div>
-                            <div>
-                                {{ "questionnaireQuestion.timezone" | translate}}: {{questionnairesQuestion.timeslot | translate}}
-                            </div>
-                            <div *ngIf="questionnairesQuestion.alertConfigConsecutiveAnswers">
-                                {{ "questionnaireQuestion.alert.title" | translate}}: "{{questionnairesQuestion.alertConfigAnswerType.value | translate}}" {{ "questionnaireEdit.during" | translate}} {{questionnairesQuestion.alertConfigConsecutiveAnswers}} {{ "questionnaireEdit.consecutiveDays" | translate}}
+                                <span class="text-base">{{questionnairesQuestion.question.question | translate}}</span>
+                                <div>
+                                    {{ "questionnaireQuestion.type" | translate}}: {{questionnairesQuestion.question.answerType.description | translate}}
+                                </div>
+                                <div>
+                                    {{ "questionnaireQuestion.weekDays" | translate}}:
+                                    <ng-container *ngFor="let day of questionnairesQuestion.weekDays; let isLast = last">
+                                        <span>{{ day.code | translate }}</span>
+                                        <ng-container *ngIf="!isLast">, </ng-container>
+                                    </ng-container>
+                                </div>
+                                <div>
+                                    {{ "questionnaireQuestion.timezone" | translate}}: {{questionnairesQuestion.timeslot | translate}}
+                                </div>
+                                <div *ngIf="questionnairesQuestion.alertConfigConsecutiveAnswers">
+                                    {{ "questionnaireQuestion.alert.title" | translate}}: "{{questionnairesQuestion.alertConfigAnswerType.value | translate}}" {{ "questionnaireEdit.during" | translate}} {{questionnairesQuestion.alertConfigConsecutiveAnswers}} {{ "questionnaireEdit.consecutiveDays" | translate}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-
-        </p-listbox>
+                </ng-template>
+            </p-listbox>
+        </div>
     </div>
-</div> 
-
-<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8  ">
-    <div>
-        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
-            label="{{ 'patientEdit.form.close' | translate}}"></button>
-        <button type="submit" class="p-button-primary w-7rem ml-2" pButton  [disabled]="questionnaire.form.invalid || questionnairesQuestion.length == 0"
-            label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
+    <div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8  ">
+        <div>
+            <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
+                label="{{ 'patientEdit.form.close' | translate}}">
+            </button>
+            <button type="submit" class="p-button-primary w-7rem ml-2" pButton  [disabled]="questionnaire.form.invalid || questionnairesQuestion.length == 0"
+                label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}">
+            </button>
+        </div>
     </div>
-</div>
 </form>

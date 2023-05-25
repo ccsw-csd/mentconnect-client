@@ -4,14 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Location } from '@angular/common';
 import { Question } from '../../model/Question';
 import { QuestionService } from '../../services/question.service';
 import { QuestionQuestionnaireComponent } from '../question-questionnaire/question-questionnaire.component';
 import { QuestionnaireQuestion } from '../../model/QuestionnaireQuestion';
 import { Questionnaire } from '../../model/Questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire.service';
-import { QuestionnaireQuestionService } from '../../services/questionnaire-question.service';
 import { User } from 'src/app/management/models/User';
 
 @Component({
@@ -21,6 +19,7 @@ import { User } from 'src/app/management/models/User';
   providers: [DialogService, DynamicDialogRef, MessageService]
 })
 export class QuestionnaireEditComponent implements OnInit {
+
   isloading: boolean = false;
   questions: Question[] = [];
   questionnairesQuestion: QuestionnaireQuestion[] = [];
@@ -37,9 +36,7 @@ export class QuestionnaireEditComponent implements OnInit {
   constructor(    
     private translateService: TranslateService,
     private questionnaireService: QuestionnaireService,
-    private questionnaireQuestionService: QuestionnaireQuestionService,
     private messageService: MessageService,
-    private location: Location,
     private route: ActivatedRoute,
     public datepipe: DatePipe,
     private router: Router,
@@ -51,26 +48,26 @@ export class QuestionnaireEditComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
     const id = this.route.snapshot.params['id'];
     this.questionnaireObj = new Questionnaire(null, null, null, null, new User(), null, null);
+
     if (id) {
       this.getQuestionnaire(id); 
-      
     }
     
     this.isloading = true;
     this.questionDisabled = true;
     this.questionDeselectedDisabled = true;
-    this.chargeQuestionnaires();
-
+    this.loadQuestionnaires();
   }
 
-  chargeQuestionnaires(){
-      this.questionService.findAllQuestions().subscribe(questionsArray =>{
-        this.questions = questionsArray; 
-        this.filteredQuestions = this.filterQuestionnaires(this.questions,this.questionnairesQuestion);
-        this.isloading = false;
-      });
+  loadQuestionnaires() {
+    this.questionService.findAllQuestions().subscribe(questionsArray =>{
+      this.questions = questionsArray; 
+      this.filteredQuestions = this.filterQuestionnaires(this.questions, this.questionnairesQuestion);
+      this.isloading = false;
+    });
   }
 
   disabled() {
@@ -82,7 +79,8 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   toSelect(question:Question) {
-    const header = "questionnaireQuestion.assignQuestion"; 
+    const header = "questionnaireQuestion.assignQuestion";
+
     this.ref = this.dialogService.open(QuestionQuestionnaireComponent, {
       header: this.translateService.instant(header),
       height: '515px',
@@ -93,11 +91,10 @@ export class QuestionnaireEditComponent implements OnInit {
       closable: false
     });
 
-    this.ref.onClose.subscribe(res =>{
+    this.ref.onClose.subscribe(res => {
       this.questionnairesQuestion = this.questionnairesQuestion.concat(res);
-      this.chargeQuestionnaires();
+      this.loadQuestionnaires();
     });
-    
   }
 
   disabledDeselected() {
@@ -119,7 +116,7 @@ export class QuestionnaireEditComponent implements OnInit {
     this.filterQuestionnaires(this.questions, this.questionnairesQuestion);
   }
   
-  getQuestionnaire(id: number){
+  getQuestionnaire(id: number) {
     this.questionnaireService.getQuestionnaire(id).subscribe({
       next: (res) => {
         this.questionnaireObj = res
@@ -127,9 +124,8 @@ export class QuestionnaireEditComponent implements OnInit {
       }
     });
   }
-  
 
-  filterQuestionnaires(questions,questionsSelected):Question[] {
+  filterQuestionnaires(questions,questionsSelected): Question[] {
     const questionsSelectedIDs = new Set(questionsSelected.map(({ question }) => question.id));
     this.filteredQuestions = [
       ...questionsSelected.filter(({ question }) => !questionsSelectedIDs.has(question.id)),
@@ -139,8 +135,9 @@ export class QuestionnaireEditComponent implements OnInit {
     return this.filteredQuestions;
   }
 
-  saveQuestionnaire(questionnaire){
-    if(this.questionnairesQuestion.length>0 && questionnaire.description!=null){
+  saveQuestionnaire(questionnaire) {
+    if(this.questionnairesQuestion.length > 0 && questionnaire.description != null) {
+
       const newQuestionnaire = new Questionnaire(
         questionnaire.id,
         questionnaire.description,
@@ -159,8 +156,7 @@ export class QuestionnaireEditComponent implements OnInit {
           this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Cuestionario NO añadido con éxito'});
         }
       });
-      
-     }else{
+    } else {
       this.messageService.add({key: 'questionnaireNew', severity:'error', summary: 'Cuestionario no añadido', detail: 'Debes insertar una descripción y al menos una pregunta al cuestionario'});
     }
   }

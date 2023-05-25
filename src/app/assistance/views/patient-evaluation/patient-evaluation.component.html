@@ -2,110 +2,102 @@
 <p-toast key="rolesEdited" position="top-center"></p-toast>
 <p-toast key="questionnaireAssignDeleted" position="top-center"></p-toast>
 <p-toast key="patientAssignOkMessage" position="top-center"></p-toast>
-<p-blockUI [blocked]="isloading"></p-blockUI>
-<div style="height: calc(10vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
-    <div class="flex flex-row-reverse flex-wrap card-container yellow-container">
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
-            {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
-            [innerHTML]="'patientEvaluation.patientCard.patient' | translate"> </div>
-        <div></div>
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
-                src="assets/images/user.png" class="w-2rem h-2rem" /></div>
+
+<div style="height: calc(10vh);" class="col-lg-6 col-md-8 col-sm-12">
+    <div class="flex flex-wrap justify-content-end" *ngIf="!isLoadingRoles">
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
+            <img alt="Card"src="assets/images/user.png" class="w-2rem h-2rem"/>
+        </div>
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
+            {{"patientEvaluation.patientCard.patient" | translate}}:
+        </div>
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900">
+            {{patientObj.user.name}} {{patientObj.user.surnames}} - {{patientObj.nif}}
+        </div>
     </div>
 </div>
 <div class=" grid justify-content-center align-items-center overflow-auto">
-
     <div class="col-12">
-        <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
-            style="height: calc(28.1vh);">
+        <div *ngIf="isLoadingRoles" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(30vh);">
             <p-progressSpinner></p-progressSpinner>
         </div>
-        <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false"
-            *ngIf="!isloading" styleClass="w-full" [checkbox]="true" [multiple]="true" [showToggleAll]="false"
-            optionLabel="roles" [listStyle]="{'height': 'calc(25vh - 1rem)','font-size':'11px'}">
-            <p-header>{{ "patientEvaluation.roleList" | translate }}</p-header>
+        <p-listbox name="role" [options]="roles" [(ngModel)]="rolesSelected" [metaKeySelection]="false" *ngIf="!isLoadingRoles"
+            styleClass="w-full" [checkbox]="true" [multiple]="true" [showToggleAll]="false"
+            optionLabel="roles" [listStyle]="{'height': 'calc(25vh)','font-size':'11px'}">
+            <p-header>{{"patientEvaluation.roleList" | translate }}</p-header>
             <ng-template let-roles pTemplate="item">
                 <div class="role-item">
-                    <div [pTooltip]=roles.code><span class="text-base">{{getTranslate(roles.code) |
-                            translate}}</span></div>
+                    <div [pTooltip]=roles.code><span class="text-base">{{getTranslate(roles.code) | translate}}</span></div>
                     <div [pTooltip]=roles.code>{{getTranslateDetail(roles.code) | translate}}</div>
                 </div>
             </ng-template>
         </p-listbox>
     </div>
 </div>
-<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2">
+<div style="height: calc(4vh)" class="flex flex-row-reverse mt-2">
     <div>
-        <button type="button" pButton mat-raised-button class=" p-button-primary " (click)="changeRoles(rolesSelected)"
-            label="{{ 'patientEvaluation.saveRoles' | translate}}"></button>
+        <button type="button" pButton mat-raised-button class="p-button-primary" (click)="changeRoles(rolesSelected)" label="{{'patientEvaluation.saveRoles' | translate}}"></button>
     </div>
 </div>
-<div style="height: calc(5vh - 1rem)">
-    <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1">{{ 'patientEvaluation.questionnaires'
-        | translate}}:</label>
-</div><br />
-
+<div style="height: calc(3vh)">
+    <label for="{{ 'patientEvaluation.questionnaires' | translate}}" class="ml-1">{{ 'patientEvaluation.questionnaires' | translate}}:</label>
+</div>
+<br/>
 <div class="grid justify-content-center align-items-center">
     <div class="col-12 md:col-5 lg:col-5">
-        <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center">
+        <div *ngIf="isLoadingAvailables" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(30vh);">
             <p-progressSpinner></p-progressSpinner>
         </div>
-        <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" *ngIf="!isloading"
+        <p-listbox name="questionnaire" [(ngModel)]="questionnaireSelected" (onChange)="disabled()" *ngIf="!isLoadingAvailables"
             [options]="questionnairesAvailablesPatient" [metaKeySelection]="false" [checkbox]="true" [multiple]="false"
             [showToggleAll]="false" optionLabel="questionnairesAvailablesPatient" styleClass="w-full"
-            [listStyle]="{'height': 'calc(25vh - 1rem)','font-size':'11px'}">
+            [listStyle]="{'height': 'calc(25vh)','font-size':'11px'}">
             <p-header>{{ "patientEvaluation.questionnaireAvailable" | translate }}</p-header>
             <ng-template let-questionnairesAvailablesPatient pTemplate="item">
                 <div class="questionnairesAvailablesPatient-item">
-                    <div [pTooltip]=questionnairesAvailablesPatient.description><span
-                            class="text-base">{{questionnairesAvailablesPatient.description}}</span></div>
-                    <div [pTooltip]=questionnairesAvailablesPatient.user_id>{{ 'patientEvaluation.questionsNumber' |
-                        translate}}:
-                        {{questionnairesAvailablesPatient.questions.length}} | {{ 'patientEvaluation.responsibleUser' |
-                        translate}}:
-                        {{questionnairesAvailablesPatient.user.name}}
-                        {{questionnairesAvailablesPatient.user.surnames}}</div>
+                    <div [pTooltip]=questionnairesAvailablesPatient.description>
+                        <span class="text-base">{{questionnairesAvailablesPatient.description}}</span>
+                    </div>
+                    <div [pTooltip]=questionnairesAvailablesPatient.user_id>
+                        {{ 'patientEvaluation.questionsNumber' | translate}}: {{questionnairesAvailablesPatient.questions.length}} | 
+                        {{ 'patientEvaluation.responsibleUser' | translate}}: {{questionnairesAvailablesPatient.user.name}} {{questionnairesAvailablesPatient.user.surnames}}
+                    </div>
                 </div>
             </ng-template>
         </p-listbox>
     </div>
     <div class="col-12 md:col-2 lg:col-2">
-        <div class="field col"><br /><br />
+        <div class="field col"><br/><br/>
             <button pButton type="button" (click)="toAssign(questionnaireSelected)" icon="pi pi-angle-double-right"
-                class="p-button-lg p-button-text w-full " [disabled]="questionnaireDisabled"></button>
+                class="p-button-lg p-button-text w-full" [disabled]="questionnaireDisabled">
+            </button>
         </div>
     </div>
     <div class="col-12 md:col-5 lg:col-5">
-        <div *ngIf="isloading" class="loadWrapper flex align-items-center flex-column justify-content-center"
-            style="height: calc(28.3vh);">
+        <div *ngIf="isLoadingAssigneds" class="loadWrapper flex align-items-center flex-column justify-content-center" style="height: calc(30vh);">
             <p-progressSpinner></p-progressSpinner>
         </div>
-        <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" styleClass="w-full"
-            *ngIf="!isloading" [showToggleAll]="false" optionLabel="questionnairesPatient"
-            [listStyle]="{'height': 'calc(25vh - 1rem)','font-size':'11px'}">
+        <p-listbox readonly [options]="questionnairesPatient" [metaKeySelection]="false" *ngIf="!isLoadingAssigneds"
+            [showToggleAll]="false" optionLabel="questionnairesPatient" styleClass="w-full"
+            [listStyle]="{'height': 'calc(25vh)','font-size':'11px'}">
             <p-header>{{ "patientEvaluation.questionnaireAsign" | translate }}</p-header>
             <ng-template let-questionnairesPatient pTemplate="item">
-                <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash"
-                    class="p-button-lg p-button-text "></button>
+                <button pButton type="button" (click)="deleteAssign(questionnairesPatient)" icon="pi pi-trash" class="p-button-text"></button>
                 <div class="questionnairePatient-item">
-                    <div [pTooltip]=questionnairesPatient.description><span
-                            class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
+                    <div [pTooltip]=questionnairesPatient.description>
+                        <span class="text-base">{{questionnairesPatient.questionnaire.description}}</span>
                     </div>
-                    <div>{{ "patientEvaluation.asignation" | translate }}:
-                        {{questionnairesPatient.startDate | date: 'dd/MM/yyyy'}} - {{questionnairesPatient.endDate|
-                        date: 'dd/MM/yyyy'}}</div>
+                    <div>
+                        {{"patientEvaluation.asignation" | translate }}: {{questionnairesPatient.startDate | date: 'dd/MM/yyyy'}} - {{questionnairesPatient.endDate| date: 'dd/MM/yyyy'}}
+                    </div>
                 </div>
             </ng-template>
-
         </p-listbox>
     </div>
 </div>
 
-<div style="height: calc(5vh - 1rem)" class="flex flex-row-reverse mt-2 ml-8 ">
+<div style="height: calc(4vh)" class="flex flex-row-reverse mt-2 ml-8 ">
     <div>
-        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary"
-            label="{{ 'patientEdit.form.close' | translate}}"></button>
+        <button type="button" pButton mat-raised-button (click)="onCancel($event)" class="w-7rem p-button-secondary" label="{{'patientEdit.form.close' | translate}}"></button>
     </div>
 </div>
