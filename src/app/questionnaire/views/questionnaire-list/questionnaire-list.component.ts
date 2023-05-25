@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { Questionnaire } from '../../model/Questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire.service';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questionnaire-list',
@@ -24,12 +25,16 @@ export class QuestionnaireListComponent implements OnInit {
   users: User[];
   
   loading: boolean = true;
-  totalRecords: number;
+  totalRecords: number;z
+
+  checkAlert: Boolean = false;
 
   constructor(
     private questionnaireService: QuestionnaireService,
     private userService: UserService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    // private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -72,11 +77,11 @@ export class QuestionnaireListComponent implements OnInit {
 
   showQuestions(questionnaire: Questionnaire, questionsNumber:number){
     let questions: string = ""
-    questionnaire.questions.map(question => 
-      this.translateService.get(question.question).subscribe((text:string) =>{
-        questions+=text+"\n"
-      })
-    )
+     questionnaire.questions.map(question => 
+       this.translateService.get(question.question.question).subscribe((text:string) =>{
+         questions+=text+"\n"
+       })
+     )
     return questions 
   }
 
@@ -85,7 +90,18 @@ export class QuestionnaireListComponent implements OnInit {
     questionnaire.patients.map(patient =>
       patient.user.name + " " + patient.user.surnames
     );
+    if(questionnaire.patients.length>0){
+      this.checkAlert = true;
+    }
     return patients.join("\n");
+  }
+
+  newQuestionnaire(){
+    this.router.navigate(["questionnaire-edit"]);
+  }
+
+  editPatient(questionnaire: Questionnaire){
+    this.router.navigate(["questionnaire-edit", questionnaire.id]);
   }
 
 }

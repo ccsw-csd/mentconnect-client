@@ -36,7 +36,8 @@ export class QuestionnairePatientService {
     return this.http.post<QuestionnairePatient>(environment.server + '/questionnaire-patient/check-questionnaire-assignable/', questionnairePatient);
   }
 
-  questionnaireAvailable(patientId: number): Observable<Questionnaire[]> {
+  getQuestionnaireAvailable(patientId: number): Observable<Questionnaire[]> {
     return this.http.get<Questionnaire[]>(environment.server + '/questionnaire-patient/questionnaire-available/' + patientId);
   }
+  
 }

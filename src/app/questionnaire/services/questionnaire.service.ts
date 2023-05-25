@@ -5,6 +5,8 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { User } from 'src/app/management/models/User';
 import { environment } from 'src/environments/environment';
 import { QuestionnairePage } from '../model/QuestionnairePage';
+import { AnswerTypeValue } from '../model/AnswerTypeValue';
+import { Questionnaire } from '../model/Questionnaire';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +23,14 @@ export class QuestionnaireService {
     return this.http.post<QuestionnairePage>(this.url, { description: description, questionsNumber: questionsNumber, patientsNumber: patientsNumber, user: user, pageable: pageable });
   }
 
+  getAnswersByDescription(description: string): Observable<AnswerTypeValue[]> {
+    return this.http.get<AnswerTypeValue[]>(environment.server + '/answer-type-value/findByAnswerTypeDescription?description=' + description);
+  }
+  saveQuestionnaire(questionnaire: Questionnaire): Observable<Questionnaire> {
+    return this.http.post<Questionnaire>(environment.server + '/questionnaire/', questionnaire);
+  }
+
+  getQuestionnaire(id: number): Observable<Questionnaire>{
+    return this.http.get<Questionnaire>(environment.server + "/questionnaire/" + id);
+  }
 }

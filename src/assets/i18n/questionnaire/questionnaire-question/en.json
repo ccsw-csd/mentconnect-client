@@ -1,0 +1,36 @@
+{
+    "questionnaireQuestion":{
+        "assignQuestion": "Assign question",
+        "question":"Question",
+        "type":"Type",
+        "weekDays":"Days of the week",
+        "timezone": "Time zone",
+        "alert":{
+            "title":"Alert",
+            "value": "Alert value",
+            "consecutiveAnswers": "Consecutive answers for alert",
+            "info":"By assigning a question to the quiz you can insert an alert setting, as long as the question type is not numeric. To configure it, you must enter the value of the alert in the drop-down menu and enter a number of consecutive responses for it."
+        } 
+    },
+    "questionnaireEdit":{
+        "generalInformation":"General information",
+        "description":"Description",
+        "user":"User",
+        "createDate": "Create date",
+        "lastEdition": "Last edition",
+        "questionnaireToQuestions":"Questions to the questionnaire",
+        "selected":"Selected",
+        "during":"for",
+        "consecutiveDays": "consecutive days"
+    },
+    "MON" : "Monday",
+    "TUE" : "Tuesday",
+    "WEN" : "Wednesday",
+    "THU" : "Thursday",
+    "FRI" : "Friday",
+    "SAT" : "Saturday",
+    "SUN" : "Sunday",
+    "MOR": "Morning",
+    "AFT": "Afternoon",
+    "EVE": "Evening"
+}

@@ -1,12 +1,13 @@
 <p-toast key="patientAssignMessage" position="top-center"></p-toast>
-<span class="ml-1">{{ 'patientEvaluation.dialogAsignation.range' | translate}}: {{rangeDatesSelected }} </span>
-<form class="formgrid w-full grid mt-2" #form="ngForm">
 
+<span class="ml-1">{{ 'patientEvaluation.dialogAsignation.range' | translate}}: {{rangeDatesSelected }}</span>
+<form class="formgrid w-full grid mt-2" #form="ngForm">
     <div class="col-12  flex align-items-center justify-content-center ml-2">
         <div class="field">
             <p-calendar #myCalender dateFormat="dd-mm-yy" (click)="showRange($event, myCalender)" class="w-full"
                 [(ngModel)]="rangeDates" name="rangeDates" [inline]="true" selectionMode="range" [showWeek]="true"
-                [readonlyInput]="true" inputId="range"></p-calendar>
+                [readonlyInput]="true" inputId="range">
+            </p-calendar>
         </div>
     </div>
 </form>

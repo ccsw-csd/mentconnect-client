@@ -1,16 +1,17 @@
 <p-toast key="datesWarning" position="top-center"></p-toast>
 <p-toast key="emptyDates" position="top-center"></p-toast>
+
 <div style="height: calc(10vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12">
-    <div class="flex flex-wrap justify-content-end">
-        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"><img alt="Card"
-                src="assets/images/user.png" class="w-2rem h-2rem" /></div>
-                <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2"
-                [innerHTML]="'patientDiary.patientCard.patient' | translate"> </div>
-                <div class="flex align-items-center justify-content-center font-bold text-gray-900">:
-                    {{patientObj.user.name}} {{patientObj.user.surnames}}</div>
-                <div class="flex align-items-center justify-content-center font-bold text-gray-900">- {{patientObj.nif}}</div>
-
-
+    <div class="flex flex-wrap justify-content-end" *ngIf="!isloading">
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
+            <img alt="Card"src="assets/images/user.png" class="w-2rem h-2rem"/>
+        </div>
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900 m-2">
+            {{"patientEvaluation.patientCard.patient" | translate}}:
+        </div>
+        <div class="flex align-items-center justify-content-center font-bold text-gray-900">
+            {{patientObj.user.name}} {{patientObj.user.surnames}} - {{patientObj.nif}}
+        </div>
     </div>
 </div>
 <div style="height: calc(12vh - 1rem);" class="col-lg-6 col-md-8 col-sm-12 mb-3">

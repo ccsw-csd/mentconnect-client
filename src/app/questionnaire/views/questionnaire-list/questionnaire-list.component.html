@@ -1,7 +1,13 @@
+<!-- <p-toast key="questionnaireNew" position="top-center"></p-toast> -->
 <p-table #ql [value]="questionnaires" [lazy]="true" (onLazyLoad)="loadPage($event)" [loading]="loading"
   [scrollable]="true" scrollHeight="calc(100vh - 190px)" responsiveLayout="scroll" 
-  [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
-  currentPageReportTemplate="{first} - {last} / {totalRecords}" paginatorPosition="bottom">
+  [paginator]="true" [rows]="25" [totalRecords]="totalRecords" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+  currentPageReportTemplate="{first} - {last} / {totalRecords}" paginatorPosition="bottom"   >
+  <ng-template pTemplate="paginatorleft">
+    <button pButton type="button" label="{{ 'buttonQuestionnaireNew' | translate}}" icon="pi pi-plus" (click)="newQuestionnaire()"></button>
+  </ng-template>
+  <!-- <ng-template pTemplate="paginatorright">
+  </ng-template> -->
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="description">{{"questionnaire.description" | translate}}<p-sortIcon field="description"></p-sortIcon></th>
@@ -43,11 +49,11 @@
       <td>{{questionnaire.createDate | date:'dd/MM/yyyy' }}</td>  <!-- TODO fromato de locale --> 
       <td>{{questionnaire.lastEditDate | date:'dd/MM/yyyy' }}</td> <!-- TODO fromato de locale -->
       <td style='flex: 0 0 150px;'>
-        <div>
-          <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon"></button>
-          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon"></button>
+        <div >
+          <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-plain icon" (click)="editPatient(questionnaire)"></button>
+          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-plain icon" *ngIf="questionnaire.patients.length === 0"></button>
         </div>
       </td>
     </tr>
-  </ng-template>
+  </ng-template>  
 </p-table>

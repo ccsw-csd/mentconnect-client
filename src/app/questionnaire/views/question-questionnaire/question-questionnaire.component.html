@@ -1,0 +1,50 @@
+<p-toast key="patientAssignMessage" position="top-center"></p-toast>
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.question" | translate}}: </span>{{questionObj.question | translate}} | <span class="font-bold">{{ "questionnaireQuestion.type" | translate}}:
+</span>{{questionObj.answerType.description | translate}}<br /><br />
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.weekDays" | translate}}:</span>
+<form id="formQuestionsToQuestionnaire" name="questionnaireQuestionForm" #questionnaireQuestionObj="ngForm" (ngSubmit)="displayToSelect(questionnaireQuestionObj)">
+<div id="dates" class="formgrid w-full grid mt-2">
+    <div class="col-12  flex align-items-center justify-content-center ml-2">
+        <div class="flex align-items-center gap-1 ml-3 mr-4" *ngFor="let day of weekDays">
+          <p-checkbox required name="group1" [value]="day" [inputId]="day.id" [(ngModel)]="questionnaireQuestionObj.weekDays"></p-checkbox>
+          <label [for]="day.id"> {{ day.code | translate}} </label>
+        </div>
+      </div>
+      
+      
+    
+</div>
+<br />
+<span class="ml-1 font-bold">{{ "questionnaireQuestion.timezone" | translate}}:</span>
+<div id="timezone" class="formgrid w-full grid mt-2">
+    <div class="col-12  flex ml-3">
+        <div class="flex flex-wrap gap-3">
+            <div class="flex align-items-center" *ngFor="let slot of slots">
+                <p-radioButton required name="time" [value]="slot.code" [inputId]="'time' + slot.code"
+                    [(ngModel)]="questionnaireQuestionObj.timeslot"></p-radioButton>
+                <label [for]="'time' + slot.code" class="ml-2">{{ slot.value }}</label>
+            </div>
+        </div>
+    </div>
+</div><br />
+<div *ngIf="checkAlert">
+        <span class="ml-1 font-bold">{{ "questionnaireQuestion.alert.title" | translate}}:</span>
+        <div class="col-12  flex ml-2">
+            <p-dropdown class="form-control w-full" [options]="answersByType" [optionLabel]="translateOptionLabel" [(ngModel)]="questionnaireQuestionObj.alertConfigAnswerType"
+                styleClass="w-full" placeholder="{{ 'questionnaireQuestion.alert.value' | translate}}" name="alertConfigAnswerType"></p-dropdown>
+                <p-inputNumber styleClass="w-full" class="form-control w-full ml-4" placeholder="{{ 'questionnaireQuestion.alert.consecutiveAnswers' | translate}}" name="alertConfigConsecutiveAnswers" [(ngModel)]="questionnaireQuestionObj.alertConfigConsecutiveAnswers"> </p-inputNumber>
+            <i class="pi pi-info-circle ml-4" style="font-size: 2rem" pTooltip="{{ 'questionnaireQuestion.alert.info' | translate}}"></i>
+        </div>
+</div>
+<br/><br/>
+<div class="flex flex-row-reverse w-auto mt-8 mr-3">
+    <div>
+        <button type="submit" class="p-button-primary w-6rem"   [disabled]="questionnaireQuestionObj.form.invalid " pButton
+            label="{{ 'patientEvaluation.dialogAsignation.save' | translate}}"></button>
+    </div>
+    <div class="px-2">
+        <button type="button" class="p-button-secondary w-6rem" (click)="onClose()" pButton
+            label="{{ 'patientEvaluation.dialogAsignation.close' | translate}}"></button>
+    </div>
+</div>
+</form>
